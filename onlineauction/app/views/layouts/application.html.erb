@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Onlineauction</title>
+    <title>Online Auction System</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ 
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+<div class="header">
+
+
+<div class="logo">
+
+</div>
+
+
+<div class="title">
+Online Auction System
+</div>
+
+</div>
+
+<div>
+<div class="search-box">
+<form action="/search" method="GET">
+
+<div class="">
+<input type="text"/>
+
+</div>
+
+<div class="">
+<input type="submit" value="Search!!!!"></input>
+
+
+</div>
+</form>
+</div>
+</div>
+
+
+
+
+</div>
+    <%= yield %>                
+         
+<div class="footer">
+
+<div class="">
+ 
+</div>
+</div>                                                                                                                        
   </body>
 </html>

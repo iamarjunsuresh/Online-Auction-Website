@@ -1,0 +1,24 @@
+<div class="box">
+
+<li>
+<% if(not @msgarr.nil?)  %>
+<% @msgarr.each do |x| %>
+<ul class="msg-txt" > <%= x %> </ul>
+
+<% end %>
+<% end %>
+</li>
+</div>
+
+
+
+<%= form_tag(action:"login",method:"post") do %>
+
+<%= label_tag :email,"Email ID:" %>
+</br>
+<%= email_field_tag(:email) %>
+<%= label_tag :password,"Password:" %>
+</br>
+<%= password_field_tag(:password) %> 
+<%= submit_tag("Log In") %>
+<% end %> 
