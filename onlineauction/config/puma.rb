@@ -15,6 +15,15 @@ port        ENV.fetch("PORT") { 3000 }
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
+# On development, run ssl server on port 3001
+
+  ##ssl_bind '127.0.0.1', '9999', {
+    #key: "/home/arjun/Desktop/Online-Auction-Website/onlineauction/server.key",
+  #  cert: "/home/arjun/Desktop/Online-Auction-Website/onlineauction/server.crt",
+   # verify_mode: 'none'
+  #}*/
+
+
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.

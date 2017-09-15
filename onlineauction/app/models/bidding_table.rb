@@ -1,0 +1,2 @@
+class BiddingTable < ApplicationRecord
+end

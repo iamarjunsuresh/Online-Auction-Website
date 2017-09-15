@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Online Auction System</title>
+  <meta name="google-signin-client_id" content="365363926796-03cv8tv3aq3dt8f6ob5rlcqj9ln53crr.apps.googleusercontent.com">
+    <title>Online Auction System </title>
     <%= csrf_meta_tags %>
 
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ <!--
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD0MhjdHobWPu8uPiUGjqvb_f4u0_ClpEQ",
+    authDomain: "online-auctio.firebaseapp.com",
+    databaseURL: "https://online-auctio.firebaseio.com",
+    projectId: "online-auctio",
+    storageBucket: "online-auctio.appspot.com",
+    messagingSenderId: "365363926796"
+  };
+  firebase.initializeApp(config);
+</script>
+-->
+
+
+
+
+<%= stylesheet_link_tag    "bootstrap.min.css" %>
  
+<%= javascript_include_tag    "jquery.js" %>
+
+
+
+<%= javascript_include_tag    "bootstrap.min.js" %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+<div class="container-fluid">
+<div class="row header">
 
-<div class="header">
 
 
 <div class="logo">
@@ -20,41 +48,73 @@
 </div>
 
 
-<div class="title">
-Online Auction System
-</div>
+<h5 class="title col-lg-12 ">Online Auction System</h5>
 
 </div>
 
-<div>
-<div class="search-box">
+
+
+<div class="row justify-content-center ">
+<div class="col-lg-4 search-box">
+
 <form action="/search" method="GET">
 
-<div class="">
-<input type="text"/>
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
 
 </div>
-
-<div class="">
-<input type="submit" value="Search!!!!"></input>
-
-
-</div>
-</form>
-</div>
-</div>
-
-
+<div class="row">
+<div class="col-lg-2 form-group">
+<input type="submit" class="btn btn-primary btn-xs" value="Search!!"></input>
 
 
 </div>
-    <%= yield %>                
+</div></form>
+</div>
+</div>
+
+
+<div class="row justify-content-end">
+<div class="col-lg-2">
+
+
+<div class="menu">
+
+<% if session[:userdata].nil? %>
+</br>
+<a href="/login" class="btn btn-primary">Login </a>
+</br>
+<a href="/register" class="btn btn-primary">Register Here</a>
+</br>
+
+<% else %>
+<div class="dmenu">
+Welcome,<%= session[:userdata]["name"] %>
+
+</br>
+
+<a class="text-primary" href="/auction/create">Create an Auction!</a>
+
+<a class="text-primary" href="/product/">My Items</a>
+
+
+<a class="text-primary" href="/logout">Log Out</a>
+</div>
+<% end %>
+</div>
+
+</div>
+</div>
+
+
+<%= yield %>                
          
 <div class="footer">
 
 <div class="">
  
 </div>
-</div>                                                                                                                        
+</div>                                                                                                                </div>      
   </body>
+
 </html>

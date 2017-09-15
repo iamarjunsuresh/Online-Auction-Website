@@ -1,45 +1,33 @@
-<div class="box">
+<script src="https://cdn.auth0.com/js/auth0/8.8/auth0.min.js"></script>
+<script type="text/javascript">
+  var webAuth = new auth0.WebAuth({
+    domain: 'online-auc.auth0.com',
+    clientID: 'HmxEYWKctGnELFKJwWxwqJzeZHSGi5NV',
+    redirectUri: 'https://localhost:3000/auth/callback',
+    audience: 'https://online-auc.auth0.com/userinfo',
+    responseType: 'code',
+    scope: 'openid profile',
+    state: '<%= get_state %>'
+  });
 
-<li>
-<% @msgarr.each do |x| %>
-<ul class="msg-txt" > <%= x %> </ul>
+  function signin() {
+    webAuth.authorize();
+  }
 
-<% end %>
-</li>
+</script>
+
+
+
+<div class="row justify-content-center">
+<div class="col-lg-5">
+
+<h4>Be a Part of this website.</h4>
+</div>
 </div>
 
+<div class="row justify-content-center">
+<div class="col-lg-5">
 
-
-<%= form_tag action:"register",method:"post"  do %>
-
-<%= label_tag :fname,"First Name:" %>
-<%= text_field_tag :fname    %>
-</br>
-
-<%= label_tag :lname,"Last Name:" %>
-<%= text_field_tag :lname    %>
-
-</br>
-<%= label_tag :addr,"Address:" %>
-<%= text_area_tag :addr   %>
-
-</br>
-
-<%= label_tag :mobno,"Mobile No:" %>
-<%= text_field_tag :mobno    %>
-</br>
-<%= label_tag :email,"Email:"%>
-<%= email_field_tag :email   %>
-
-</br>
-<%= label_tag :pwd,"Password:"   %>
-<%= password_field_tag :pwd  %>
-</br>
-         
-<%= label_tag :cpwd,"Confirm Password:" %>
-<%= password_field_tag :cpwd    %>
- 
-</br>
-
-<%= submit_tag "Register"  %>
-<% end %>WS
+<div class="btn btn-primary" onclick="signin();">REGISTER using Google Account</div>
+</div>
+</div>

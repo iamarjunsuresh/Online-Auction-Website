@@ -1,0 +1,53 @@
+<table>
+
+<tr>
+<th>
+
+Image
+</th>
+<th>
+Name
+</th>
+<th>
+Description
+</th>
+<th>
+minimum Bid
+</th>
+<th>
+	Actions
+</th>
+</tr>
+<% @r.each do |x| %>
+<tr>
+<td>
+<img src="<%= x.image %>" ></img>
+
+</td>
+<td>
+<%= x.name %>
+</td>
+
+<td>
+<%= x.desc %>
+</td>
+
+
+<td>Rs. 
+<%= x.min_bid.to_s %>
+</td>
+
+<td>
+	
+<%= link_to "Manage" ,action:"show",id:x.id %>
+</br>
+
+<%= link_to "Edit " ,action:"edit",id:x.id %>
+	</br>
+<%= link_to "Delete" ,action:"delete",id:x.id %>
+	
+</td>
+</tr>
+<% end %>
+
+</table>

@@ -1,0 +1,30 @@
+
+
+<h4><%=
+ @vals[0] %></h4>
+<table>
+
+	<% @labels.size.times do |x| %>
+
+
+
+<tr>
+	<td>
+	<%= @labels[x] %>
+	</td>
+
+	<td>
+	<%= @vals[x] %>
+	</td>
+	
+</tr>
+<% end %>
+
+</table>
+
+<a class="btn btn-primary" href="">
+Schedule Auction
+</a>
+<a class="btn btn-primary" href="">
+Cancel Auction
+</a>

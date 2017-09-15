@@ -1,0 +1,38 @@
+ 
+<div class="row">
+ <div class="box">
+
+<li>
+<% if(not @msg.nil?)  %>
+<% @msg.each do |x| %>
+<ul class="msg-txt" > <%= x %> </ul>
+
+<% end %>
+<% end %>
+</li>
+</div>
+</div>
+ <div class="row justify-content-center">
+ <div class="col-lg-5">
+<form action="/product/edit?id=<%= @p.id %>" method="POST" enctype="multipart/form-data">
+
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<% @labels.size.times do |x| %>
+
+<%= label_tag @labels[x]+":" %>
+<%= text_field_tag @names[x],@vals[x] %>
+</br>
+
+
+<% end %>
+
+<label >Item Image:</label>
+<img src="<%= @p.image %>" />
+</br>
+<% label_tag "Item Image:" %>
+<%= file_field_tag :pimage %>
+
+<%= submit_tag "Edit Item" %>
+
+</div>
+</div>

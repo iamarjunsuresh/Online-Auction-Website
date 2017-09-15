@@ -1,0 +1,46 @@
+<div class="box">
+
+<li>
+<% @msgarr.each do |x| %>
+<ul class="msg-txt" > <%= x %> </ul>
+
+<% end %>
+</li>
+</div>
+
+<h4>Fill in Following Details</h4>
+<div class="">Email:<%= @email %></div>
+<div class="">Name: <%= @name %> </div>
+<%= form_tag action:"register",method:"post"  do %>
+
+
+<div class="row">
+<div class="col-lg-6"
+ <input type="checkbox" name="sex" value="Male"> Male</input>
+</div>
+ <div class="col-lg-6">
+  <input type="checkbox" name="sex" value="Female"> Female
+</input>
+</div>
+</div>
+</br>
+<%= label_tag :addr,"Address:" %>
+<%= text_area_tag :addr   %>
+
+</br>
+
+<%= label_tag :mobno,"Mobile No:" %>
+<input type="text" pattern="[0-9]{10}" name="mobno"></input>
+
+</br>
+<%= label_tag :pwd,"Password:"   %>
+<%= password_field_tag :pwd  %>
+</br>
+
+<%= label_tag :cpwd,"Confirm Password:" %>
+<%= password_field_tag :cpwd    %>
+ 
+</br>
+
+<%= submit_tag "Register"  %>
+<% end %>

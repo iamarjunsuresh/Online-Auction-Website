@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  desc: MyString
+  name: MyString
+  image: MyString
+  min_bid: 1.5
+  seller_id: 
+  auction_status: MyString
+
+two:
+  category: MyString
+  desc: MyString
+  name: MyString
+  image: MyString
+  min_bid: 1.5
+  seller_id: 
+  auction_status: MyString
