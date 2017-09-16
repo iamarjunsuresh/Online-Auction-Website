@@ -17,14 +17,53 @@
 
  
 .header{
-height:120px;
-background-color:rgb(45,0,230);
+
+
+height:100%;
+color:white;
+	background: repeating-linear-gradient( -55deg, blue, blue, 10px, black 10px, black 20px );
+
+}
+
+.footer
+{
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	height:60px;
+	width: 100%;
+	background-color: blue;
+}
+.content{
+
+
+margin-top:50px;
+}
+tr{
+text-align: center;
 }
 td{
 
 text-align: center;
 font-size:24px;
+padding: 10px;
+}
+table{
 
+
+
+}
+
+form{
+
+
+border-width: 3px;
+
+	border-style:solid;
+	border-top-width: 15px;
+	border-top-color: blue;
+	border-radius: 5px;
+	padding: 15px;
 }
 .dmenu{
 
@@ -50,7 +89,7 @@ label{
 input[type="text"],input[type="email"],input[type="password"]
 
 {
-font-size:24px;
+font-size:14px;
 border-radius:2px;
 border-style: solid;
 border-width: 1px;
@@ -78,6 +117,7 @@ text-decoration: none;
 .search-box{
 
 margin-top:40px;
+
 
 }
 

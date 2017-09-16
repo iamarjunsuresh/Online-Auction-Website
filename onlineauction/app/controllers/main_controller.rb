@@ -27,7 +27,13 @@ Digest::SHA1.hexdigest strs
 
 
 end
- 
+ def profile
+ 	id=params[:id]
+@us=User.find(id)
+
+@pro=Product.where(:seller_id=>@us.id)
+
+ end
 def login
 	if (request.method=="GET" )
 		#print form

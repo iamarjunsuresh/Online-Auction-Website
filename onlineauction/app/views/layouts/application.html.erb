@@ -42,20 +42,21 @@
 <div class="row header">
 
 
-
+<div class="col-lg-1">
 <div class="logo">
+<img src="https://cdn3.iconfinder.com/data/icons/auction-icons/474/Auction_Bid-512.png" height=150 width=150 />
+</div>
 
+</div>
+<div class="col-lg-8">
+<h5 class="title">Online Auction System</h5>
+
+</div>
 </div>
 
 
-<h5 class="title col-lg-12 ">Online Auction System</h5>
-
-</div>
-
-
-
-<div class="row justify-content-center ">
-<div class="col-lg-4 search-box">
+<div class="row search-box justify-content-center">
+<div class="col-lg-4 ">
 
 <form action="/search" method="GET">
 
@@ -71,10 +72,10 @@
 </div>
 </div></form>
 </div>
-</div>
 
 
-<div class="row justify-content-end">
+
+
 <div class="col-lg-2">
 
 
@@ -93,7 +94,7 @@ Welcome,<%= session[:userdata]["name"] %>
 
 </br>
 
-<a class="text-primary" href="/auction/create">Create an Auction!</a>
+<a class="text-primary" href="/auction/create">Add an Item</a>
 
 <a class="text-primary" href="/product/">My Items</a>
 
@@ -104,16 +105,26 @@ Welcome,<%= session[:userdata]["name"] %>
 </div>
 
 </div>
+
 </div>
+<div class="content">
+
+
+
 
 
 <%= yield %>                
-         
+
+
+
+
+
+
+         </div>
 <div class="footer">
 
-<div class="">
- 
-</div>
+
+<h3>copyright 2017</h3>
 </div>                                                                                                                </div>      
   </body>
 

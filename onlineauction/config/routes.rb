@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
+  get 'admin/vproduct'
+
+  get 'admin/vuser'
+
   get 'product/show'
 
   get 'product/edit'
@@ -22,6 +28,8 @@ get 'product/'=>'product#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root 'main#index'
 get 'search'=>'main#search'
+get 'profile/(:id)'=>'main#profile'
+
 get 'login'=>'main#login'
 post 'login'=>'main#login'
 get 'register'=>'main#register'
@@ -33,4 +41,12 @@ get 'loginsucess'=>'main#loginsucess'
 get 'loginfail'=>'main#loginfail'
 get  'auction/create'=>'auction#create'
 post 'auction/create'=>'auction#create'
+
+get 'admin/'=>'admin#index'
+get 'admin/verifyuser'=>'admin#vuser'
+
+get 'admin/verifyproduct'=>'admin#vproduct'
+
+
+
 end
