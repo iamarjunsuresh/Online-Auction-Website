@@ -11,11 +11,19 @@
 <h4>Fill in Following Details</h4>
 <div class="">Email:<%= @email %></div>
 <div class="">Name: <%= @name %> </div>
-<%= form_tag action:"register",method:"post"  do %>
+<%= form_tag action:"registercomplete",method:"post"  do %>
+<%= label_tag :fname,"First Name:" %>
+<%= text_field_tag :fname %>
+</br>
+<%= label_tag :lname,"Last Name:" %>
+<%= text_field_tag :lname %>
+</br>
 
-
+<%= label_tag :email,"Email:" %>
+<%= email_field_tag :email %>
+</br>
 <div class="row">
-<div class="col-lg-6"
+<div class="col-lg-6">
  <input type="checkbox" name="sex" value="Male"> Male</input>
 </div>
  <div class="col-lg-6">

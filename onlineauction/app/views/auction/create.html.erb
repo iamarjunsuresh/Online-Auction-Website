@@ -19,7 +19,22 @@
 <% @labels.size.times do |x| %>
 
 <%= label_tag @labels[x]+":" %>
-<%= text_field_tag @names[x] %>
+<% if @val.size>0 %>
+<% if @names[x]=="minbid" %>
+<input type="number" name="minbid" value="<%= @val[x] %>" step="0.0001"></input>
+<% else %>
+<%= text_field_tag @names[x],@val[x] %>  
+<% end %>
+<% else %>
+<% if @names[x]=="minbid" %>
+<input type="number" name="minbid" step="0.0001"></input>  
+<% else %>
+<%= text_field_tag @names[x] %>  
+
+
+<% end %> 
+<% end %>		
+
 </br>
 
 

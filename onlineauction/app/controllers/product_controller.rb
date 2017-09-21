@@ -30,8 +30,8 @@ class ProductController < ApplicationController
 @p=Product.find(params[:id])
 @labels=["Name of Item","Description","Minimum Bid"]
 
-    @names=["name","desc","minbid"]    
-
+    @names=["name","desc","minbid"] 
+   
   @vals=[]
   @vals.push @p.name
   @vals.push @p.desc

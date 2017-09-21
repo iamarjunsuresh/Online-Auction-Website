@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'product/cancelauction'
 
   get 'product/editauction'
-
+  get 'verify/:id'=>'main#verify'
   get 'auction/create'
 get 'product/'=>'product#index'
 
@@ -32,9 +32,8 @@ get 'profile/(:id)'=>'main#profile'
 
 get 'login'=>'main#login'
 post 'login'=>'main#login'
-get 'register'=>'main#register'
-get 'registercomplete'=>'main#registercomplete'
-post 'registercomplete'=>'main#registercomplete'
+get 'register'=>'main#registercomplete'
+post 'register'=>'main#registercomplete'
 get  'logout'=>'main#logout'
 get 'regsucess'=>'main#regsucess'
 get 'loginsucess'=>'main#loginsucess'

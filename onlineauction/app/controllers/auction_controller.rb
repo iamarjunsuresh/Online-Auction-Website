@@ -14,6 +14,13 @@ class AuctionController < ApplicationController
   	@labels=["Name of Item","Description","Minimum Bid"]
 
   	@names=["name","desc","minbid"]
+  	@val=[]
+  	if not session[:p].nil?
+  		@val.push session[:p]["name"]
+	  	@val.push session[:p]["desc"]
+	  	@val.push session[:p]["minbid"]
+  	end
+  	
   	show_error()
   	if(request.method=="POST")
 @err=[]
@@ -29,8 +36,11 @@ end
 
 if @err.size>0
 	session[:em]=@err
+	session[:p]=params
 	redirect_to action:"create"
+
 else
+	session[:p]=nil
 @prod=Product.new
 @prod.name=params[:name]
 @prod.desc=params[:desc]

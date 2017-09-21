@@ -1,4 +1,6 @@
 require 'digest/sha1'
+			require 'net/http'
+
 
 class MainController < ApplicationController
 
@@ -68,10 +70,8 @@ def login
 				redirect_to action:"loginsucess"	
 				#redirect_to session[:prevurl]	
 			else
-				@err.push(get_hash(params[:password],@us.salt.to_s))
-				@err.push(@us.pwd)
+			
 
-				@err.push((params[:password]+@us.salt.to_s))
 				@err.push("Password Incorrect")
 				session[:em]=@err
 				redirect_to action:"login"
@@ -103,14 +103,30 @@ def logout
 	redirect_to action:"index"
 
 end
+def verify
+
+has=params[:id]
+ @user=Verify.where(:code=>has).where(:expired=>0) 
+if(@user.size==0)
+
+	@mess="Verification Link is Invalid"
+else
+	@u=User.find(@user[0].userid)
+	@u.verified_by=-1
+	@u.save
+	@user[0].expired=1
+	@user[0].save
+	@mess="User Verified Successfully"
+end
+
+	end
 def registercomplete
 	@msgarr=[]
 
 
 	if (request.method=="GET")
-		session[:email]=session[:userinfo].email
-		@email=session[:email]
-		@name=session[:userinfo].name
+		
+		
 		setmessage()
 	elsif (request.method=="POST")
 
@@ -134,16 +150,17 @@ def registercomplete
 		if(@err.size>0)
 			session[:em]=@err
 
-			redirect_to action:"register"
+			redirect_to action:"registercomplete"
 		elsif (User.where(:email=>params[:email]).size!=0)
 				@err.push("Email ID Already exists")
 		session[:em]=@err
 
-			redirect_to action:"register"
+			redirect_to action:"registercomplete"
 			
 		else
 			@user=User.new
-			@user.name=session[:userinfo].name
+
+			@user.name=params[:fname]+params[:lname]
 			@user.addr=params[:addr]
 			@user.phno=params[:mobno]
 			@user.email=session[:email]
@@ -151,9 +168,29 @@ def registercomplete
 			@user.salt=slt
 			@user.pwd=get_hash(params[:pwd],slt)
 			@user.gender=params[:sex]
-			@user.verified_by=-1
-			@user.usertype="user"
+			@user.verified_by=-2
+			@user.usertype="admin"
 			@user.save
+
+body ="<h2>Online Auction System</h2></h4>Verify Email</h4> <p>Please click link <a href=\""
+baki="\" >Here</a> to verify email.</p>"
+hash1=get_hash(rand(999999).to_s,"verified_by")
+@v=Verify.new
+@v.userid=@user.id
+@v.code=hash1
+@v.expired=0
+@v.date=Time.now+1.day
+@v.save
+
+url1="http://localhost:3000/verify/"+hash1
+message=body+url1+baki
+furl='http://www.advancedbytes.in/sendmail?semail=123arjunsuresh@gmail.com&remail='+em+"&body="+message+"&sub=Verify Email"
+puts(furl)
+url = URI.parse(furl)
+req = Net::HTTP::Get.new(url.to_s)
+res = Net::HTTP.start(url.host, url.port) {|http|
+  http.request(req)
+}
 			redirect_to action:"regsucess"
 		end
 		#insert to db

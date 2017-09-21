@@ -1,0 +1,2 @@
+class Verify < ApplicationRecord
+end
