@@ -64,6 +64,33 @@ end
 
 #post
 end
+
+def edit
+
+
+  ds=params[:id]
+
+
+
+end
+
+
+def verify
+  ds=params[:id]
+  @p=Product.find(ds)
+  @a=Auction.new
+@a.pid=ds
+@a.start_time=@p.start_time
+@a.end_time=@p.end_time
+@a.save
+
+
+  end
+
+  def cancel
+ds=params[:id]
+
+  end
 #method
 
 end

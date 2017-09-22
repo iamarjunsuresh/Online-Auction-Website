@@ -124,3 +124,85 @@ x=@products[y]
 <% end %>
 
 </table>
+
+
+
+</table>
+<br/>
+
+<br/>
+<h3>Auctions Waiting List</h3>
+<table>
+
+<tr>
+<th>
+
+Image
+</th>
+<th>
+Name
+</th>
+
+<th>
+minimum Bid
+</th>
+<th>
+Uploaded By
+</th>
+<th>
+Start Time
+</th>
+<th>
+End Time
+</th>
+<th>
+	Actions
+</th>
+</tr>
+<% @auctions.size.times do |y| 
+x=Product.find(@auctions[y].pid)
+z=@auctions[y]
+userdata=User.find(x.seller_id)
+	%>
+<tr>
+<td>
+<img src="<%= x.image %>" ></img>
+
+</td>
+<td>
+<%= x.name %>
+</td>
+
+<td>
+<%= x.desc %>
+</td>
+
+
+<td>Rs. 
+<%= x.min_bid.to_s %>
+</td>
+
+<td>
+<%= userdata.name %>
+</td>
+<td>
+<%= x.start_time %>
+</td>
+<td>
+<%= x.end_time %>
+</td>
+
+<td>
+	
+<%= link_to "Approve Auction" ,controller:"auction" ,action:"verify",id:x.id%>
+</br>
+
+<%= link_to "Edit Auction" ,controller:"auction" ,action:"edit",id:x.id %>
+</br>
+
+<%= link_to "Reject Auction" ,controller:"auction" ,action:"cancel",id:x.id %>
+</td>
+</tr>
+<% end %>
+
+</table>

@@ -1,5 +1,14 @@
 
+<%= javascript_include_tag "datepicker.js" %>
 
+<%= stylesheet_link_tag "datepicker.css" %>
+<script>
+$(document).ready(function() { /* code here */jQuery('#starttime').datetimepicker({minDate:0}); 
+
+jQuery('#endtime').datetimepicker({minDate:0}); 
+});
+
+</script>
 <h4><%=
  @vals[0] %></h4>
 <table>
@@ -22,9 +31,23 @@
 
 </table>
 
-<a class="btn btn-primary" href="">
-Schedule Auction
+<% if @issch %>
+<form action="/product/schedule" method="post">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+<%= hidden_field_tag :id,@vals[3] %>
+
+<label for="starttime">Start Time </label>
+
+<input id="starttime" type="text" name="starttime" />
+<label for="endtime">End Time </label>
+<input id="endtime" type="text"  name="endtime" />
+
+<input type="submit" value="Schedule Auction"/>
+</form>
+<% else %>
+<a  href="cancel?id=<%= @vals[3] %>">
+Cancel Auction 
 </a>
-<a class="btn btn-primary" href="">
-Cancel Auction
-</a>
+
+<% end %>

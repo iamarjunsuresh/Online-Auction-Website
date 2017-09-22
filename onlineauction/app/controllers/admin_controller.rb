@@ -8,6 +8,7 @@ class AdminController < ApplicationController
  @products.each do |x|
  	y=User.find(x.seller_id)
 @userp.push({name:y.name,id:y.id})
+@auctions=Auction.where(:status=>'NOT_VERIFIED')
 
  end
   end
@@ -40,5 +41,12 @@ end
 redirect_to action:"index"
 
   end
+
+  def vauction 
+
+  	
+
+  end
+
 
 end
