@@ -15,6 +15,13 @@ end
  
   end
 
+def vwproduct
+@r=Product.all
+end
+def vwuser
+@users=User.all
+
+	end
   def vproduct
 
 id=params[:id]

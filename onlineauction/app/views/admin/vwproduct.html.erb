@@ -1,0 +1,29 @@
+<html>
+	<h1>Products Available</h1>
+		<table>
+		<tr>
+		<th>Product Name</th>
+		<th>Image</th>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Minimum Bid Amount</th>
+		</tr>
+
+		<% @r.each do |p| %>
+		<tr>
+			<td>
+				<%= p.name %>
+			</td>
+			<td><img src="<%= p.image %>" /></td>
+			<td><%= p.description %></td>
+			<td><%= p.category %></td>
+			<td><%= p.min_bid %></td>
+		</tr>	
+
+		<% end %>
+		
+
+
+	</table>
+</html>
+

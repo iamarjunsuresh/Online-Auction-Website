@@ -25,6 +25,7 @@ else{
         $("#message").html(result.message);
     }});
 
+refreshbidlist();
 }
 }
 function refreshbidlist()
@@ -49,6 +50,12 @@ $("#bidtable tr").remove();
 
 
 }
+window.onload= function()
+{
+ setInterval(refreshbidlist, 2000);
+    }
+
+
 </script>
 
 
@@ -74,7 +81,7 @@ No Bids Placed.
 
 <div class="halves">
 
-<table class="bidtable">
+<table class="bidtable" id="bidtable">
 
 <tr><th>Bidder's Name</th><th>Bid Value</th><th>Time of Bid</th></tr>
 

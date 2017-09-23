@@ -1,0 +1,28 @@
+<h1> Registered Users </h1>
+<table>
+		<tr>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Gender</th>
+		<th>Type of User</th>
+		<th>Email ID</th>
+		<th>Phone No</th>
+		</tr>
+
+		<% @users.each do |user| %>
+		<tr>
+			<td>
+				<%= user.name %>
+			</td>
+			<td><%= user.addr %></td>
+			<td><%= user.gender %></td>
+			<td><%= user.usertype %></td>
+			<td><%= user.email %></td>
+			<td><%= user.phno %></td>
+		</tr>	
+
+		<% end %>
+		
+
+
+	</table>
