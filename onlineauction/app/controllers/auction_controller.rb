@@ -1,4 +1,78 @@
 class AuctionController < ApplicationController
+
+
+  def show
+    id=params[:id]
+
+    @p=Product.find(id)
+    @auc=Auction.find(@p.auction_id)
+    session[:aid]=@auc.id
+    session[:pid]=@p.id
+    session[:bid]=session[:userdata]["id"]
+        @bids=Bidding_table.where(:auction_id=>@p.auction_id).order("biding_price DESC")
+
+@arr=@bids
+if(@arr.size!=0)
+  @bidwinval=@arr[0].biding_price
+else
+  @bidwinval=0
+end
+  end
+
+  def placebid
+
+    val=params[:val]
+    @p=Product.find(session[:pid])
+    @auc=Bidding_table.where(:auction_id=>@p.auction_id).order("biding_price DESC")
+    if @p.auction_status.eql?("AUCTION_END")
+      @resp={message:"Auction Ended"}
+     elsif @auc.size!=0
+         if val.to_f<=@auc[0].biding_price
+          #return error less bid val
+
+      @resp={message:"Bid Placed is Lower than Curently Bidding Price"}
+         else 
+          @bd=Bidding_table.new
+            @bd.auction_id=session[:aid]
+            @bd.prod_id=session[:pid]
+            @bd.biding_price=val.to_f
+            @bd.time=Time.now
+            
+            @bd.bidder_id=session[:bid]
+            @bd.save
+
+@resp={message:"Bid Placed Successfully1"}
+        end
+    else
+            @bd=Bidding_table.new
+            @bd.auction_id=session[:aid]
+            @bd.prod_id=session[:pid]
+            @bd.biding_price=val
+            @bd.time=Time.now
+            @bd.bidder_id=session[:bid]
+            @bd.save
+
+@resp={message:"Bid Placed Successfully"}
+     end
+  respond_to do |format|  ## Add this
+  format.xml  { render :xml => @resp }
+  format.json { render :json => @resp}  
+end
+  end
+
+  
+
+  def bidlist
+
+
+
+    @resp=Bidding_table.where(:auction_id=>session[:aid]).order("biding_price DESC")
+    respond_to do |format|  ## Add this
+  format.xml  { render :xml => @resp }
+  format.json { render :json => @resp}  
+end
+
+  end
 	def show_error
 
 		if session[:em].nil?
@@ -74,18 +148,6 @@ def edit
 
 end
 
-
-def verify
-  ds=params[:id]
-  @p=Product.find(ds)
-  @a=Auction.new
-@a.pid=ds
-@a.start_time=@p.start_time
-@a.end_time=@p.end_time
-@a.save
-
-
-  end
 
   def cancel
 ds=params[:id]

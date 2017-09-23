@@ -50,7 +50,20 @@ post 'product/schedule'=>'product#schedule'
 post 'product/cancel'=>'product#cancel'
 
 get 'auction/edit'=>'auction#edit'
-get 'auction/verify'=>'auction#verify'
+get 'auction/verify'=>'admin#verifyauction'
+
+
+get 'auction/cancel'=>'auction#cancel'
+
+get 'auction/show'=>'auction#show'
+
+get 'auction/bid'=>'auction#bid'
+
+
+get 'ajax/addbid'=>'auction#placebid'
+get 'ajax/bidlist'=>'auction#bidlist'
+
+
 
 
 end

@@ -8,9 +8,11 @@ class AdminController < ApplicationController
  @products.each do |x|
  	y=User.find(x.seller_id)
 @userp.push({name:y.name,id:y.id})
-@auctions=Auction.where(:status=>'NOT_VERIFIED')
 
- end
+end
+@pr=Product.where(:auction_status=>'TO_BE_VERIFIED')
+
+ 
   end
 
   def vproduct
@@ -39,6 +41,22 @@ else
 end
 @a.save
 redirect_to action:"index"
+
+  end
+
+
+def verifyauction
+  ds=params[:id]
+  @p=Product.find(ds)
+  @p.auction_status="SCHEDULED_FOR_AUCTION"
+  @p.save
+aid=@p.auction_id
+  @a=Auction.find(aid)
+	@a.status="SCHEDULED"
+	@a.admin_id=session[:userdata]["id"]
+	@a.save
+
+redirect_to controller:"admin",action:"index"
 
   end
 
