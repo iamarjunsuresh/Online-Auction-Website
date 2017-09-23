@@ -21,7 +21,13 @@ def setmessage
 end
 def index
 setmessage()
+setmessage
 
+@r=Product.all
+@au="AUCTION_LIVE"
+@st=Product.where(:auction_status=>@au)
+@ns="SCHEDULED"
+@nst=Product.where(:auction_status=>@ns)
 
 end
 

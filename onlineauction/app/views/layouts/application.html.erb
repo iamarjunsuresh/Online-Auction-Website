@@ -6,6 +6,7 @@
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
 
@@ -25,8 +26,10 @@
         <option><!--Variable Placing Category Name--></option>
       <!--end_-->
     </select>
+    <form action="/search" action="POST">
     <input type="text" class="s_box" placeholder="Search"/>
     <input type="submit" class="find" value="Search"/>
+    </form>
   </div>
 
   <div class="login_">
@@ -38,6 +41,7 @@
         Welcome, <%= session[:userdata]["name"] %><br/>
         <a class="text-primary" href="/auction/create">Add Product</a>
         <a class="text-primary" href="/product/">My Products</a>
+        <a class="text-primary" href="/profile/<%= session[:userdata]["id"] %>">My Profile</a>
         <a class="text-primary" href="/logout">Log Out</a>
       </div>
     <% end %>

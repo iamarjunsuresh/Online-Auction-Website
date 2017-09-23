@@ -19,7 +19,7 @@ a:hover { color: blue; }
 
 form
 {
-	border-width: 3px;
+	/*border-width: 3px;
 	border-style:solid;
 	border-top-width: 20px;
 	border-bottom-width: 20px;
@@ -27,7 +27,7 @@ form
 	border-left-color: rgb(0,120,255);
 	border-bottom-color: rgb(0,120,255);
 	border-right-color: rgb(0,120,255);
-	border-radius: 20px;
+	border-radius: 20px;*/
 	padding: 10px;
 }
 
