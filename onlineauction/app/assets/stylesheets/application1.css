@@ -1,0 +1,214 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.b
+{
+	background-image: url(background.jpg);
+	background-size: cover;
+	height: 2000px;
+	border-radius: 10px;
+	padding: 6px;
+	width: 1250px;
+	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.img>img{
+width:400px;
+max-width:100%;
+max-width: 100%;
+
+}
+.b1
+{/*
+	background-image: url(bg1.jpg);
+	background-size: cover;
+	height: 3000px;
+	border-radius: 10px;
+	padding: 8px;
+	width: 1310px;
+	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+*/
+}
+
+.feature_img
+{
+	background-image: url(auction.jpg);
+	height: 400px;
+	border-radius: 100px;
+	margin-left: 200px;
+    margin-right:200px;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	width: 900px;
+	box-shadow: 1px 1px 2px 1px rgba(120, 130, 100,78);
+
+}
+
+.feature_inner
+{
+height:100%;
+color:black;
+background: rgb(210,195,255);
+border-radius: 100px;
+}
+
+.feature_intro
+{
+	text-align: center;
+	font-family: "serif";
+padding-top:0px;
+color: black;
+font-size:30px;
+font-style:bold;
+}
+
+.feature_title
+{
+	text-align: center;
+	font-family: "serif";
+	padding-top:0px;
+	color: black;
+	font-size:50px;
+	font-style:bold;
+}
+
+.feature_text
+{
+	margin-left: 200px;
+	margin-right:200px;
+	padding-top:0px;
+	color: black;
+	font-size:20px;
+	font-style:bold;
+}
+ 
+.header
+{
+	height:40px;
+	color:white;
+	background: rgb(190,189,176);
+}
+
+.footer
+{
+	text-align: left;
+	position: fixed;
+	bottom: 2px;
+	height:40px;
+	width: 150%;
+	background-color: grey;
+}
+
+.content
+{
+	margin-top:50px;
+}
+
+tr
+{
+	text-align: center;
+}
+
+td
+{
+	text-align: center;
+	font-size:24px;
+	padding: 10px;
+}
+
+table
+{
+}
+
+form{
+	border-width: 3px;
+	border-style:solid;
+	border-top-width: 20px;
+	border-bottom-width: 20px;
+	border-top-color: rgb(0,120,255);
+	border-left-color: rgb(0,120,255);
+	border-bottom-color: rgb(0,120,255);
+	border-right-color: rgb(0,120,255);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.searchb{	
+}
+
+.dmenu
+{
+	width: 400px;
+	border-radius: 25px;
+	background: rgb(255,176,176);
+	border-width: 2px;
+	text-align: center;
+}
+
+.dmenu
+{
+	padding: 12px;
+	overflow: hidden;
+	height: 50px;
+	font-size:22px;
+}
+
+label
+{
+	font-size: 24px;
+}
+
+input[type="text"],input[type="email"],input[type="password"]
+{
+	font-size:14px;
+	border-radius:2px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: white;
+}
+
+.dmenu:hover
+{
+	height:150px;
+}
+
+.dmenu>a
+{
+	display: block;
+	width:100%;
+	color:black;
+	text-decoration: none;
+}
+
+.dmenu>a:hover
+{
+	background-color: white;
+}
+
+.search-box
+{
+	margin-top:0px;
+}
+
+.title
+{
+	margin-left:200px;
+	padding-top:0px;
+	color: black;
+	font-size:40px;
+	font-style:bold;
+}

@@ -117,7 +117,7 @@ else
 	session[:p]=nil
 @prod=Product.new
 @prod.name=params[:name]
-@prod.desc=params[:desc]
+@prod.description=params[:desc]
 @prod.min_bid=params[:minbid].to_f
 
 uploaded_io = params[:pimage]
