@@ -1,24 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
 
-<h4><%= @us.name %></h4>
+<style>
+th
+{
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px
+}
+.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
 
+.title {
+  color: grey;
+  font-size: 18px;
+}
 
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
 <% user=@us %>
+<h2 style="text-align:center">User Profile Card</h2>
 
-<div>
-<table style="width:50%">
-	<tr><td>Email </td><td><%= user.email %></td></tr>
-  	<tr><td>Members since</td><td> <%= user.created_at %></td></tr>
- 	<tr><td>Verified By </td> <td><%= user.verified_by %></td></tr>
-  	<tr><td>Type</td><td> <%= user.usertype %></td></tr>
-  	<tr><td>Products Sold</td><td> <%= @co%></td></tr>
-  	<td><%= link_to 'ban' %></td>
-</table>
+<div class="card">
+  
+  <h1><%= @us.name %></h1>
+  <p><%= user.email %></p>
+  <p>Member Since : <%= user.created_at %></p>
+  <p>Verified By : <%= user.verified_by %></p>
+  <p>Type : <%= user.usertype %></p>
+  <p>Products Sold : <%= @co%></p>
+
+ <p><button>Ban User<%= link_to 'ban' %></button></p>
 </div>
 
-<h2>Details of Products</h2>
 
-<div >
-	<table style="width:50%">
+
+
+<h2 style="text-align:center">Details of Products</h2>
+
+<div class="card1">
+	<table style="width:90%">
 		<tr>
 			<th>Name</th>
 			<th>Image</th>
@@ -35,6 +93,33 @@
 		<% end %>
 	</table>
 </div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

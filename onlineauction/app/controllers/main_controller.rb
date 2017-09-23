@@ -1,8 +1,7 @@
 require 'digest/sha1'
-			require 'net/http'
-
-
+require 'net/http'
 require "erb"
+
 include ERB::Util
 
 
@@ -54,6 +53,11 @@ def login
 		setmessage()
 
 	elsif (request.method=="POST")
+if(Admin.where(:email=>params[:email]).where(:pass=>params[:password]).size>0)
+
+session[:isadmin]=1
+redirect_to controller:"admin",action:"index"
+else
 		@err=[]
 
 		#user authenticate
@@ -78,7 +82,9 @@ def login
 			if( @us.size>0)
 					@us=@us[0]
 			if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
+				
 				session[:userdata]=@us
+
 				redirect_to action:"loginsucess"	
 				#redirect_to session[:prevurl]	
 			else
@@ -98,7 +104,7 @@ def login
 
 			end
 		end
-
+end
 	end
 
 
@@ -117,7 +123,7 @@ def search_pro
 end
 	
 def logout
-
+	session[:isadmin]=nil
 	session[:userdata]=nil
 	redirect_to action:"index"
 
@@ -188,7 +194,7 @@ def registercomplete
 			@user.pwd=get_hash(params[:pwd],slt)
 			@user.gender=params[:sex]
 			@user.verified_by=-2
-			@user.usertype="admin"
+			@user.usertype="user"
 			@user.save
 
 body ="<h2>Online Auction System</h2></h4>Verify Email</h4> <p>Please click link <a href=\""

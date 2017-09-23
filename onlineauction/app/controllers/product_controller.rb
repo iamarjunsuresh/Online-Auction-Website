@@ -93,7 +93,7 @@ pid=params[:id]
   @auc.start_time=@pp.start_time
   @auc.end_time=@pp.end_time
   @auc.admin_id=-1
-  @auc.status="NOT_VERIFIED"
+  @auc.status="TO_BE_VERIFIED"
   @auc.pid=pid
   @auc.save
   @pp.auction_id=@auc.id

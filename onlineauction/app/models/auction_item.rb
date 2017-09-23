@@ -1,2 +1,2 @@
-class AuctionItem < ApplicationRecord
+class Auction_item < ApplicationRecord
 end

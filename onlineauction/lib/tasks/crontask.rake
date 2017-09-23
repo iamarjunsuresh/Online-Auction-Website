@@ -31,8 +31,28 @@ namespace :crontask do
 
 
   end
+    desc "cron for auction system-setwinner"
 task setwinner: :environment do
   
+  @u=Auction.where(:status=>'AUCTION_END')
+  @u.each do |x|
+        @bidwin=Bidding_table.where(:auction_id=>x.id).order('biding_price DESC')
+        @bidwin=@bidwin[0]
+        @item=Auction_item.new
+        @item.auction_id=@bidwin.auction_id
+        @item.winner_id=@bidwin.bidder_id
+        @item.prod_id=@bidwin.prod_id
+        @item.bid_val=@bidwin.biding_price
+        @item.save
+        @prod=Product.find(x.pid);
+        @prod.auction_status='WINNER_DECLARED'
+        
+        @prod.save
+        x.status='WINNER_DECLARED'
+        x.save
+        puts('set winner for '+x.id.to_s)
+
+  end
 
 end
 
