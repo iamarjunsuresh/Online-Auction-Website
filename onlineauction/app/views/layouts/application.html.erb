@@ -13,50 +13,45 @@
 
 <header class="header" >
 
-<div class="b2">
-    <img src="/img/icon.ico" style="width:50px;height:54px;">
-    
+  <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
+  <div class="title_">Online Auction</div>
+  <div class="title_" style="margin-left: 0.5em;">
+    <select>
+      <option>Category</option>
+      <!--Ruby Code Fetching All The Categories do_-->
+        <option>One</option>
+        <option>Two</option>
+        <option>Three</option>
+        <option><!--Variable Placing Category Name--></option>
+      <!--end_-->
+    </select>
+    <input type="text" class="s_box" placeholder="Search"/>
+    <input type="submit" class="find" value="Search"/>
   </div>
-  <div class="b2">
-    <h1 class="b2" style= "width:70px;height:15px;"><a>OAS</a></h1></div>
-  <div class="b2"style="background-color: lightgrey;">
-      <div class="col-lg-4 " style="background-color: rgb(66,149,244); height:58px;width:325px;">
-        <form action="/search" method="GET">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" name="searchterm">
 
-            <input type="submit" class="btn btn-primary btn-xs" value="Search!!"></input>
-          </div>
-        </form>
+  <div class="login_">
+    <% if session[:userdata].nil? %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% else %>
+      <div class="dmenu">
+        Welcome, <%= session[:userdata]["name"] %><br/>
+        <a class="text-primary" href="/auction/create">Add Product</a>
+        <a class="text-primary" href="/product/">My Products</a>
+        <a class="text-primary" href="/logout">Log Out</a>
       </div>
-    </div>
-    <div class="b2" style= "width:318px;height:58px;" >
-      <div class="menu">
-        <% if session[:userdata].nil? %>
-          <br/>
-          <a href="/login" class="btn btn-primary">Login </a> &nbsp; &nbsp;
-
-          <a href="/register" class="btn btn-primary">Register Here</a>
-        <% else %>
-          <div class="dmenu">
-            Welcome, <%= session[:userdata]["name"] %><br/>
-            <a class="text-primary" href="/auction/create">Add an Item</a>
-            <a class="text-primary" href="/product/">My Items</a>
-            <a class="text-primary" href="/logout">Log Out</a>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-</div>
+    <% end %>
+  </div>
 </header>
-
     <!--Header Ends-->
 
   <body>
     <div class="b3">
       <div class="container-fluid">
         
+
+
+
 
         <br/><br/><br/>
 
@@ -69,19 +64,22 @@
 
     <div class="footer">
       <div style="background-color: lightgrey;">
+
       <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
-      <center><div class="foot_support"><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
+      <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
       <hr style="border-top: 5px double black; margin-top: -10px;"/>
-      </div>
-      <div class="footer_"><h3><a href="#home">Home</a></h3></div>
-      <div class="footer_"><h3><a href="#news">News</a></h3></div>
-      <div class="footer_"><h3><a href="#features">Features</a></h3></div>
-      <div class="footer_"><h3><a href="#privacy">Privacy and Terms</a></h3></div>
-      <div class="footer_"><h3><a href="#about">About</a></h3></div>
-      <div class="footer_"><h3><a href="#faq">FAQ</a></h3></div>
-      <div class="footer_"><h3><a href="#contact">Contact Us</a></h3></div>
     </div>
 
+    <div class="footer_"><h3><a href="#home">Home</a></h3></div>
+    <div class="footer_"><h3><a href="#news">News</a></h3></div>
+    <div class="footer_"><h3><a href="#features">Features</a></h3></div>
+    <div class="footer_"><h3><a href="#privacy">Privacy and Terms</a></h3></div>
+    <div class="footer_"><h3><a href="#about">About</a></h3></div>
+    <div class="footer_"><h3><a href="#faq">FAQ</a></h3></div>
+    <div class="footer_"><h3><a href="#contact">Contact Us</a></h3></div>
+  </div>
+</footer>
+<!--Footer Ends-->
   </body>
 
 </html>
