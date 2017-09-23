@@ -5,55 +5,51 @@
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!--
-      <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
-      <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyD0MhjdHobWPu8uPiUGjqvb_f4u0_ClpEQ",
-        authDomain: "online-auctio.firebaseapp.com",
-        databaseURL: "https://online-auctio.firebaseio.com",
-        projectId: "online-auctio",
-        storageBucket: "online-auctio.appspot.com",
-        messagingSenderId: "365363926796"
-      };
-      firebase.initializeApp(config);
-      </script>  
-    -->
-    <style>
-      a:link  { color: black; }
-      a:hover { color: hotpink; }
-      a:visited { color:red;  }
-      ul
-      {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-      }
-
-      li {  float: left;  }
-
-      li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-
-      li a:hover:not(.active) { background-color: #111; }
-
-      .active { background-color: #4CAF50;  }
-      
-    </style>
   </head>
 
+<!--Header Starts-->
+<header class="header" >
+  <div class="img_"><img src="/img/icon.ico"/></div>
+  <div class="title_" style="margin-top: -10px;">OAS</div>
+  <div class="title_" style="margin-left: 2.5em;">
+    <input type="text" class="form-control" placeholder="Search">
+    <input type="submit" class="btn btn-primary btn-xs" value="Search!!"></input>
+  </div>
+
+  <div class="b2">
+    <div class="col-lg-2" style="display:inline-block;">
+      <div class="menu">
+        <% if session[:userdata].nil? %>
+          <br/>
+          <a href="/login" class="btn btn-primary">Login </a>
+          <a href="/register" class="btn btn-primary">Register Here</a>
+        <% else %>
+          <div class="dmenu">
+            Welcome, <%= session[:userdata]["name"] %><br/>
+            <a class="text-primary" href="/auction/create">Add an Item</a>
+            <a class="text-primary" href="/product/">My Items</a>
+            <a class="text-primary" href="/logout">Log Out</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row search-box justify-content-right" style="display:inline-block;">
+      <div class="col-lg-4 ">
+        <form action="/search" method="GET">
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <!--Header Ends-->
 
   <body>
+    
     <div class= "b1">
       <div class="container-fluid">
+        <!--
         <div class="row header">
           
           <div class="col-lg-1">
@@ -101,40 +97,28 @@
             </div>
 
           </div>
-        
+        -->
         <br/><br/><br/>
 
         <div class="content"><%= yield %></div>
         <br/>
-        <div class="feature_inner">
-          <h3 class="feature_intro">A relaible auction Site</h3>
-          <h1 class="feature_title">Bid Freely</h1>
-          <div class="feature_text">
-            With online auction system, you can keep your products on auction and  <span class='nowrap'>Bid<sup>*</sup>,</span> on other products. Its secured,authentic and <span class='nowrap'>free.<sup>*</sup></span> Come join us and be a part of this jouney.Buy and sell the products of your choice with the cost you desire.
-          </div>
-              
-          <br/>
-          <div class="feature_img"></div>
-          <br/><br/><br/><br/><br/>
-        </div>
       </div>
     </div>
 
     <div class="footer">
-      <ul>
-        <li><a class="active" href="#home">Home</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#google">Google</a></li>
-        <li><a href="#privacy">Privacy and Terms</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#brand">Brand Center</a></li>
-        <li><a href="#touch">Get In Touch</a></li>
-        <li><a href="#features">Features</a></li>
-      </ul>
+      <div style="background-color: lightgrey;">
+      <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
+      <center><div class="foot_support"><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
+      <hr style="border-top: 5px double black; margin-top: -10px;"/>
+      </div>
+      <div class="footer_"><h3><a href="#home">Home</a></h3></div>
+      <div class="footer_"><h3><a href="#news">News</a></h3></div>
+      <div class="footer_"><h3><a href="#features">Features</a></h3></div>
+      <div class="footer_"><h3><a href="#privacy">Privacy and Terms</a></h3></div>
+      <div class="footer_"><h3><a href="#about">About</a></h3></div>
+      <div class="footer_"><h3><a href="#faq">FAQ</a></h3></div>
+      <div class="footer_"><h3><a href="#contact">Contact Us</a></h3></div>
     </div>
 
-  </  body>
+  </body>
 </html>

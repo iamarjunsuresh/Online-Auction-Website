@@ -1,126 +1,59 @@
-
 <h1>Admin Panel</h1>
-
-<h4>New Registration </h4>
+<h4>New Registration</h4>
 
 <table>
+ <tr>
+   <th>Name</th>
+   <th>Sex</th>
+   <th>Address</th>
+   <th>email ID</th>
+   <th>Mobile No:</th>
+   <th>Actions</th>
+ </tr>
 
-<tr>
-<th>
-
-Name
-</th>
-<th>
-Sex
-</th>
-<th>
-Address
-</th>
-<th>
-email ID
-</th>
-
-<th>
-Mobile No:
-</th>
-<th>
-	Actions
-</th>
-</tr>
-<% @users.each do |x| %>
-<tr>
-<td><%= x.name %>
-</td>
-<td>
-<%= x.addr %>
-</td>
-
-<td>
-<%= x.gender %>
-</td>
-
-
-<td> 
-<%= x.email %>
-</td>
-
-<td> 
-<%= x.phno %>
-</td>
-
-<td>
-	
-<%= link_to "Accept" ,action:"vuser",id:x.id,verified:"1" %>
-</br>
-
-<%= link_to "Reject " ,action:"vuser",id:x.id,verified:"0" %>
-	
-	
-</td>
-</tr>
+ <% @users.each do |x| %>
+ <tr>
+   <td><%= x.name %></td>
+   <td><%= x.addr %></td>
+   <td><%= x.gender %></td>
+   <td><%= x.email %></td>
+   <td><%= x.phno %></td>
+   <td>
+  	<%= link_to "Accept" ,action:"vuser",id:x.id,verified:"1" %>
+    </br><%= link_to "Reject " ,action:"vuser",id:x.id,verified:"0" %>
+   </td>
+ </tr>
 <% end %>
+</table> 
+ <br/>
+ <br/>
 
-</table>
-<br/>
+ <h3>New Items</h3>
 
-<br/>
-<h3>New Items</h3>
-<table>
-
-<tr>
-<th>
-
-Image
-</th>
-<th>
-Name
-</th>
-<th>
-Description
-</th>
-<th>
-minimum Bid
-</th>
-<th>
-Uploaded By
-</th>
-<th>
-	Actions
-</th>
-</tr>
-<% @products.size.times do |y| 
-x=@products[y]
-
-	%>
-<tr>
-<td>
-<img src="<%= x.image %>" ></img>
-
-</td>
-<td>
-<%= x.name %>
-</td>
-
-<td>
-<%= x.desc %>
-</td>
-
-
-<td>Rs. 
-<%= x.min_bid.to_s %>
-</td>
-
-<td>
-<%= @userp[y][:name] %>()
-</td>
-<td>
-	
-<%= link_to "Accept" ,action:"vproduct",id:x.id,verified:"1" %>
-</br>
-
-<%= link_to "Rejected " ,action:"vproduct",id:x.id,verified:"0" %>
-</td>
-</tr>
+ <table>
+   <tr>
+     <th>Image</th>
+	 <th>Name</th>
+	 <th>Description</th>
+	 <th>minimum Bid</th>
+	 <th>Uploaded By</th>
+	 <th>Actions</th>
+  </tr>
+  <% @products.size.times do |y| 
+  x=@products[y] %>
+   <tr>
+	 <td><img src="<%= x.image %>" ></img></td>
+	 <td><%= x.name %></td>
+	 <td><%= x.desc %></td>
+	 <td>Rs. 
+	   <%= x.min_bid.to_s %>
+	 </td>
+	 <td><%= @userp[y][:name] %>()</td>
+	 <td>	
+	  	<%= link_to "Accept" ,action:"vproduct",id:x.id,verified:"1" %>
+	 	</br>
+	  	<%= link_to "Rejected " ,action:"vproduct",id:x.id,verified:"0" %>
+	 </td>
+   </tr>
 <% end %>
-
 </table>
