@@ -55,7 +55,7 @@ redirect_to action:"index"
 def verifyauction
   ds=params[:id]
   @p=Product.find(ds)
-  @p.auction_status="SCHEDULED_FOR_AUCTION"
+  @p.auction_status="SCHEDULED"
   @p.save
 aid=@p.auction_id
   @a=Auction.find(aid)

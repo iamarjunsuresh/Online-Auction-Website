@@ -10,7 +10,7 @@ class AuctionController < ApplicationController
     session[:pid]=@p.id
     session[:bid]=session[:userdata]["id"]
         @bids=Bidding_table.where(:auction_id=>@p.auction_id).order("biding_price DESC")
-
+        @duration=((@auc.end_time-Time.now)*60*60*24).to_i;
 @arr=@bids
 if(@arr.size!=0)
   @bidwinval=@arr[0].biding_price
@@ -19,6 +19,40 @@ else
 end
   end
 
+def diffnow(st)
+@r=DateTime.now()-DateTimestrptime(st,"%Y-%m-%d %H:%M:%S UTC")
+@y=(@r*24*60*60)
+  @y.to_i
+
+end
+
+  def diffdate(x,y)
+@r=DateTime.strptime(x,"%Y-%m-%d %H:%M:%S UTC")-DateTime.strptime(y,"%Y-%m-%d %H:%M:%S UTC")
+@y=(@r*24*60*60)
+  @y.to_i
+  end
+def cancelbid
+    id=params[:id]
+    @bid=Bidding_table.find(id)
+    @auc=Auction.find(session[:aid])
+    percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
+    puts(percen)
+    if(percen>0.5)
+
+
+@resp={message:"Bid Can't Be Cancelled after 50 percentage of time has passed"}
+
+    elsif @bid.bidder_id=session[:bid]
+
+      @bid.destroy
+
+@resp={message:"Bid is Cancelled"}
+      end
+respond_to do |format|  ## Add this
+  format.xml  { render :xml => @resp }
+  format.json { render :json => @resp}  
+end
+end
   def placebid
 
     val=params[:val]
@@ -67,9 +101,15 @@ end
 
 
     @resp=Bidding_table.where(:auction_id=>session[:aid]).order("biding_price DESC")
+ @res=[]
+    @resp.each do |i|
+     
+      @p=User.find(i.bidder_id)
+      @res.push({bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
+    end
     respond_to do |format|  ## Add this
-  format.xml  { render :xml => @resp }
-  format.json { render :json => @resp}  
+  format.xml  { render :xml => @res }
+  format.json { render :json => @res}  
 end
 
   end

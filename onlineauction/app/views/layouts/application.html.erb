@@ -58,62 +58,6 @@
       <div class="container-fluid">
         
 
-        <!--
-        <div class="row header">
-          
-          <div class="col-lg-1">
-            <div class="logo"><img src="icon.ico" height=40 width=40 /></div>
-          </div>
-          
-          <div class="col-lg-8"></div>
-        </div>
-
-        <div class="section section--features">
-          <div class="row search-box justify-content-center">
-            <div class="col-lg-4 ">
-              
-              <form action="/search" method="GET">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-2 form-group">
-                    <input type="submit" class="btn btn-primary btn-xs" value="Search!!"></input>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-            <div class="col-lg-2">
-              <div class="menu">
-                <% if session[:userdata].nil? %>
-                  <br/>
-                  <a href="/login" class="btn btn-primary">Login </a>
-                  <br/><br/>
-                  <a href="/register" class="btn btn-primary">Register Here</a>
-                  <br/>
-                <% else %>
-                  <div class="dmenu">
-                    Welcome, <%= session[:userdata]["name"] %><br/>
-                    <a class="text-primary" href="/auction/create">Add an Item</a>
-                    <a class="text-primary" href="/product/">My Items</a>
-                    <a class="text-primary" href="/logout">Log Out</a>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-
-          </div>
-        -->
-<!--<<<<<<< HEAD
-       
-
-        <div class="content"><%= yield %></div>
-        <br/>
-        <p align:center> Welcome to Online Auction Site </p>
-======-->
         <br/><br/><br/>
 
         <div class="content"><%= yield %></div>

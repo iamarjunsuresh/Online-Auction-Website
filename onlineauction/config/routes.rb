@@ -67,4 +67,8 @@ get 'search'=>'main#search_pro'
 get 'admin/vwusers'=>'admin#vwuser'
 
 get 'admin/vwproducts'=>'admin#vwproduct'
+
+get 'ajax/cancelbid/:id'=>'auction#cancelbid'
+
+
 end
