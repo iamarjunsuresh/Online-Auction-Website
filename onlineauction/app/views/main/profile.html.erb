@@ -1,1 +1,40 @@
-<h4><%= @us.name </h4>
+
+<h4><%= @us.name %></h4>
+
+
+<% user=@us %>
+
+<div>
+<table style="width:50%">
+	<tr><td>Email </td><td><%= user.email %></td></tr>
+  	<tr><td>Members since</td><td> <%= user.created_at %></td></tr>
+ 	<tr><td>Verified By </td> <td><%= user.verified_by %></td></tr>
+  	<tr><td>Type</td><td> <%= user.usertype %></td></tr>
+  	<tr><td>Products Sold</td><td> <%= @co%></td></tr>
+  	<td><%= link_to 'ban' %></td>
+</table>
+</div>
+
+<h2>Details of Products</h2>
+
+<div >
+	<table style="width:50%">
+		<tr>
+			<th>Name</th>
+			<th>Image</th>
+			<th>Category</th>
+			<th>Verified_By</th>
+		</tr>
+		<% @pro.each do |pp| %>
+			<tr>
+				<td><%= pp.name%></td>
+				<td><div class="img"><img src="<%= pp.image %>" ></img></div></td>
+				<td><%= pp.category%></td>
+				<td><%= pp.verified_by%></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+
+
+

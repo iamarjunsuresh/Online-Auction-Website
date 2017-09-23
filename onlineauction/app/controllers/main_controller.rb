@@ -37,10 +37,11 @@ end
  def profile
  	id=params[:id]
 @us=User.find(id)
-
 @pro=Product.where(:seller_id=>@us.id)
-
+@co=@pro.size
  end
+
+ 
 def login
 	if (request.method=="GET" )
 		#print form
@@ -102,6 +103,13 @@ def register
 
 
 end
+def search_pro
+
+	 @search_value = params[:searchterm]
+	 @r=Product.where("name like ? or description like ?","%#{@search_value}%","%#{@search_value}%");
+	 @category = Category.all
+end
+	
 def logout
 
 	session[:userdata]=nil

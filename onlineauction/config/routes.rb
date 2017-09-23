@@ -26,7 +26,6 @@ get 'auth/failure'=>'auth0#failure'
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root 'main#index'
-get 'search'=>'main#search'
 get 'profile/(:id)'=>'main#profile'
 
 get 'login'=>'main#login'
@@ -50,7 +49,22 @@ post 'product/schedule'=>'product#schedule'
 post 'product/cancel'=>'product#cancel'
 
 get 'auction/edit'=>'auction#edit'
-get 'auction/verify'=>'auction#verify'
+get 'auction/verify'=>'admin#verifyauction'
 
 
+get 'auction/cancel'=>'auction#cancel'
+
+get 'auction/show'=>'auction#show'
+
+get 'auction/bid'=>'auction#bid'
+
+
+get 'ajax/addbid'=>'auction#placebid'
+get 'ajax/bidlist'=>'auction#bidlist'
+
+
+get 'search'=>'main#search_pro'
+get 'admin/vwusers'=>'admin#vwuser'
+
+get 'admin/vwproducts'=>'admin#vwproduct'
 end

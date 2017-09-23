@@ -1,0 +1,40 @@
+<html>
+	<h1>Products Available</h1>
+	<label>Sort By:</label>
+	<select> 
+		<option value="Category">Categories</option>
+		<% @category.each do |cat| %>
+			 <option value="<%= cat.name %>"><%= cat.name %></option>
+		<% end -%>
+		 <option value=""></option>
+
+	</select>
+	<table>
+		<tr>
+		<th>Product Name</th>
+		<th>Image</th>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Minimum Bid Amount</th>
+		<th></th>
+		</tr>
+
+		<% @r.each do |p| %>
+		<tr>
+			<td>
+				<%= p.name %>
+			</td>
+			<td><img src="<%= p.image %>" /></td>
+			<td><%= p.description %></td>
+			<td><%= p.category %></td>
+			<td><%= p.min_bid %></td>
+			<td><%= submit_tag "+"%></td>
+		</tr>	
+
+		<% end %>
+		
+
+
+	</table>
+</html>
+

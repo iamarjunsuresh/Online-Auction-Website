@@ -88,6 +88,7 @@ label	{	font-size: 24px;	}
 	background-color: lightblue;
 	border-style: solid;
 	border-color: black;
+
 }
 
 .header img
@@ -144,15 +145,6 @@ label	{	font-size: 24px;	}
 	width:25%;
 }
 
-.footer
-{
-	background-color: white;
-	text-align: center;
-	height: 40px;
-	padding: 5px;
-	margin-bottom: 1em;
-}
-
 .footer_
 {
 	margin-top: -1em;
@@ -164,11 +156,13 @@ label	{	font-size: 24px;	}
 .content
 {
 	margin-top:50px;
+
 	margin-bottom: 50px;
 	min-height: 22.5em;
+
 }
 
-.searchb{}
+
 
 .dmenu
 {
@@ -183,10 +177,38 @@ label	{	font-size: 24px;	}
 	font-size:22px;
 }
 
-.dmenu:hover	{	height:150px;	}
+
+
+
+label
+{
+	font-size: 24px;
+}
+
+input[type="text"], input[type="email"], input[type="password"]
+{
+	font-size:14px;
+	border-radius:2px;
+	border-style: solid;
+	border-width: 2.5px;
+	border-color: black;
+}
+.menu{
+	margin-left: 120px;
+}
+.img>img{
+width:400px;
+max-width:100%;
+max-width: 100%;
+
+}
+.dmenu:hover
+{
+	height:100px;
+  }
 
 .dmenu>a
-{
+{    margin-left: 50px;
 	display: block;
 	width:100%;
 	color:black;
@@ -209,27 +231,4 @@ label	{	font-size: 24px;	}
 	font-style:bold;
 }
 
-/*
-.active { background-color: lightgreen;  }
 
-.b
-{
-	background-image: url(background.jpg);
-	background-size: cover;
-	height: 2000px;
-	border-radius: 10px;
-	padding: 6px;
-	width: 1250px;
-	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
-
-.foot_support
-{
-	margin: 15px;
-	width: 75%;
-	border-style: double solid;
-	border-color: blue;
-	border-radius: 2em;
-	background-color: lightgrey;
-}
-*/

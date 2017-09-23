@@ -2,13 +2,17 @@
 <html lang="en">
   <head>
     <meta name="google-signin-client_id" content="365363926796-03cv8tv3aq3dt8f6ob5rlcqj9ln53crr.apps.googleusercontent.com">
+    <%= javascript_include_tag "jquery.js" %>
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
 <!--Header Starts-->
+
 <header class="header" >
+
   <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
   <div class="title_">Online Auction</div>
   <div class="title_" style="margin-left: 0.5em;">
@@ -39,16 +43,37 @@
     <% end %>
   </div>
 </header>
-<!--Header Ends-->
+    <!--Header Ends-->
 
-<body>
+  <body>
+    <div class="b3">
+      <div class="container-fluid">
+        
+
   <div class="content"><%= yield %></div> 
 
 <!--Footer Starts-->
 <footer>
   <div class="footer">
 
+
     <div style="background-color: lightblue;">
+
+          </div>
+    
+
+        <br/><br/><br/>
+
+        <div class="content"><%= yield %></div>
+        <br/>
+
+
+      </div>
+    </div>
+
+    <div class="footer">
+      <div style="background-color: lightgrey;">
+
       <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
       <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
       <hr style="border-top: 5px double black; margin-top: -10px;"/>
@@ -65,4 +90,6 @@
 </footer>
 <!--Footer Ends-->
   </body>
+
 </html>
+

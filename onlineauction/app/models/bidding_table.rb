@@ -1,2 +1,2 @@
-class BiddingTable < ApplicationRecord
+class Bidding_table < ApplicationRecord
 end
