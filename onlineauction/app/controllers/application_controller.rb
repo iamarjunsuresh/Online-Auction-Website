@@ -1,3 +1,4 @@
+require 'date';
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -10,5 +11,11 @@ class ApplicationController < ActionController::Base
           session[:prevurl]=url
         redirect_to url 
     end
+  end
+  
+  def getdatefrompicker(datestr)
+
+DateTime.strptime(datestr , "%Y/%m/%d %H:%M")
+
   end
 end

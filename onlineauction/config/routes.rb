@@ -1,31 +1,30 @@
 Rails.application.routes.draw do
-  get 'admin/index'
+get 'admin/index'
 
-  get 'admin/vproduct'
+get 'admin/vproduct'
 
-  get 'admin/vuser'
+get 'admin/vuser'
 
-  get 'product/show'
+get 'product/show'
 
-  get 'product/edit'
-  post 'product/edit'
-  
-  get 'product/delete'
+get 'product/edit'
+post 'product/edit'
 
-  get 'product/createauction'
+get 'product/delete'
 
-  get 'product/cancelauction'
+get 'product/createauction'
 
-  get 'product/editauction'
-  get 'verify/:id'=>'main#verify'
-  get 'auction/create'
+get 'product/cancelauction'
+
+get 'product/editauction'
+get 'verify/:id'=>'main#verify'
+
 get 'product/'=>'product#index'
+get 'auth/callback' =>"auth0#callback"
 
-  get 'auth/callback' =>"auth0#callback"
+get 'auth/failure'=>'auth0#failure'
 
-  get 'auth/failure'=>'auth0#failure'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root 'main#index'
 get 'search'=>'main#search'
 get 'profile/(:id)'=>'main#profile'
@@ -46,6 +45,12 @@ get 'admin/verifyuser'=>'admin#vuser'
 
 get 'admin/verifyproduct'=>'admin#vproduct'
 
+
+post 'product/schedule'=>'product#schedule'
+post 'product/cancel'=>'product#cancel'
+
+get 'auction/edit'=>'auction#edit'
+get 'auction/verify'=>'auction#verify'
 
 
 end

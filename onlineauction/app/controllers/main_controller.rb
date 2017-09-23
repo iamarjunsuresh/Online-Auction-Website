@@ -2,6 +2,10 @@ require 'digest/sha1'
 			require 'net/http'
 
 
+require "erb"
+include ERB::Util
+
+
 class MainController < ApplicationController
 
 def setmessage
@@ -17,6 +21,7 @@ def setmessage
 end
 def index
 setmessage()
+
 
 end
 
@@ -163,7 +168,7 @@ def registercomplete
 			@user.name=params[:fname]+params[:lname]
 			@user.addr=params[:addr]
 			@user.phno=params[:mobno]
-			@user.email=session[:email]
+			@user.email=params[:email]
 			slt=rand(99999).to_s
 			@user.salt=slt
 			@user.pwd=get_hash(params[:pwd],slt)
@@ -184,13 +189,18 @@ hash1=get_hash(rand(999999).to_s,"verified_by")
 
 url1="http://localhost:3000/verify/"+hash1
 message=body+url1+baki
-furl='http://www.advancedbytes.in/sendmail?semail=123arjunsuresh@gmail.com&remail='+em+"&body="+message+"&sub=Verify Email"
+host='http://www.advancedbytes.in'
+furl=host+'/sendmail?semail=123arjunsuresh@gmail.com&remail='+em+"&body="+message+"&sub=Verify Email"
+
+#furl= url_encode(furl)
 puts(furl)
-url = URI.parse(furl)
-req = Net::HTTP::Get.new(url.to_s)
-res = Net::HTTP.start(url.host, url.port) {|http|
-  http.request(req)
-}
+
+system("python main.py '"+furl+"'")
+#http = Net::HTTP.new("www.advancedbytes.in", 80)
+#req = Net::HTTP::Get.new(furl, {'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0'})
+#response = http.request(req)
+#puts response.body
+
 			redirect_to action:"regsucess"
 		end
 		#insert to db

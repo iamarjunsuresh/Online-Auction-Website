@@ -12,6 +12,11 @@ class ProductController < ApplicationController
   def show
 
   @p=Product.find(params[:id])
+  if @p.auction_status.eql?("None")
+@issch=1
+  else
+@issch=0
+  end
 @labels=["Description","Minimum Bid","Sold By"]
 @seller=User.find(@p.seller_id)
   #  @names=["name","desc","minbid"]    
@@ -21,6 +26,7 @@ class ProductController < ApplicationController
   @vals.push @p.desc
   @vals.push @p.min_bid
   @vals.push @seller.name
+  @vals.push @p.id
     
 
   end
@@ -42,7 +48,7 @@ if(request.method=="POST")
   @p.name=params[:name]
 @p.desc=params[:desc]
 @p.min_bid=params[:minbid].to_f
-
+ 
 @pim=@p.image
 if(not params[:image].nil?)
 uploaded_io = params[:pimage]
@@ -65,22 +71,32 @@ end
 redirect_to action:"index"
   end
 
-  def createauction
+def schedule
 
-@p=Product.find(params[:id])
+st=params[:starttime]
+et=params[:endtime]
+pid=params[:id]
 
+  @pp=Product.find(pid)
+
+  @pp.start_time=getdatefrompicker(st)
+
+  @pp.end_time=getdatefrompicker(et)
+
+  @pp.auction_status="TO_BE_VERIFIED"
+
+  @pp.save
+  @auc=Auction.new
+  @auc.start_time=@pp.start_time
+  @auc.end_time=@pp.end_time
+  @auc.admin_id=-1
+  @auc.status="NOT_VERIFIED"
+  @auc.pid=pid
+  @auc.save
+redirect_to action:"show",id:pid
+
+end
+def cancel
 
   end
-
-  def cancelauction
-
-@p=Product.find(params[:id])
-  end
-
-  def editauction
-
-@p=Product.find(params[:id])
-  end
-
-
 end
