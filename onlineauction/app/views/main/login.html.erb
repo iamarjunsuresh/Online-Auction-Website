@@ -1,36 +1,22 @@
-
 <div class="box">
-
-<li>
-<% if(not @msgarr.nil?)  %>
-<% @msgarr.each do |x| %>
-<ul class="msg-txt" > <%= x %> </ul>
-
-<% end %>
-<% end %>
-</li>
+	<li>
+		<% if(not @msgarr.nil?)  %>
+		<% @msgarr.each do |x| %>
+			<ul class="msg-txt" > <%= x %> </ul>
+			<% end %>
+		<% end %>
+	</li>
 </div>
 
 <div class="row justify-content-center">
-<h4 class="col-lg-4">
-Log In
-</h4></div>
-
-<div class="row justify-content-center">
-
-
-<div class="col-lg-4">
-
-<%= form_tag(action:"login",method:"post") do %>
-
-<%= label_tag :email,"Email ID:" %>
-
-<%= email_field_tag(:email) %>
-</br>
-<%= label_tag :password,"Password:" %>
-
-<%= password_field_tag(:password) %> 
-<%= submit_tag("Log In") %>
-<% end %> 
-</div>
+	<div class="col-lg-4">
+		<div></div>
+		<%= form_tag(action:"login",method:"post") do %>
+			<%= label_tag :email,"Email ID:" %>
+			<%= email_field_tag(:email) %></br>
+			<%= label_tag :password,"Password:" %>
+			<%= password_field_tag(:password) %> 
+			<%= submit_tag("Log In") %>
+		<% end %> 
+	</div>
 </div>

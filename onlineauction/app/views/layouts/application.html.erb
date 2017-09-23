@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <meta name="google-signin-client_id" content="365363926796-03cv8tv3aq3dt8f6ob5rlcqj9ln53crr.apps.googleusercontent.com">
+    <%= javascript_include_tag "jquery.js" %>
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
+
 
 <!--Header Starts-->
 
@@ -33,6 +35,7 @@
         <% if session[:userdata].nil? %>
           <br/>
           <a href="/login" class="btn btn-primary">Login </a> &nbsp; &nbsp;
+
           <a href="/register" class="btn btn-primary">Register Here</a>
         <% else %>
           <div class="dmenu">
@@ -44,6 +47,7 @@
         <% end %>
       </div>
     </div>
+
 </div>
 </header>
 
@@ -53,6 +57,7 @@
     <div class="b3">
       <div class="container-fluid">
         
+
         <!--
         <div class="row header">
           
@@ -102,11 +107,19 @@
 
           </div>
         -->
+<!--<<<<<<< HEAD
        
 
         <div class="content"><%= yield %></div>
         <br/>
         <p align:center> Welcome to Online Auction Site </p>
+======-->
+        <br/><br/><br/>
+
+        <div class="content"><%= yield %></div>
+        <br/>
+
+
       </div>
     </div>
 
@@ -126,4 +139,6 @@
     </div>
 
   </body>
+
 </html>
+

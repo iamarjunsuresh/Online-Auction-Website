@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 .b1	{	background-color: blue;	}
 .b3 {  
 border-height:50px;
@@ -41,6 +42,43 @@ background-color: lightblue;}
 	height: 40px;
 	padding: 5px;
 	margin-bottom: 1em;
+}
+
+.header img
+{
+	max-width: 50%;
+	max-height: 50%;
+	margin: 0.5em;
+	display: inline-block;
+	clear:	both;
+}
+
+.img_
+{
+	width: 5%;
+	background-color: yellow;
+	border-style: solid;
+	border-color: black;
+	display: inline-block;
+}
+
+.title_
+{
+	display: inline-block;
+	font-size: 25px;
+	border-style: solid;
+	border-color: blue;
+}
+
+.b1	{	background-color: lightgreen;	}
+.b2
+{
+	height:70px;
+}
+.b2>.header, .b2>span
+{
+	float:left;
+	width:25%;
 }
 
 .footer_
@@ -71,15 +109,19 @@ td
 	padding: 10px;
 }
 
+
 form
 {   width: 300px;
 	border-width: 0px;
+
+
 	border-style:solid;
 	border-color: black;
 	border-radius: 20px;
 	padding: 10px;
 }
-}
+
+
 
 .dmenu
 {
@@ -149,48 +191,4 @@ max-width: 100%;
 }
 
 
-/*
-ul
-{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
 
-li {  float: left;  }
-
-li a
-{
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-.active { background-color: lightgreen;  }
-li a:hover:not(.active) { background-color: #111; }
-
-.b
-{
-	background-image: url(background.jpg);
-	background-size: cover;
-	height: 2000px;
-	border-radius: 10px;
-	padding: 6px;
-	width: 1250px;
-	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
-
-.foot_support
-{
-	margin: 15px;
-	width: 75%;
-	border-style: double solid;
-	border-color: blue;
-	border-radius: 2em;
-	background-color: lightgrey;
-}
-*/
