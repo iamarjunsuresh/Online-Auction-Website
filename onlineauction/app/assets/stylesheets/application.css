@@ -13,19 +13,87 @@
  *= require_tree .
  *= require_self
  */
- .header
+a:visited	{	color: black;	}
+a:link  { color: black; text-decoration: none;}
+a:hover { color: blue; }
+
+form
 {
-	color:white;
-	background-color: lightgrey;
+	border-width: 3px;
+	border-style:solid;
+	border-top-width: 20px;
+	border-bottom-width: 20px;
+	border-top-color: rgb(0,120,255);
+	border-left-color: rgb(0,120,255);
+	border-bottom-color: rgb(0,120,255);
+	border-right-color: rgb(0,120,255);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+table{}
+tr	{	text-align: center;	}
+td
+{
+	text-align: center;
+	font-size:24px;
+	padding: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"]
+{
+	font-size: 17px;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 2.5px;
+	border-color: black;
+	border-radius: 5px;
+	min-height: 30px;
+	min-width: 250px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+select
+{
+	font-size: 17px;
+	text-align-last:center;
+	border-style: solid;
+	border-width: 2.5px;
+	border-color: black;
+	border-radius: 5px;
+	min-height: 36px;
+	min-width: 200px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+input[type="button"], input[type="submit"]
+{
+	min-height: 37px;
+	min-width: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-style: solid;
 	border-color: black;
+	border-radius: 5px;
+	background-color: white;
+}
 
+label	{	font-size: 24px;	}
+
+.header
+{
+	background-color: lightblue;
+	border-style: solid;
+	border-color: black;
 }
 
 .header img
 {
-	max-width: 50%;
-	max-height: 50%;
+	max-width: 25%;
+	max-height: 25%;
 	margin: 0.5em;
 	display: inline-block;
 	clear:	both;
@@ -44,8 +112,25 @@
 {
 	display: inline-block;
 	font-size: 25px;
+	/*
 	border-style: solid;
 	border-color: blue;
+	*/
+	min-height: 35px;
+	padding: 3px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.s_box	{	width: 450px;	}
+
+.login_
+{
+	display: inline-block;
+	float: right;
+	font-size: 20px;
+	margin-top: 0.60em;
+	margin-right: 1.25em;
 }
 
 .b1	{	background-color: lightgreen;	}
@@ -79,37 +164,8 @@
 .content
 {
 	margin-top:50px;
-}
-
-a:link  { color: black; text-decoration: none;}
-a:hover { color: blue; }
-
-tr
-{
-	text-align: center;
-}
-
-td
-{
-	text-align: center;
-	font-size:24px;
-	padding: 10px;
-}
-
-table{}
-
-form
-{
-	border-width: 3px;
-	border-style:solid;
-	border-top-width: 20px;
-	border-bottom-width: 20px;
-	border-top-color: rgb(0,120,255);
-	border-left-color: rgb(0,120,255);
-	border-bottom-color: rgb(0,120,255);
-	border-right-color: rgb(0,120,255);
-	border-radius: 20px;
-	padding: 10px;
+	margin-bottom: 50px;
+	min-height: 22.5em;
 }
 
 .searchb{}
@@ -127,24 +183,7 @@ form
 	font-size:22px;
 }
 
-label
-{
-	font-size: 24px;
-}
-
-input[type="text"], input[type="email"], input[type="password"]
-{
-	font-size:14px;
-	border-radius:2px;
-	border-style: solid;
-	border-width: 2.5px;
-	border-color: black;
-}
-
-.dmenu:hover
-{
-	height:150px;
-}
+.dmenu:hover	{	height:150px;	}
 
 .dmenu>a
 {
@@ -154,10 +193,7 @@ input[type="text"], input[type="email"], input[type="password"]
 	text-decoration: none;
 }
 
-.dmenu>a:hover
-{
-	background-color: white;
-}
+.dmenu>a:hover	{	background-color: white;	}
 
 .search-box
 {
@@ -174,28 +210,7 @@ input[type="text"], input[type="email"], input[type="password"]
 }
 
 /*
-ul
-{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {  float: left;  }
-
-li a
-{
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
 .active { background-color: lightgreen;  }
-li a:hover:not(.active) { background-color: #111; }
 
 .b
 {

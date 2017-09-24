@@ -1,3 +1,4 @@
+<!--
 <div class="box">
 	<li>
 		<% @msgarr.each do |x| %>
@@ -5,39 +6,53 @@
 		<% end %>
 	</li>
 </div>
-<h4>Fill in Following Details</h4>
-<div class="">Email:<%= @email %></div>
-<div class="">Name: <%= @name %> </div>
-<%= form_tag action:"registercomplete",method:"post"  do %>
-<%= label_tag :fname,"First Name:" %>
-<%= text_field_tag :fname %>
-</br>
-<%= label_tag :lname,"Last Name:" %>
-<%= text_field_tag :lname %>
-</br>
-<%= label_tag :email,"Email:" %>
-<%= email_field_tag :email %>
-</br>
-<div class="row">
-	<div class="col-lg-6">
- 		<input type="checkbox" name="sex" value="Male"> Male</input>
-	</div>
- 	<div class="col-lg-6">
-  		<input type="checkbox" name="sex" value="Female"> Female</input>
-	</div>
-</div>
-</br>
-<%= label_tag :addr,"Address:" %>
-<%= text_area_tag :addr   %>
-</br>
-<%= label_tag :mobno,"Mobile No:" %>
-<input type="text" pattern="[0-9]{10}" name="mobno"></input>
-</br>
-<%= label_tag :pwd,"Password:"   %>
-<%= password_field_tag :pwd  %>
-</br>
-<%= label_tag :cpwd,"Confirm Password:" %>
-<%= password_field_tag :cpwd    %> 
-</br>
-<%= submit_tag "Register"  %>
+-->
+
+<%= form_tag action:"registercomplete", method:"post" do %>
+	<table style="margin-left: 200px;">
+		<tr>
+			<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
+			<td class="tab2"><%= text_field_tag :fname %></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :lname,"Last Name : " %></td>
+			<td class="tab2"><%= text_field_tag :lname %></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :email,"Email : " %></td>
+			<td class="tab2"><%= email_field_tag :email %></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :mobno,"Mobile No : " %></td>
+			<td class="tab2"><input type="text" pattern="[0-9]{10}" name="mobno"></input></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :gen,"Gender : " %></td>
+			<td>
+				<input type="radio" name="gender"> Male </input>
+				<input type="radio" name="gender"> Female </input>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :addr,"Address : " %></td>
+			<td class="tab2"><%= text_area_tag :addr %></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :pwd,"Password : " %></td>
+			<td class="tab2"><%= password_field_tag :pwd %></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :cpwd,"Confirm Password : " %></td>
+			<td class="tab2"><%= password_field_tag :cpwd %></td>
+		</tr>
+
+		<tr><td colspan="2"><center><%= submit_tag "Register" %></center></td></tr>
+	</table>
 <% end %>
