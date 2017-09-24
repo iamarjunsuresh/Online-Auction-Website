@@ -74,23 +74,14 @@ function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
 
     setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        hours=parseInt(timer/(60*60),10);
-        days=parseInt(timer/(60*60*24),10)
-        minutes=minutes%60;
-        hours=hours%24;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        hours=hours < 10? "0"+hours:hours;
-        days=days< 10? "0"+days:days;
-        
-        display.textContent =days+" days "+hours+ "hours " + minutes + " minutes " + seconds+ "seconds ";
+       
+       var now = new Date();
 
-        if (--timer < 0) {
 
-            window.location.href ="http://localhost:3000/";
-        }
+var endtime=new Date(Date.parse(<%= @endtime %>));
+        if (now.getTime()>endtime.getTime()) {
+
+            window.location.reload(true);
     }, 1000);
 }
 
@@ -113,7 +104,8 @@ startTimer(<%= @duration %>,cd);
 <div class="img">	<img src="<%= @p.image %>" /></div>
 <p><%= @p.description %></p>
 <p>Minimum Bid<%= @p.min_bid %>
-<p>Auction End in <span id="countdown"></span></p>
+<% if @auc.status=="AUCTION_LIVE" %>
+<p>Auction End at <span id="countdown"><%= @endtime %></span></p>
 
 <h4 >Currently Winning Bid :<span class="maxbidval"><% if @bidwinval!=0 %>
 Rs. <%= @bidwinval %>
@@ -123,6 +115,14 @@ No Bids Placed.
 <%end %>
 </span>
 	
+    <% else %>
+       <% if @auc.status=="WINNER_DECLARED" %>
+           <h4> <%= @winner %> WOn the Auction</h4>
+        
+
+        <% end %>
+
+    <% end %>
 </h4>
 
 <span id="message"></span>
@@ -158,13 +158,15 @@ No Bids Placed.
 </div class="halves">
 
 
+
+<% if @auc.status=="AUCTION_LIVE" %>
 <input type="text" id="bidval"></input>
 <input type="hidden"  id="bidmax" value="<%= @bidwinval %>"></input>
 
 <input type="hidden"  id="bidmin" value="<%= @p.min_bid %>"></input>
 
 <div class="bidsubmit" onclick="pbid();">Place Bid</div>
-
+<% end %>
 
 <div>
 

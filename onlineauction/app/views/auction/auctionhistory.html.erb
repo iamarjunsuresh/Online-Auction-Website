@@ -1,0 +1,34 @@
+
+
+<table>
+<tr>
+
+<th>Auction ID</th>
+
+<th>Name of Product</th>
+<th>Maximum Bid</th>
+
+<th>Auction Status</th>
+<th>Won/Lost</th>
+<th>Details link</th>
+</tr>
+
+<% @b.each do |x|%>
+<tr>
+<td><%= b.id%></td>
+
+<td><%= b.name%></td>
+
+<td><%= b.value%></td>
+
+<td><%= b.status%></td>
+<td><%= b.result %></td>
+<td><%= b.url %></td>
+
+
+
+
+</tr>
+
+<% end %>
+</table>

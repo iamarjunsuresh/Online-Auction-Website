@@ -21,7 +21,7 @@ class ProductController < ApplicationController
   def create
     
     @category=Category.all
-    @labels=["Name of Item","Description","Minimum Bid"]
+    @labels=["Name of Product","Description","Minimum Bid"]
 
     @names=["name","desc","minbid"]
     @val=[]
@@ -144,7 +144,7 @@ et=params[:endtime]
 pid=params[:id]
 
   @pp=Product.find(pid)
-
+ActiveSupport::TimeZone["India Time Zone"].parse()
   @pp.start_time=getdatefrompicker(st)
 
   @pp.end_time=getdatefrompicker(et)

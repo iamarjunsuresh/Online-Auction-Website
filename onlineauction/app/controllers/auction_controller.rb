@@ -3,9 +3,20 @@ class AuctionController < ApplicationController
 
   def show
     id=params[:id]
-
     @p=Product.find(id)
     @auc=Auction.find(@p.auction_id)
+    
+    aucc=Bidding_table.where(:auction_id=>@auc.id ).order("biding_price DESC").limit(1)
+    if aucc.size>0 
+
+      @winner=User.find(aucc[0].bidder_id).name
+    else
+
+      @winner="---"
+    end
+
+
+    @endtime=@auc.end_time.to_s
     session[:aid]=@auc.id
     session[:pid]=@p.id
     session[:bid]=session[:userdata]["id"]
@@ -20,14 +31,14 @@ end
   end
 
 def diffnow(st)
-@r=DateTime.now()-DateTimestrptime(st,"%Y-%m-%d %H:%M:%S UTC")
+@r=st-DateTime.now
 @y=(@r*24*60*60)
   @y.to_i
 
 end
 
   def diffdate(x,y)
-@r=DateTime.strptime(x,"%Y-%m-%d %H:%M:%S UTC")-DateTime.strptime(y,"%Y-%m-%d %H:%M:%S UTC")
+@r=DateTime.strptime(x,"%Y/%m/%d %H:%M")-DateTime.strptime(y,"%Y/%m/%d %H:%M")
 @y=(@r*24*60*60)
   @y.to_i
   end
@@ -35,7 +46,8 @@ def cancelbid
     id=params[:id]
     @bid=Bidding_table.find(id)
     @auc=Auction.find(session[:aid])
-    percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
+    #percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
+    percen=0.0
     puts(percen)
     if(percen>0.5)
 
@@ -96,8 +108,40 @@ end
 
   
 def auctionhistory
+@b=[]
+@ah=Bidding_table.where(:bidder_id=>session[:userdata]["id"]).group('bidder_id')
+@ah.each do |a|
 
-@ah=Bidding_table.where(:bidder_id=>session[:userdata]["id"]).order("")
+    @maxbid=Bidding_table.where(:auction_id=>a.auction_id).order("biding_price DESC").limit(1)
+    if(@maxbid.size>0)
+
+        val=@maxbid.biding_price
+    else
+      val='---'
+    end
+    @x=Auction.find(a.auction_id)
+
+    @p=Product.find(@x.pid)
+    if(@x.status=="WINNER_DECLARED")
+      win=Auction_item.find_by(:auction_id=>@x.id)
+      if(win.winner_id==session[:userdata]["id"])
+    result="WON"
+
+    else
+      result="LOST"
+    end
+      else
+    result='---'
+        end
+
+        if(@x.status=="WINNER_DECLARED"or @x.status=="AUCTION_LIVE")
+            url="/auction/show?id="+@x.pid.to_s
+
+        end
+    @b.push {id:a.id,name:@p.name,status:@x.status,result:result,value:val,url:url}
+
+end
+
 
 end
 

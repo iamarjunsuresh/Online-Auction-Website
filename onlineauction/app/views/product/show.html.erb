@@ -1,36 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-<style>
-th
-{
-	padding-top: 50px;
-    padding-right: 30px;
-    padding-bottom: 50px;
-    padding-left: 80px
-}
-
-.card1 {
-  border: 2px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
-  margin: auto;
-  background-color: #A9A9A9;
-  box-shadow: 10px 10px 5px #888888; 
-  text-align: center;
-  font-family: arial;
-}
-
-</style>
-</head>
 
 
-<body>
 
-<%= javascript_include_tag "datepicker.js" %>
-<%= stylesheet_link_tag "datepicker.css" %>
+
 <% user=@us %>
 
 <script>
@@ -59,9 +30,9 @@ jQuery('#endtime').datetimepicker({minDate:0});
 	<a href="/auction/show?id=<%= @p.id %>"> Go to AUctioon PAge</a>
 <% end %>
 </div>
-
-<% if not session["userdata"].nil? and @p.seller_id=session["userdata"]["id"] %>
-	<% if not @p.auction_status.eql?("SCHEDULED") %>
+<br/>
+<% if not session["userdata"].nil? and @p.seller_id==session["userdata"]["id"] %>
+	<% if  @p.auction_status.eql?("None") %>
 		<form action="/product/schedule" method="post">
 			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 			<%= hidden_field_tag :id,@vals[3] %>
@@ -76,6 +47,3 @@ jQuery('#endtime').datetimepicker({minDate:0});
 	<% end %>
 <% end  %>
 
-</body>
-
-</html>
