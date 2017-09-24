@@ -1,13 +1,29 @@
-<h2>Manage Categories</h2>
+<center>
+	<%= form_with scope: :category, local: true do |form| %>
+	<center>
+		<table>
+			<tr>
+				<td colspan="2"><u><b><%= link_to 'View All categories', categories_path %></u></b></td>
+			</tr>
 
-<%= form_with scope: :category, local: true do |form| %>
-  <p>
-    <%= form.label :Category %><br>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-  <% end %>
+			<tr><td colspan="2">Add New Category</td></tr>
 
-  <%= link_to 'All categories', categories_path %>
+			<tr>
+				<td class="tab1"><%= form.label :Category, "New Category : " %><br></td>
+				<td class="tab2"><%= form.text_field :name %></td>
+			</tr>
+
+			<tr><td colspan="2"><%= form.submit %></td></tr>
+
+			<% @cat.each do |category| %>
+				<tr>
+					<td><%= category.name %></td>
+					<td><%= link_to 'Destroy', action:"delete", id:category.id %></td>
+				</tr>
+			<% end %>
+
+			<tr><td colspan="2"></td></tr>
+		</table>
+	</center>
+   <% end %>
+</center>
