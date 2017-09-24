@@ -1,59 +1,68 @@
-<div class="box">
-	<div>
-		<% if @msgarr.count >= 0 %>
-		<% @msgarr.each do |x| %>
-			<%= x %>
-		<% end %>
-		<% end %>
-	</div>
-</div>
+<center>
+	<%= form_tag action:"registercomplete", method:"post" do %>
+		<center>
+			<div class="box">
+				<div>
+					<% @counter = 1 %>
+					<% if @msgarr.count >= 0 %>
+						<% @msgarr.each do |x| %>
+							<%= @counter %>
+							<%= x %>
+							<% @counter = @counter + 1 %>
+							<br/>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 
-<%= form_tag action:"registercomplete", method:"post" do %>
-	<table>
-		<tr><th colspan="2">Registration</th></tr>
-		<tr>
-			<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
-			<td class="tab2"><%= text_field_tag :fname %></td>
-		</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :lname,"Last Name : " %></td>
-			<td class="tab2"><%= text_field_tag :lname %></td>
-		</tr>
+			<table>
+				<tr><th colspan="2"><%= label_tag :fname,"New User Registration" %></th></tr>
+				<tr>
+					<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
+					<td class="tab2"><%= text_field_tag :fname %></td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :email,"Email : " %></td>
-			<td class="tab2"><%= email_field_tag :email %></td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :lname,"Last Name : " %></td>
+					<td class="tab2"><%= text_field_tag :lname %></td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :mobno,"Mobile No : " %></td>
-			<td class="tab2"><input type="text" pattern="[0-9]{10}" name="mobno"></input></td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :email,"Email : " %></td>
+					<td class="tab2"><%= email_field_tag :email %></td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :gen,"Gender : " %></td>
-			<td>
-				<input type="radio" name="gender"> Male </input>
-				<input type="radio" name="gender"> Female </input>
-			</td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :mobno,"Mobile No : " %></td>
+					<td class="tab2"><input type="text" pattern="[0-9]{10}" name="mobno"></input></td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :addr,"Address : " %></td>
-			<td class="tab2"><%= text_area_tag :addr %></td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :gen,"Gender : " %></td>
+					<td>
+						<input type="radio" name="gender"> Male </input>
+						<input type="radio" name="gender"> Female </input>
+					</td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :pwd,"Password : " %></td>
-			<td class="tab2"><%= password_field_tag :pwd %></td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :addr,"Address : " %></td>
+					<td class="tab2"><%= text_area_tag :addr %></td>
+				</tr>
 
-		<tr>
-			<td class="tab1"><%= label_tag :cpwd,"Confirm Password : " %></td>
-			<td class="tab2"><%= password_field_tag :cpwd %></td>
-		</tr>
+				<tr>
+					<td class="tab1"><%= label_tag :pwd,"Password : " %></td>
+					<td class="tab2"><%= password_field_tag :pwd %></td>
+				</tr>
 
-		<tr><td colspan="2"><center><%= submit_tag "Register" %></center></td></tr>
-	</table>
-<% end %>
+				<tr>
+					<td class="tab1"><%= label_tag :cpwd,"Confirm Password : " %></td>
+					<td class="tab2"><%= password_field_tag :cpwd %></td>
+				</tr>
+
+				<tr><td colspan="2"><center><%= submit_tag "Register" %></center></td></tr>
+			</table>
+		</center>
+	<% end %>
+</center>

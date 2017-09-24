@@ -10,18 +10,32 @@
 </div>
 -->
 
-<%= form_tag(action:"login",method:"post") do %>
-	<table style="margin-left: 200px;">
-		<tr>
-			<td class="tab1"><%= label_tag :email,"Email ID:" %></td>
-			<td class="tab2"><%= email_field_tag(:email) %></br></td>
-		</tr>
+<center>
+	<%= form_tag(action:"login",method:"post") do %>
+		<center>
+			<div class="box">
+				<div>
+					<% if @msgarr.count >= 0 %>
+						<% @msgarr.each do |x| %>
+							<%= x %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 
-		<tr>
-			<td class="tab1"><%= label_tag :password,"Password:" %></td>
-			<td class="tab2"><%= password_field_tag(:password) %></td>
-		</tr>
+			<table>
+				<tr>
+					<td class="tab1"><%= label_tag :email,"Email ID:" %></td>
+					<td class="tab2"><%= email_field_tag(:email) %></br></td>
+				</tr>
 
-		<tr><td colspan="2"><%= submit_tag("Log In") %></td></tr>
-	</table>
-<% end %> 
+				<tr>
+					<td class="tab1"><%= label_tag :password,"Password:" %></td>
+					<td class="tab2"><%= password_field_tag(:password) %></td>
+				</tr>
+
+				<tr><td colspan="2"><%= submit_tag("Log In") %></td></tr>
+			</table>
+		</center>
+	<% end %> 
+</center>
