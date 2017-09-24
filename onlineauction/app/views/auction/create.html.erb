@@ -1,0 +1,49 @@
+ 
+<div class="row">
+ <div class="box">
+	<li>
+	  <% if(not @msg.nil?)  %>
+	  	<% @msg.each do |x| %>
+	  		<ul class="msg-txt" > <%= x %> </ul>
+	  		<% end %>
+	  <% end %>
+	</li>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+ <div class="col-lg-5">
+	<form action="/auction/create" method="POST" enctype="multipart/form-data">
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	<% @labels.size.times do |x| %>
+	<%= label_tag @labels[x]+":" %>
+	<% if @val.size>0 %>
+		<% if @names[x]=="minbid" %>
+			<input type="number" name="minbid" value="<%= @val[x] %>" step="0.0001"></input>
+		<% else %>
+			<%= text_field_tag @names[x],@val[x] %>  
+		<% end %>
+	<% else %>
+		<% if @names[x]=="minbid" %>
+			<input type="number" name="minbid" step="0.0001"></input>  
+		<% else %>
+			<%= text_field_tag @names[x] %>  
+		<% end %> 
+	<% end %>
+	</br>
+    <% end %>
+    <label for="category">Category:</label> 
+    <select name="category"> 
+		<option value="Category"> Select Category</option>
+		<% @category.each do |cat| %>
+			 <option value="<%= cat.name %>"><%= cat.name %></option>
+		<% end -%>
+		 <option value=""></option>
+
+	</select>
+	</br>
+	<% label_tag "Item Image" %>
+	<%= file_field_tag :pimage %>
+	<%= submit_tag "Add Item" %>
+  </div>
+</div>

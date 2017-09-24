@@ -18,6 +18,7 @@ end
 def index
 	@category=Category.all
 end
+
 def delete
     
 
