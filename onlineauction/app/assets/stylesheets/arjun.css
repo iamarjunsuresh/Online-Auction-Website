@@ -1,0 +1,51 @@
+
+.searchregion{
+margin-left: 0px;
+
+}
+.search-product-details{
+
+width:100%;
+
+}
+.search1{
+
+height: 130px;
+
+
+}
+.search-product-image{
+ width:20%;
+	float:left;
+}
+ .search-product-details{
+width: 60%;
+
+ 	float:left;
+ }
+.search-product-image>img{
+
+max-height: 100%;
+max-width: 100%;
+
+width: 200px;
+	
+}
+.search-product-detail-item{
+	font-size:18px;
+	width:70%;
+	padding: 0px;
+}
+.search-item1{
+width:80%;
+
+
+}
+.sp-property{
+	
+	color:black;
+
+}
+.sp-key{
+	color:green;
+}

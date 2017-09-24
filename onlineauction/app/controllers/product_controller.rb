@@ -11,6 +11,8 @@ class ProductController < ApplicationController
   
   def show
 
+  id=params[:id]
+@us=Product.find(id)
 @arrmap=[]
 @arrmap={"AUCTION_LIVE"=>"Auction is Live" ,"AUCTION_END"=>"Auction  Ended" ,"SCHEDULED"=>"Auction  Scheduled","TO_BE_VERIFIED"=>"Auction Verification Pending","None"=>"Not Available for Auction"}
   @p=Product.find(params[:id])
@@ -30,8 +32,6 @@ class ProductController < ApplicationController
   @vals.push @p.min_bid
   @vals.push @seller.name
   @vals.push @p.id
-    
-
   end
 
   def edit
@@ -103,5 +103,12 @@ redirect_to action:"show",id:pid
 end
 def cancel
 
+a=Product.find(params[:id])
+b=Auction.find(a.auction_id)
+b.status="None"
+b.save
+a.auction_status="None";
+a.save
+redirect_to action:"show",id:params[:id]
   end
 end

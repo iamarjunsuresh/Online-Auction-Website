@@ -1,0 +1,28 @@
+
+<%= javascript_include_tag "datepicker.js" %>
+
+<%= stylesheet_link_tag "datepicker.css" %>
+<script>
+$(document).ready(function() { /* code here */jQuery('#starttime').datetimepicker({minDate:0,value:{value:'<%= @startt %>',
+ format:'dm.Y'}}); 
+
+jQuery('#endtime').datetimepicker({minDate:0,value:{value:'<%= @endt %>',
+ format:'Y-m-d H:'}}); });
+
+</script>
+
+<h4>Edit Aution Details</h4>
+
+<form action="/auction/edit" method="post">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+<%= hidden_field_tag :id,@vals[3] %>
+
+<label for="starttime">Start Time </label>
+
+<input id="starttime" type="text" name="starttime" />
+<label for="endtime">End Time </label>
+<input id="endtime" type="text"  name="endtime" />
+
+<input type="submit" value="Schedule Auction"/>
+</form>

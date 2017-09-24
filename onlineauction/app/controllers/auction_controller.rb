@@ -125,6 +125,7 @@ end
 	end
   def create
   	
+    @category=Category.all
   	@labels=["Name of Item","Description","Minimum Bid"]
 
   	@names=["name","desc","minbid"]
@@ -185,12 +186,28 @@ def edit
   ds=params[:id]
 
 
+    a=Auction.find(ds)
+if(request.method=="GET")
+  @startt=a.start_time
+  @endt=a.end_time
+else
+    a.status="SCHEDULED"
+    a.start_time=params[:starttime]
+    a.end_time=params[:endtime]
+    a.save
+end
+
+
 
 end
 
 
   def cancel
 ds=params[:id]
+a=Auction.find(ds)
+a.status="AUCTION_CANCELLED"
+a.save
+redirect_to action:"index"
 
   end
 #method

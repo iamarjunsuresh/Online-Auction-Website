@@ -12,17 +12,27 @@
   <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
   <div class="title_"><b><u>Online Auction</u></b></div>
   <div class="title_" style="margin-left: 0.5em;">
-    <select>
-      <option>Category</option>
+  <form action="/search" method="GET">
+<%@category=Category.all %>
+
+    <select name="category">
+
+    
+    <option value="Category"> Category</option>
+    <% @category.each do |cat| %>
+       <option value="<%= cat.name %>"><%= cat.name %></option>
+    <% end -%>
+ 
+
+
+     
       <!--Ruby Code Fetching All The Categories do_-->
-        <option>One</option>
-        <option>Two</option>
-        <option>Three</option>
-        <option><!--Variable Placing Category Name--></option>
+       
       <!--end_-->
     </select>
     <input type="text" class="s_box" placeholder="Search"/>
     <input type="submit" class="find" value="Search"/>
+    </form>
   </div>
 
   <div class="login_">

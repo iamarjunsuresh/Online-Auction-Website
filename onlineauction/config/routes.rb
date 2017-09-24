@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'categories/show'
+
+  get 'categories/index'
+
+  get 'categories/create'
+
+  get 'categories/destroy'=>'categories#delete'
+
+  get 'categories/new'
+
+
+
 get 'admin/index'
 
 get 'admin/vproduct'
@@ -46,7 +58,7 @@ get 'admin/verifyproduct'=>'admin#vproduct'
 
 
 post 'product/schedule'=>'product#schedule'
-post 'product/cancel'=>'product#cancel'
+get 'product/cancel'=>'product#cancel'
 
 get 'auction/edit'=>'auction#edit'
 get 'auction/verify'=>'admin#verifyauction'
@@ -69,6 +81,9 @@ get 'admin/vwusers'=>'admin#vwuser'
 get 'admin/vwproducts'=>'admin#vwproduct'
 
 get 'ajax/cancelbid/:id'=>'auction#cancelbid'
+
+	post 'categories/new'=>'categories#create'
+	resources :categories
 
 
 end

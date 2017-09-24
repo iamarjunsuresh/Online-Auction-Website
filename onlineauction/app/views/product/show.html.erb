@@ -1,65 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+th
+{
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px
+}
+
+.card1 {
+  border: 2px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  background-color: #A9A9A9;
+  box-shadow: 10px 10px 5px #888888; 
+  text-align: center;
+  font-family: arial;
+}
+
+</style>
+</head>
+
+
+<body>
 
 <%= javascript_include_tag "datepicker.js" %>
-
 <%= stylesheet_link_tag "datepicker.css" %>
-<script>
-$(document).ready(function() { /* code here */jQuery('#starttime').datetimepicker({minDate:0}); 
+<% user=@us %>
 
+<script>
+$(document).ready(function() { /* code here */jQuery('#starttime').datetimepicker({minDate:0});
 jQuery('#endtime').datetimepicker({minDate:0}); 
 });
-
 </script>
-<h4><%= @pname %></h4>
+
+<h2 style="text-align:center"><%= @pname %></h2>
+<div class="img"><center><img src="<%= user.image %>"></center></img></div>
+
+<div class="card1">
 <table>
-
-	<% @labels.size.times do |x| %>
-
-
-
-<tr>
-	<td>
-	<%= @labels[x] %>
-	</td>
-
-	<td>
-	<%= @vals[x] %>
-	</td>
-	
-</tr>
-<tr>
-
+<% @labels.size.times do |x| %>
+	<tr>
+		<td><%= @labels[x] %></td>
+		<td><%= @vals[x] %></td>
+	</tr>
+	<tr>
 <% end %>
-	<td>
-Auction Status:
-	</td>
-
-	<td> 	
-	<%= @arrmap[@p.auction_status] %>
-	</td>
-
+		<td>Auction Status:</td>
+		<td><%= @arrmap[@p.auction_status] %></td>
+	</tr>
 </table>
 <% if @p.auction_status.eql?("AUCTION_LIVE") %>
-<a href="/auction/show?id=<%= @p.id %>"> Go to AUctioon PAge</a>
+	<a href="/auction/show?id=<%= @p.id %>"> Go to AUctioon PAge</a>
 <% end %>
+</div>
+
 <% if not session["userdata"].nil? and @p.seller_id=session["userdata"]["id"] %>
-<% if not @p.auction_status.eql?("SCHEDULED") %>
-<form action="/product/schedule" method="post">
-<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-<%= hidden_field_tag :id,@vals[3] %>
-
-<label for="starttime">Start Time </label>
-
-<input id="starttime" type="text" name="starttime" />
-<label for="endtime">End Time </label>
-<input id="endtime" type="text"  name="endtime" />
-
-<input type="submit" value="Schedule Auction"/>
-</form>
-<% else %>
-<a  href="cancel?id=<%= @vals[3] %>">
-Cancel Auction 
-</a>
-
-<% end %>
+	<% if not @p.auction_status.eql?("SCHEDULED") %>
+		<form action="/product/schedule" method="post">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+			<%= hidden_field_tag :id,@vals[3] %>
+			<label for="starttime">Start Time </label>
+			<input id="starttime" type="text" name="starttime" />
+			<label for="endtime">End Time </label>
+			<input id="endtime" type="text"  name="endtime" />
+			<input type="submit" value="Schedule Auction"/>
+		</form>
+	<% else %>
+	<a  href="cancel?id=<%= @vals[3] %>">Cancel Auction </a>
+	<% end %>
 <% end  %>
+
+</body>
+
+</html>

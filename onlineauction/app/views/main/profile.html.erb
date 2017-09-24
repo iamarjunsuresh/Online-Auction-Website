@@ -10,16 +10,25 @@ th
     padding-bottom: 50px;
     padding-left: 80px
 }
+
 .card1 {
+  border: 2px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 1000px;
   margin: auto;
+  background-color: #A9A9A9;
+  box-shadow: 10px 10px 5px #888888; 
   text-align: center;
   font-family: arial;
 }
 .card {
+  border: 2px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
+  background-color: #E6E6FA;
+  box-shadow: 10px 10px 5px #888888;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -78,10 +87,10 @@ button:hover, a:hover {
 <div class="card1">
 	<table style="width:90%">
 		<tr>
-			<th>Name</th>
-			<th>Image</th>
-			<th>Category</th>
-			<th>Verified_By</th>
+			<th><h2>Name</h1></th>
+			<th><h2>Image</h1></th>
+			<th><h2>Category</h1></th>
+			<th><h2>Verified_By</h1></th>
 		</tr>
 		<% @pro.each do |pp| %>
 			<tr>
@@ -93,33 +102,5 @@ button:hover, a:hover {
 		<% end %>
 	</table>
 </div>
-
-
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

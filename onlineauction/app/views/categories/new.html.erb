@@ -1,0 +1,13 @@
+<h2>Manage Categories</h2>
+
+<%= form_with scope: :category, local: true do |form| %>
+  <p>
+    <%= form.label :Category %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+  <%= link_to 'All categories', categories_path %>

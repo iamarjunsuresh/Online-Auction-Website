@@ -20,7 +20,8 @@ def setmessage
 end
 def index
 setmessage()
-setmessage
+
+@category=Category.all
 
 @r=Product.all
 @au="AUCTION_LIVE"
@@ -40,7 +41,11 @@ Digest::SHA1.hexdigest strs
 
 end
  def profile
- 	id=params[:id]
+ 	if session[:userdata].nil?
+ 		redirect_to action:"index"
+ 		return
+ 	end
+ 	id=session[:userdata]["id"]
 @us=User.find(id)
 @pro=Product.where(:seller_id=>@us.id)
 @co=@pro.size
@@ -56,7 +61,12 @@ def login
 if(Admin.where(:email=>params[:email]).where(:pass=>params[:password]).size>0)
 
 session[:isadmin]=1
+@us=User.where(:email=>params[:email])
+if(@us.size>0)
+	session[:userdata]=@us[0]
+end
 redirect_to controller:"admin",action:"index"
+return
 else
 		@err=[]
 
@@ -65,7 +75,7 @@ else
 			@err.push("Fields can't be blank");
 		end
 		@email=params[:email]
-		if(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(@email).size==0)
+		if(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(@email).nil?or /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(@email).size==0)
 			@err.push("Email InValid");
 
 		end
@@ -85,7 +95,7 @@ else
 				
 				session[:userdata]=@us
 
-				redirect_to action:"loginsucess"	
+				redirect_to action:"index"	
 				#redirect_to session[:prevurl]	
 			else
 			
@@ -118,7 +128,15 @@ end
 def search_pro
 
 	 @search_value = params[:searchterm]
-	 @r=Product.where("name like ? or description like ?","%#{@search_value}%","%#{@search_value}%");
+	 @cat=params[:category]
+	 if params[:category].eql?("Category")
+
+	 @r=Product.where("LOWER(name) like ? or LOWER(description) like ?","%#{@search_value}%","%#{@search_value}%")
+	 else
+
+	 @r=Product.where(:category=>@cat).where("LOWER(name) like ? or LOWER(description) like ?","%#{@search_value}%","%#{@search_value}%")
+	 
+end
 	 @category = Category.all
 end
 	
@@ -169,7 +187,7 @@ def registercomplete
 		if(ph.length!=10)
 			@err.push("Mobile No Invalid");
 			end
-		if(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(em).size==0)
+		if(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(em).nil? or /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(em).size==0)
 			@err.push('Email is Invalid')
 		end
 		if(@err.size>0)

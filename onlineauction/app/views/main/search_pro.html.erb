@@ -1,40 +1,46 @@
-<html>
+
 	<h1>Products Available</h1>
-	<label>Sort By:</label>
+	<label>Sort By:</label>	
 	<select> 
-		<option value="Category">Categories</option>
+		<option value="Category"> Select Category</option>
 		<% @category.each do |cat| %>
 			 <option value="<%= cat.name %>"><%= cat.name %></option>
 		<% end -%>
 		 <option value=""></option>
 
 	</select>
-	<table>
-		<tr>
-		<th>Product Name</th>
-		<th>Image</th>
-		<th>Description</th>
-		<th>Category</th>
-		<th>Minimum Bid Amount</th>
-		<th></th>
-		</tr>
+<div class="searchregion">
 
 		<% @r.each do |p| %>
-		<tr>
-			<td>
-				<%= p.name %>
-			</td>
-			<td><img src="<%= p.image %>" /></td>
-			<td><%= p.description %></td>
-			<td><%= p.category %></td>
-			<td><%= p.min_bid %></td>
-			<td><%= submit_tag "+"%></td>
-		</tr>	
+		<div class="search1">
+		<div class="search-product-image colsearch">
+		<img src="<%= p.image  %>"/>
+		</div>
 
+
+		<div class="search-product-details colsearch">
+
+
+				<div class="search-product-detail-item">
+							<span class="sp-property">Description:</span><span class="sp-key"><%= p.description %></span>
+				</div>
+				<div class="search-product-detail-item">
+								<span class="sp-property">Category:</span><span class="sp-key"><%= p.category %></span>
+				</div>
+				<div class="search-product-detail-item">
+								<span class="sp-property">Minimum Bid Val(Rs):</span><span class="sp-key"><%= p.min_bid %></span>
+				</div>
+				<div class="search-product-detail-item">
+								<%= link_to "Go to Product page",controller:"product" ,action:"show",id:p.id  %></span>
+				</div>
+
+
+		</div>
+
+			
+</div>
 		<% end %>
-		
+	</div>	
 
 
-	</table>
-</html>
 
