@@ -94,9 +94,12 @@ else
 			if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
 				
 				session[:userdata]=@us
-
+				if(@us.verified_by<0)
+				redirect_to action:"userverify"
+				else
 				redirect_to action:"index"	
 				#redirect_to session[:prevurl]	
+				end
 			else
 			
 
@@ -146,6 +149,8 @@ def logout
 	redirect_to action:"index"
 
 end
+def userverify
+	end
 def verify
 
 has=params[:id]

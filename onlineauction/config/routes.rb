@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'categories/new'
 
 
-
+get '/verifywarning'=>'main#userverify'
 get 'admin/index'
 
 get 'admin/vproduct'
