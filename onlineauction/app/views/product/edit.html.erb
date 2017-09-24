@@ -18,6 +18,17 @@
 			<%= text_field_tag @names[x],@vals[x] %>
 			</br>
 		<% end %>
+
+		<label for="category">Category:</label> 
+    <select name="category"> 
+		<option value="Category"> Select Category</option>
+		<% @category.each do |cat| %>
+			 <option value="<%= cat.name %>"><%= cat.name %></option>
+		<% end -%>
+		 <option value=""></option>
+
+	</select>
+	</br>
 		<label >Item Image:</label>
 		<img src="<%= @p.image %>" />
 		</br>

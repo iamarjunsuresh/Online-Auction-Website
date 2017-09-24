@@ -39,7 +39,8 @@ get 'auth/failure'=>'auth0#failure'
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root 'main#index'
 get 'profile/(:id)'=>'main#profile'
-
+get 'banned'=>'main#ban'
+get '/admin/ban'=>'admin#banuser'
 get 'login'=>'main#login'
 post 'login'=>'main#login'
 get 'register'=>'main#registercomplete'

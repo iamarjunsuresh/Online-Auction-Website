@@ -1,11 +1,12 @@
 
 <div class="card">
-<table>
+<table style="width:80%">
 
   <tr>
 	<th>Image</th>
 	<th>Name</th>
 	<th>Description</th>
+	<th>Category</th>
 	<th>minimum Bid</th>
 	<th>Actions</th>
   </tr>
@@ -18,6 +19,7 @@
 	</td>
 	<td><%= x.name %></td>
 	<td><%= x.description %></td>
+	<td><%= x.category%></td>
 	<td>Rs. 
 	  <%= x.min_bid.to_s %>
 	</td>

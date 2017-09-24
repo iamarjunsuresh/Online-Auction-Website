@@ -14,21 +14,19 @@ th
 .card1 {
   border: 2px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
+  max-width: 70%;
   margin: auto;
-  background-color: #A9A9A9;
-  box-shadow: 10px 10px 5px #888888; 
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px #888888; 
   text-align: center;
   font-family: arial;
 }
 .card {
   border: 2px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  background-color: #E6E6FA;
-  box-shadow: 10px 10px 5px #888888;
+  max-width: 70%;
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px #888888;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -75,8 +73,10 @@ button:hover, a:hover {
   <p>Verified By : <%= user.verified_by %></p>
   <p>Type : <%= user.usertype %></p>
   <p>Products Sold : <%= @co%></p>
+<%= if session[:isadmin] %>
+ <p><button>Ban User<%= link_to 'ban',controller:"admin",action:"banuser",id:user.id %></button></p>
 
- <p><button>Ban User<%= link_to 'ban' %></button></p>
+ <% end %>
 </div>
 
 

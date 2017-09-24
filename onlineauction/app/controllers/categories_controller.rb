@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 
 	def new
 		@category=Category.new
+    @cat=Category.all
 	end
 
 	def create
@@ -18,9 +19,13 @@ def index
 	@category=Category.all
 end
 def delete
-    @category = Category.find(params[:id])
-    @category.destroy
+    
 
+    @category = Category.find(params[:id])
+
+    if(Product.where(:category=>@category.name).size==0)
+    @category.destroy
+  end
  
     redirect_to categories_path
   end

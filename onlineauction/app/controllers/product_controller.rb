@@ -55,6 +55,7 @@ else
 @prod=Product.new
 @prod.name=params[:name]
 @prod.description=params[:desc]
+
 @prod.min_bid=params[:minbid].to_f
 
 uploaded_io = params[:pimage]
@@ -65,7 +66,7 @@ randomisepath=rand(99999).to_s+rand(99999).to_s+uploaded_io.original_filename
   @prod.image="/uploads/"+randomisepath
   @prod.verified_by=-1
   @prod.auction_status="None"
-
+@prod.category=params[:category]
   @prod.seller_id=session[:userdata]["id"]
   @prod.save
   redirect_to action:"create"
@@ -99,7 +100,7 @@ end
   end
 
   def edit
-
+  @category=Category.all
 @p=Product.find(params[:id])
 @labels=["Name of Item","Description","Minimum Bid"]
 
@@ -108,6 +109,7 @@ end
   @vals=[]
   @vals.push @p.name
   @vals.push @p.description
+  @p.category=params[:category]
   @vals.push @p.min_bid
 
 if(request.method=="POST")

@@ -14,6 +14,21 @@ end
 
  
   end
+def banuser
+
+
+if(session[:isadmin]==1)
+
+    s=User.find(params[:id])
+    s.verified_by=-3
+    s.save
+else
+
+  redirect_to controller:"main",action:"index"
+
+end
+
+end
 
 def vwproduct
 @r=Product.all

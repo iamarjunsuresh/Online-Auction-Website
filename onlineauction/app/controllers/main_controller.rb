@@ -68,6 +68,7 @@ end
 redirect_to controller:"admin",action:"index"
 return
 else
+	session[:isadmin]=0
 		@err=[]
 
 		#user authenticate
@@ -94,7 +95,9 @@ else
 			if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
 				
 				session[:userdata]=@us
-				if(@us.verified_by<0)
+				if(@us.verified_by==-3)
+					redirect_to action:"ban"
+				elsif(@us.verified_by<0)
 				redirect_to action:"userverify"
 				else
 				redirect_to action:"index"	
@@ -130,7 +133,7 @@ def register
 end
 def search_pro
 
-	 @search_value = params[:searchterm]
+	 @search_value = params[:searchterm].downcase
 	 @cat=params[:category]
 	 if params[:category].eql?("Category")
 
