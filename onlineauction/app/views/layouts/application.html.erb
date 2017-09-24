@@ -10,28 +10,20 @@
 <!--Header Starts-->
 <header class="header" >
   <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
-  <div class="title_"><b><u>Online Auction</u></b></div>
+  <div class="title_"><b><u><a href="/">Online Auction</a></u></b></div>
   <div class="title_" style="margin-left: 0.5em;">
-  <form action="/search" method="GET">
-<%@category=Category.all %>
+    <form class="frm" action="/search" method="GET">
 
-    <select name="category">
+      <%@category=Category.all %>
+      <select name="category">
+        <option value="Category">Category</option>
+        <% @category.each do |cat| %>
+          <option value="<%= cat.name %>"><%= cat.name %></option>
+        <% end %>
+      </select>
 
-    
-    <option value="Category"> Category</option>
-    <% @category.each do |cat| %>
-       <option value="<%= cat.name %>"><%= cat.name %></option>
-    <% end -%>
- 
-
-
-     
-      <!--Ruby Code Fetching All The Categories do_-->
-       
-      <!--end_-->
-    </select>
-    <input type="text" class="s_box" placeholder="Search"/>
-    <input type="submit" class="find" value="Search"/>
+      <input type="text" class="s_box" placeholder="Search"/>
+      <input type="submit" class="find" value="Search"/>
     </form>
   </div>
 
