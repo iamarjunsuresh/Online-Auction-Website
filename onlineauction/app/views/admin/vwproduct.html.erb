@@ -1,9 +1,10 @@
 <html>
+<div class="card">
 	<h1>Products Available</h1>
 		<table>
 		<tr>
 		<th>Product Name</th>
-		<th>Image</th>
+		<th >Image</th>
 		<th>Description</th>
 		<th>Category</th>
 		<th>Minimum Bid Amount</th>
@@ -14,7 +15,9 @@
 			<td>
 				<%= p.name %>
 			</td>
-			<td><div class="img"><img src="<%= p.image %>" /></div></td>
+
+			<td ><img src="<%= p.image %>" height="150" width="150" /></td>
+
 			<td><%= p.description %></td>
 			<td><%= p.category %></td>
 			<td><%= p.min_bid %></td>
@@ -22,5 +25,5 @@
 
 		<% end %>
 	</table>
+</div>
 </html>
-

@@ -2,6 +2,10 @@ class AuctionController < ApplicationController
 
 
   def show
+    if(params[:id].nil? or params[:id]=="")
+      redirect_to controller:"main",action:"index"
+      return
+    end
     id=params[:id]
     @p=Product.find(id)
     @auc=Auction.find(@p.auction_id)
@@ -250,7 +254,11 @@ end
 end
 
 def edit
+if params[:id].nil? or params[:id]==""
+  redirect_to controller:"main",action:"index"
+  return
 
+end
 
   ds=params[:id]
 
@@ -273,10 +281,20 @@ end
 
 
   def cancel
+    
+    if params[:id].nil? or params[:id]==""
+  redirect_to controller:"main",action:"index"
+
+end
+
 ds=params[:id]
 a=Auction.find(ds)
 a.status="AUCTION_CANCELLED"
 a.save
+p=Product.find(a.pid)
+p.auction_status="None"
+p.save
+
 redirect_to action:"index"
 
   end

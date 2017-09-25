@@ -45,6 +45,7 @@ end
  
   def require_login
     if session[:userdata].nil?
+      session[:prevurl]=original_url
      redirect_to controller:"main",action:"login" # halts request cycle
       return
     end
@@ -72,8 +73,8 @@ end
 
 
     def require_admin
-      if session[:isadmin].nil? or session[:isadmin]=0
-          redirect_to controller:"main",action:"index"
+      if(session[:userdata].nil? or session[:userdata]['usertype']!='admin')
+            redirect_to controller:"main",action:"index"
       end
     end
 

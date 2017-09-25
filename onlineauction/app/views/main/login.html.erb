@@ -1,28 +1,6 @@
-<!--
-<div class="box">
-	<li>
-		<% if(not @msgarr.nil?)  %>
-			<% @msgarr.each do |x| %>
-				<ul class="msg-txt" > <%= x %></ul>
-			<% end %>
-		<% end %>
-	</li>
-</div>
--->
-
 <center>
 	<%= form_tag(action:"login",method:"post") do %>
 		<center>
-			<div class="box">
-				<div>
-					<% if @msgarr.count >= 0 %>
-						<% @msgarr.each do |x| %>
-							<%= x %>
-						<% end %>
-					<% end %>
-				</div>
-			</div>
-
 			<table>
 				<tr>
 					<td class="tab1"><%= label_tag :email,"Email ID:" %></td>
@@ -36,6 +14,17 @@
 
 				<tr><td colspan="2"><%= submit_tag("Log In") %></td></tr>
 			</table>
+
+			<div>
+				<% if @msgarr.count > 0 %>
+					<h3>Can Not Proceed Further Because Of Following Reasons :</h3>
+					<% @msgarr.each do |x| %>
+						<h4 style="color: red"><%= x %></h4>
+					<% end %>
+					<br/>
+				<% end %>
+			</div>
+
 		</center>
 	<% end %> 
 </center>

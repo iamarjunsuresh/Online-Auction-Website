@@ -105,13 +105,16 @@ else
 					redirect_to action:"ban"
 				elsif(@us.verified_by<0)
 				redirect_to action:"userverify"
-			elsif(not session[:prevurl].nil?)
+			else
+
+				if(not session[:prevurl].nil?)
 
 				redirect_to session[:prevurl]
 				else
 				redirect_to action:"index"	
 				#redirect_to session[:prevurl]	
 				end
+			end
 			else
 			
 

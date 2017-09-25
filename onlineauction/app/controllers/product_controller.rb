@@ -3,30 +3,27 @@ class ProductController < ApplicationController
   before_action :require_login,except:[:show]
   
   def index
-    check("/product/")
+    
     id=session[:userdata]["id"]
     @r=Product.where(:seller_id=>id)
-
-
   end
-    def show_error
+
+  def show_error
 
     if session[:em].nil?
-
       @msg=[]
     else
       @msg=session[:em]
     end
     session[:em]=nil
   end
-  def create
-    
+
+  def create  
     @category=Category.all
-
     @labels=["Title","Description","Minimum Bid"]
-
     @names=["name","desc","minbid"]
     @val=[]
+
     if not session[:p].nil?
       @val.push session[:p]["name"]
       @val.push session[:p]["desc"]
@@ -34,51 +31,62 @@ class ProductController < ApplicationController
     end
     
     show_error()
+    
     if(request.method=="POST")
-@err=[]
+      @err=[]
 
-if(params[:name].empty? or params[:desc].empty? or params[:minbid].empty?)
+      if(params[:name].empty? or params[:desc].empty? or params[:minbid].empty?)
+        @err.push 'Fields cannot be empty'
+      end
 
-  @err.push 'Fields cannot be empty'
+      if(params[:pimage].nil?)
+        @err.push 'Upload an Image for Product'
+      end
 
-end
-if(params[:pimage].nil?)
-  @err.push 'Upload an Image for Product'
-end
+      if @err.size>0
+        session[:em]=@err
+        session[:p]=params
+        redirect_to action:"create"
 
-if @err.size>0
-  session[:em]=@err
-  session[:p]=params
-  redirect_to action:"create"
+      else
+        session[:p]=nil
+        @prod=Product.new
+        @prod.name=params[:name]
+        @prod.description=params[:desc]
 
-else
-  session[:p]=nil
-@prod=Product.new
-@prod.name=params[:name]
-@prod.description=params[:desc]
+        @prod.min_bid=params[:minbid].to_f
 
-@prod.min_bid=params[:minbid].to_f
+        uploaded_io = params[:pimage]
+        randomisepath=rand(99999).to_s+rand(99999).to_s+uploaded_io.original_filename
+        File.open(Rails.root.join('public', 'uploads', randomisepath), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
 
-uploaded_io = params[:pimage]
-randomisepath=rand(99999).to_s+rand(99999).to_s+uploaded_io.original_filename
-  File.open(Rails.root.join('public', 'uploads', randomisepath), 'wb') do |file|
-    file.write(uploaded_io.read)
-  end
-  @prod.image="/uploads/"+randomisepath
-  @prod.verified_by=-1
-  @prod.auction_status="None"
-@prod.category=params[:category]
-  @prod.seller_id=session[:userdata]["id"]
-  @prod.save
-  redirect_to action:"create"
-  end
+      @prod.image="/uploads/"+randomisepath
+      @prod.verified_by=-1
+      @prod.auction_status="None"
+      @prod.category=params[:category]
+      @prod.seller_id=session[:userdata]["id"]
+      @prod.save
+      redirect_to action:"create"
+    end
  #noerror
+  end
 end
-end
+
   def show
+    if params[:id].nil?
+redirect_to action:"index"
+return
+    end
 
   id=params[:id]
 @us=Product.find(id)
+if(@us.verified_by==-1)
+
+  redirect_to action:"index"
+
+  end
 @arrmap=[]
 @arrmap={"AUCTION_LIVE"=>"Auction is Live" ,"AUCTION_END"=>"Auction  Ended" ,"SCHEDULED"=>"Auction  Scheduled","TO_BE_VERIFIED"=>"Auction Verification Pending","None"=>"Not Available for Auction"}
   @p=Product.find(params[:id])
@@ -87,6 +95,14 @@ end
   else
 @issch=0
   end
+if((ActiveSupport::TimeZone["Asia/Kolkata"].now-@p.start_time)/(@p.end_time-@p.start_time))
+
+@cancancel=1
+
+end
+@cancancel=0
+
+
 @labels=["Description","Minimum Bid","Sold By"]
 @seller=User.find(@p.seller_id)
 #@names=["name","desc","minbid"]    
@@ -101,6 +117,10 @@ end
   end
 
   def edit
+    if(params[:id].nil? or params[:id]=="")
+redirect_to action:"index"
+return
+    end
   @category=Category.all
 @p=Product.find(params[:id])
 @labels=["Name of Item","Description","Minimum Bid"]
@@ -136,12 +156,17 @@ end
 
   def delete
 
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+
+end
 @p=Product.find(params[:id])
 @p.destroy
 redirect_to action:"index"
   end
 
 def schedule
+
 
 st=params[:starttime]
 et=params[:endtime]
@@ -171,14 +196,29 @@ b=ActiveSupport::TimeZone["Asia/Kolkata"].parse(et)
 redirect_to action:"show",id:pid
 
 end
+
 def cancel
 
+
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+
+end
 a=Product.find(params[:id])
 b=Auction.find(a.auction_id)
+
+if((ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
+
+redirect_to action:"show",id:params[:id]
+
+return
+end
+
 b.status="None"
 b.save
 a.auction_status="None";
 a.save
+
 redirect_to action:"show",id:params[:id]
   end
 end
