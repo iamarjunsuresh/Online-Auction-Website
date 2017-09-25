@@ -1,7 +1,15 @@
 
+.bidsubmit{
 
+width:170px;
+height: 25px;
+background-color: red;
+}
+.countdown{
 
-.countdown .timer{
+	color:green;
+}
+.timer{
 
 font-size: 30px;
 
