@@ -15,22 +15,24 @@
  */
 a:visited	{	color: black;	}
 a:link  { color: black; text-decoration: none;}
-a:hover { color: blue; }
+a:hover { color: #315389; }
 
 form
 {
 	border-width: 5px;
-	border-style:solid;
-	border-color: rgb(0,120,255);
+	border-style: solid;
+	border-color: rgb(66, 149, 244);
 	border-radius: 10px;
+	align-content: center;
+	width: 70%;
 }
 
-table{}
+table	{		}
 tr	{	text-align: center;	}
 td
 {
 	text-align: center;
-	font-size:24px;
+	font-size: 24px;
 	padding: 10px;
 }
 
@@ -78,7 +80,7 @@ input[type="button"], input[type="submit"]
 	background-color: white;
 }
 
-label	{	font-size: 24px;	}
+.tab1	{	text-align: right;	}
 
 .header
 {
@@ -99,22 +101,9 @@ label	{	font-size: 24px;	}
 	margin-top: -3px;
 }
 
-.header img
+.frm
 {
-	max-width: 25%;
-	max-height: 25%;
-	margin: 0.5em;
-	display: inline-block;
-	clear:	both;
-}
-
-.img_
-{
-	width: 5%;
-	background-color: yellow;
-	border-style: solid;
-	border-color: black;
-	display: inline-block;
+	width: 100%;
 }
 
 .title_
@@ -170,37 +159,36 @@ label	{	font-size: 24px;	}
 
 .content
 {
-	margin-top:50px;
+	margin-top: 60px;
 	margin-bottom: 50px;
 	min-height: 22.5em;
 }
 
-.searchb{}
-
 .dmenu
 {
-	width: 400px;
-	border-radius: 25px;
-	background: rgb(255,176,176);
-	border-width: 2px;
+	font-size:20px;
 	text-align: center;
-	padding: 12px;
+	min-width: 175px;
+	max-width: 225px;
+	height: 20px;
+	background-color: white;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: black;
 	overflow: hidden;
-	height: 50px;
-	font-size:22px;
 }
 
-.dmenu:hover	{	height:150px;	}
+.dmenu:hover	{	height:120px;	}
 
 .dmenu>a
 {
 	display: block;
-	width:100%;
-	color:black;
+	color: black;
 	text-decoration: none;
 }
 
-.dmenu>a:hover	{	background-color: white;	}
+.dmenu>a:hover	{	color: red;	}
 
 .search-box
 {
@@ -209,26 +197,14 @@ label	{	font-size: 24px;	}
 
 .title
 {
-	margin-left:200px;
-	padding-top:0px;
+	margin-left: 200px;
 	color: black;
-	font-size:40px;
-	font-style:bold;
+	font-size: 40px;
+	font-style: bold;
 }
 
 /*
 .active { background-color: lightgreen;  }
-
-.b
-{
-	background-image: url(background.jpg);
-	background-size: cover;
-	height: 2000px;
-	border-radius: 10px;
-	padding: 6px;
-	width: 1250px;
-	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
 
 .foot_support
 {
@@ -238,5 +214,23 @@ label	{	font-size: 24px;	}
 	border-color: blue;
 	border-radius: 2em;
 	background-color: lightgrey;
+}
+
+.header img
+{
+	max-width: 25%;
+	max-height: 25%;
+	margin: 0.5em;
+	display: inline-block;
+	clear:	both;
+}
+
+.img_
+{
+	width: 5%;
+	background-color: yellow;
+	border-style: solid;
+	border-color: black;
+	display: inline-block;
 }
 */

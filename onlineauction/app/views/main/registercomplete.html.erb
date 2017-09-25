@@ -1,15 +1,16 @@
-<!--
 <div class="box">
-	<li>
+	<div>
+		<% if @msgarr.count >= 0 %>
 		<% @msgarr.each do |x| %>
-			<ul class="msg-txt" > <%= x %> </ul>
+			<%= x %>
 		<% end %>
-	</li>
+		<% end %>
+	</div>
 </div>
--->
 
 <%= form_tag action:"registercomplete", method:"post" do %>
-	<table style="margin-left: 200px;">
+	<table>
+		<tr><th colspan="2">Registration</th></tr>
 		<tr>
 			<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
 			<td class="tab2"><%= text_field_tag :fname %></td>
