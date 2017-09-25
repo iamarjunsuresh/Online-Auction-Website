@@ -21,7 +21,7 @@ class ProductController < ApplicationController
   def create
     
     @category=Category.all
-    @labels=["Name of Item","Description","Minimum Bid"]
+    @labels=["Title","Description","Minimum Bid"]
 
     @names=["name","desc","minbid"]
     @val=[]
