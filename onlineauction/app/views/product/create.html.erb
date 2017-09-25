@@ -13,7 +13,7 @@
 
 <div class="row justify-content-center">
  <div class="col-lg-5">
-	<form action="/auction/create" method="POST" enctype="multipart/form-data">
+	<form action="/product/create" method="POST" enctype="multipart/form-data">
 	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	<% @labels.size.times do |x| %>
 	<%= label_tag @labels[x]+":" %>

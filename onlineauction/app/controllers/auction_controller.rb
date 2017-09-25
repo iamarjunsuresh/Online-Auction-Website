@@ -95,6 +95,17 @@ end
   end
 
   
+def auctionhistory
+
+@ah=Bidding_table.where(:bidder_id=>session[:userdata]["id"]).order("")
+
+end
+
+def auctiondetails
+
+
+  end
+
 
   def bidlist
 
@@ -124,38 +135,38 @@ end
 		session[:em]=nil
 	end
   def create
-  	
+    
     @category=Category.all
-  	@labels=["Name of Item","Description","Minimum Bid"]
+    @labels=["Name of Item","Description","Minimum Bid"]
 
-  	@names=["name","desc","minbid"]
-  	@val=[]
-  	if not session[:p].nil?
-  		@val.push session[:p]["name"]
-	  	@val.push session[:p]["desc"]
-	  	@val.push session[:p]["minbid"]
-  	end
-  	
-  	show_error()
-  	if(request.method=="POST")
+    @names=["name","desc","minbid"]
+    @val=[]
+    if not session[:p].nil?
+      @val.push session[:p]["name"]
+      @val.push session[:p]["desc"]
+      @val.push session[:p]["minbid"]
+    end
+    
+    show_error()
+    if(request.method=="POST")
 @err=[]
 
 if(params[:name].empty? or params[:desc].empty? or params[:minbid].empty?)
 
-	@err.push 'Fields cannot be empty'
+  @err.push 'Fields cannot be empty'
 
 end
 if(params[:pimage].nil?)
-	@err.push 'Upload an Image for Product'
+  @err.push 'Upload an Image for Product'
 end
 
 if @err.size>0
-	session[:em]=@err
-	session[:p]=params
-	redirect_to action:"create"
+  session[:em]=@err
+  session[:p]=params
+  redirect_to action:"create"
 
 else
-	session[:p]=nil
+  session[:p]=nil
 @prod=Product.new
 @prod.name=params[:name]
 @prod.description=params[:desc]
@@ -163,8 +174,8 @@ else
 
 uploaded_io = params[:pimage]
 randomisepath=rand(99999).to_s+rand(99999).to_s+uploaded_io.original_filename
-	File.open(Rails.root.join('public', 'uploads', randomisepath), 'wb') do |file|
-  	file.write(uploaded_io.read)
+  File.open(Rails.root.join('public', 'uploads', randomisepath), 'wb') do |file|
+    file.write(uploaded_io.read)
   end
   @prod.image="/uploads/"+randomisepath
   @prod.verified_by=-1
@@ -172,7 +183,7 @@ randomisepath=rand(99999).to_s+rand(99999).to_s+uploaded_io.original_filename
 
   @prod.seller_id=session[:userdata]["id"]
   @prod.save
-  redirect_to action:"create"
+  redirect_to action:"index"
   end
  #noerror
 end
