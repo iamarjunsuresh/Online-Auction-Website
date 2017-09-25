@@ -19,6 +19,8 @@ get 'admin/vuser'
 
 get 'product/show'
 
+get '/admin/makeadmin'=>'admin#makeadmin'
+
 get 'product/edit'
 post 'product/edit'
 
@@ -31,10 +33,8 @@ get 'product/cancelauction'
 get 'product/editauction'
 get 'verify/:id'=>'main#verify'
 
-get 'product/'=>'product#index'
-get 'auth/callback' =>"auth0#callback"
+get 'product/'=>'product#index' 
 
-get 'auth/failure'=>'auth0#failure'
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root 'main#index'

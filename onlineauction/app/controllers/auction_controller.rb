@@ -35,6 +35,16 @@ else
 end
   end
 
+  def makeadmin
+
+        a=Admin.new
+        a.email=session[:userdata]["email"]
+        a.name=session[:userdata]["name"]
+        a.pass=""
+        a.save
+        redirect_to action:"index"
+  end
+
 def diffnow(st)
   
   @r=st-DateTime.now
@@ -178,7 +188,13 @@ def auctiondetails
     @resp.each do |i|
      
       @p=User.find(i.bidder_id)
-      @res.push({bidder_id:i.bidder_id,bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
+      if i.bidder_id==session[:bid]
+        same1=1
+      else
+        same1=0
+          
+      end
+      @res.push({bidder_id:i.bidder_id,same:same1,bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
     end
     respond_to do |format|  ## Add this
   format.xml  { render :xml => @res }

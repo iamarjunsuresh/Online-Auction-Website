@@ -207,7 +207,7 @@ end
 a=Product.find(params[:id])
 b=Auction.find(a.auction_id)
 
-if((ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
+if(a.auction_status=="SCHEDULED" and (ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
 
 redirect_to action:"show",id:params[:id]
 
