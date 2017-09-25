@@ -1,11 +1,7 @@
 <% user=@us %>
 
 <script>
-$(document).ready(function()
-	{ /* code here */
-		jQuery('#starttime').datetimepicker({minDate:0});
-		jQuery('#endtime').datetimepicker({minDate:0}); 
-	});
+
 
 'use strict';
 
@@ -68,10 +64,15 @@ var countDownClock = function countDownClock()
 
 window.onload=function()
 {
+
+	jQuery('#starttime').datetimepicker({minDate:0});
+		jQuery('#endtime').datetimepicker({minDate:0}); 
 	var cd=document.querySelector('#countdown');
 	//startTimer(<%= @duration %>,cd);
 
+<% if  not @duration.nil? %>
 	countDownClock(<%= @duration %>, 'seconds');
+<% end   %>
 }
 </script>
 
@@ -95,13 +96,10 @@ window.onload=function()
 				<td><%= @arrmap[@p.auction_status] %></td>
 			</tr>
 
+					<% if @p.auction_status.eql?("AUCTION_LIVE") %>
 			<tr>
 				<td>
-					<% if @p.auction_status.eql?("AUCTION_LIVE") %>
 						Acution Ends In :
-					<%else%>
-						Auction Starts in:
-					<% end %>
 				</td>
 				<td>
 					<span class="g days"></span> Days 
@@ -110,6 +108,20 @@ window.onload=function()
 					<span class="g seconds" ></span> Seconds
 				</td>
 			</tr>
+					<%elsif @p.auction_status.eql?("SCHEDULED") %>
+						<tr>
+				<td>
+						Acution Starts In :
+				</td>
+				<td>
+					<span class="g days"></span> Days 
+					<span class="g hours"></span> Hours
+					<span class="g minutes" ></span>  Minutes
+					<span class="g seconds" ></span> Seconds
+				</td>
+			</tr>
+						
+					<% end %>
 		</table>
 
 		<% if @p.auction_status.eql?("AUCTION_LIVE") %>

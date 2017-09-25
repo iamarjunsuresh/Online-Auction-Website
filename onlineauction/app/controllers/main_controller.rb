@@ -49,11 +49,18 @@ Digest::SHA1.hexdigest strs
 
 end
  def profile
+ 	if (params[:id].nil?  or params[:id]=="")
+
  	if session[:userdata].nil?
  		redirect_to action:"index"
  		return
  	end
+
  	id=session[:userdata]["id"]
+ 
+else
+	id=params[:id]
+end
 @us=User.find(id)
 @pro=Product.where(:seller_id=>@us.id)
 @co=@pro.size
@@ -70,16 +77,8 @@ def login
 		setmessage()
 
 	elsif (request.method=="POST")
-if(Admin.where(:email=>params[:email]).where(:pass=>params[:password]).size>0)
 
-session[:isadmin]=1
-@us=User.where(:email=>params[:email])
-if(@us.size>0)
-	session[:userdata]=@us[0]
-end
-redirect_to controller:"admin",action:"index"
-return
-else
+
 	session[:isadmin]=0
 		@err=[]
 
@@ -104,30 +103,35 @@ else
 			@us=User.where(:email=>params[:email])
 			if( @us.size>0)
 					@us=@us[0]
-			if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
-				
-				session[:userdata]=@us
-				if(@us.verified_by==-3)
-					redirect_to action:"ban"
-				elsif(@us.verified_by<0)
-				redirect_to action:"userverify"
-			else
+						if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
+							
+								session[:userdata]=@us
+							if(@us.verified_by==-3)
+								redirect_to action:"ban"
+							elsif(@us.verified_by<0)
+								redirect_to action:"userverify"
+							else
+									if(Admin.where(:email=>params[:email]).size>0)
 
-				if(not session[:prevurl].nil?)
+											session[:isadmin]=1
+											redirect_to controller:"admin",action:"index"
+											return
+									end
+									if(not session[:prevurl].nil?)
 
-				redirect_to session[:prevurl]
-				else
-				redirect_to action:"index"	
-				#redirect_to session[:prevurl]	
-				end
-			end
-			else
-			
+									redirect_to session[:prevurl]
+									else
+									redirect_to action:"index"	
+									#redirect_to session[:prevurl]	
+									end
+							end
+						else
+						
 
-				@err.push("Password Incorrect")
-				session[:em]=@err
-				redirect_to action:"login"
-			end
+							@err.push("Password Incorrect")
+							session[:em]=@err
+							redirect_to action:"login"
+						end
 		
 
 			else
@@ -139,7 +143,7 @@ else
 			end
 		end
 end
-	end
+	
 
 
 
@@ -251,7 +255,13 @@ hash1=get_hash(rand(999999).to_s,"verified_by")
 @v.date=Time.now+1.day
 @v.save
 
-url1="http://localhost:3000/verify/"+hash1
+ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+if ip
+ipaddr=ip.ip_address
+else
+ipaddr="localhost"
+end 
+url1="http://"+ipaddr+":3000/verify/"+hassh1
 message=body+url1+baki
 host='http://www.advancedbytes.in'
 furl=host+'/sendmail?semail=123arjunsuresh@gmail.com&remail='+em+"&body="+message+"&sub=Verify Email"

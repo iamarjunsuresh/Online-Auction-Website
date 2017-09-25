@@ -19,6 +19,7 @@
 						<td><%= user.usertype %></td>
 						<td><%= user.email %></td>
 						<td><%= user.phno %></td>
+						<td><%= link_to "Go to Profile",controller:"main",action:"profile",id:user.id %></td>
 					</tr>	
 				<% end %>
 			</table>

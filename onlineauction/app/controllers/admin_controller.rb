@@ -17,6 +17,25 @@ end
  
   end
 
+  def makeadmin
+
+    if(params[:id].nil? or params[:id]=="")
+
+        redirect_to controller:"admin",action:"index"
+        return
+    end
+      p=User.find(params[:id])
+      p.usertype='admin'
+      p.save
+
+        a=Admin.new
+        a.email=p.email
+        a.name=p.email
+        a.pass=""
+        a.save
+        redirect_to action:"index"
+  end
+
 def banuser
 
 
@@ -25,11 +44,10 @@ if(session[:isadmin]==1)
     s=User.find(params[:id])
     s.verified_by=-3
     s.save
-else
-
+end
   redirect_to controller:"main",action:"index"
 
-end
+
 
 end
 
