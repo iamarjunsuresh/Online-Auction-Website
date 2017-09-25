@@ -1,22 +1,27 @@
+<!--
 <div class="box">
 	<li>
 		<% if(not @msgarr.nil?)  %>
-		<% @msgarr.each do |x| %>
-			<ul class="msg-txt" > <%= x %> </ul>
+			<% @msgarr.each do |x| %>
+				<ul class="msg-txt" > <%= x %></ul>
 			<% end %>
 		<% end %>
 	</li>
 </div>
+-->
 
-<div class="row justify-content-center">
-	<div class="col-lg-4">
-		<div></div>
-		<%= form_tag(action:"login",method:"post") do %>
-			<%= label_tag :email,"Email ID:" %>
-			<%= email_field_tag(:email) %></br>
-			<%= label_tag :password,"Password:" %>
-			<%= password_field_tag(:password) %> 
-			<%= submit_tag("Log In") %>
-		<% end %> 
-	</div>
-</div>
+<%= form_tag(action:"login",method:"post") do %>
+	<table style="margin-left: 200px;">
+		<tr>
+			<td class="tab1"><%= label_tag :email,"Email ID:" %></td>
+			<td class="tab2"><%= email_field_tag(:email) %></br></td>
+		</tr>
+
+		<tr>
+			<td class="tab1"><%= label_tag :password,"Password:" %></td>
+			<td class="tab2"><%= password_field_tag(:password) %></td>
+		</tr>
+
+		<tr><td colspan="2"><%= submit_tag("Log In") %></td></tr>
+	</table>
+<% end %> 

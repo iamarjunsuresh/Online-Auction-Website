@@ -27,13 +27,13 @@
 
   <div class="login_">
     <% if session[:userdata].nil? %>
-      <a href="/login">Login</a>
+      <a href="/login">Login&nbsp;&nbsp;&nbsp;</a>
       <a href="/register">Register</a>
     <% else %>
       <div class="dmenu">
-        Welcome, <%= session[:userdata]["name"] %><br/>
+        <%= session[:userdata]["name"] %><br/>
         <a class="text-primary" href="/auction/create">Add Product</a>
-        <a class="text-primary" href="/product/">My Products</a>
+        <a class="text-primary" href="/product/">Your Products</a>
         <a class="text-primary" href="/logout">Log Out</a>
       </div>
     <% end %>
@@ -48,7 +48,7 @@
 <footer>
   <div class="footer">
 
-    <div style="background-color: lightblue;">
+    <div style="background-color: rgb(66, 149, 244);">
       <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
       <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
       <hr style="border-top: 5px double black; margin-top: -10px;"/>

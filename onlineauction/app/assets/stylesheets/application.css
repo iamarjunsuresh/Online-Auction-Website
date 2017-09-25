@@ -21,8 +21,7 @@ form
 {
 	border-width: 3px;
 	border-style:solid;
-	border-top-width: 20px;
-	border-bottom-width: 20px;
+	border-width: 5px;
 	border-top-color: rgb(0,120,255);
 	border-left-color: rgb(0,120,255);
 	border-bottom-color: rgb(0,120,255);
@@ -40,7 +39,7 @@ td
 	padding: 10px;
 }
 
-input[type="text"], input[type="email"], input[type="password"]
+input[type="text"], input[type="email"], input[type="password"], textarea
 {
 	font-size: 17px;
 	border-radius: 2px;
@@ -53,6 +52,8 @@ input[type="text"], input[type="email"], input[type="password"]
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+textarea	{		}
 
 select
 {
@@ -85,9 +86,10 @@ label	{	font-size: 24px;	}
 
 .header
 {
-	background-color: lightblue;
+	background-color: rgb(66, 149, 244);
 	border-style: solid;
 	border-color: black;
+	border-width: 2px;
 }
 
 .header img
@@ -172,15 +174,16 @@ label	{	font-size: 24px;	}
 
 .dmenu
 {
-	width: 400px;
-	border-radius: 25px;
-	background: rgb(255,176,176);
+	width: 200px;
+	border-radius: 15px;
+	border-style: solid;
 	border-width: 2px;
+	border-color: black;
+	background: white;
 	text-align: center;
-	padding: 12px;
 	overflow: hidden;
-	height: 50px;
-	font-size:22px;
+	height: 20px;
+	font-size:18px;
 }
 
 .dmenu:hover	{	height:150px;	}
