@@ -26,24 +26,11 @@ else
 		
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<center>
-			<div class="box">
-				<div>
-					<% @counter = 1 %>
-					<% if @msgarr.count >= 0 %>
-						<p>Registration Failed Due To Following Reasons : </p>
-						<% @msgarr.each do |x| %>
-							<%= @counter %>
-							<%= x %>
-							<% @counter = @counter + 1 %>
-							<br/>
-						<% end %>
-					<% end %>
-				</div>
-			</div>
-
-
 			<table>
-				<tr><th colspan="2"><%= label_tag :fname,"New User Registration" %></th></tr>
+				<tr><td colspan="2">
+					<b><u><%= label_tag :fname,"New User Registration" %></u></b>
+				</td></tr>
+				
 				<tr>
 					<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
 					<td class="tab2"><%= text_field_tag :fname ,"",:required=>true %></td>
@@ -89,6 +76,22 @@ else
 
 				<tr><td colspan="2"><center><%= submit_tag "Register" %></center></td></tr>
 			</table>
+
+			<div>
+				<% if @msgarr.count > 0 %>
+					<hr/><hr/>
+					<h2>Can Not Proceed Further Due To Following Reasons : </h2>
+					<table>
+						<% @msgarr.each do |x| %>
+						<tr><td class="tab2" style="color: red;"><%= x %></td></tr>
+						<% end %>
+					</table>
+					
+						<br/>
+					
+				<% end %>
+			</div>
+			<br/>
 		</center>
 	</form>
 </center>
