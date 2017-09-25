@@ -5,6 +5,7 @@
 				<div>
 					<% @counter = 1 %>
 					<% if @msgarr.count >= 0 %>
+						<p>Registration Failed Due To Following Reasons : </p>
 						<% @msgarr.each do |x| %>
 							<%= @counter %>
 							<%= x %>

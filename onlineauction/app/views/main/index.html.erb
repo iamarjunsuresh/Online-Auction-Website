@@ -1,62 +1,49 @@
-
-
 <table>
-
 <tr>
-<th><div class="header"><h2>Live Auction</h2></div></th>
-<th><div class="header"><h2>Upcomming Products</h2></div></th>
+<th><div class="header"><h2>Live Auction Products</h2></div></th>
+<th><div class="header"><h2>Upcomming Auction Products</h2></div></th>
 </tr>
 
-<tr >
-<td width=50%>
-    <% if @st %>
-      <table >
-        <% @st.each do |x| %>
-          <tr >
-            <td >
-              <div class="card" >
-                <div>
-                  <div class="img">
-                    <img src="<%= x.image %>" ></img>
-                  </div>
+<tr>
+  <td width=50%>
+      <% if @st %>
+        <table>
+          <% @st.each do |x| %>
+            <tr>
+              <td>
+                <div class="card">                  
+                  <div class="img"><img src="<%= x.image %>"/></img></div>
+                  <div><%= x.name %></div>
+                  <div>Rs.<%= x.min_bid.to_s %></div>
+                  <div><%= x.description %></div>
+                  <a href="/product/show?id=<%= x.id %>">View Product</a>
                 </div>
-                <div><%= x.name %></div>
-                <div>Rs.<%= x.min_bid.to_s %></div>
-                <div><%= x.description %></div>
-                <a href="/product/show?id=<%= x.id %>">Go to Product Page</a>
-              </div>
-            </td>
-          </tr>
-          <br/>
-        <% end %>
-      </table>
-    <% end %>
-</td>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+  </td>
 
-<td width=50%>
-    <% if @nst %>
-      <table >
-        <% @nst.each do |x| %>
-          <tr>
-            <td>
-              <div class="card">
-                <div>
-                  <div class="img">
-                    <img src="<%= x.image %>" ></img>
-                  </div>
+  <td width=50%>
+      <% if @nst %>
+        <table >
+          <% @nst.each do |x| %>
+            <tr>
+              <td>
+                <div class="card">                 
+                  <div class="img"><img src="<%= x.image %>"/></img></div>
+                  <div><%= x.name %></div>
+                  <div>Rs.<%= x.min_bid.to_s %></div>
+                  <div><%= x.description %></div>
+                  <a href="/product/show?id=<%= x.id %>">View Product</a>
                 </div>
-                <div><%= x.name %></div>
-                <div>Rs.<%= x.min_bid.to_s %></div>
-                <div><%= x.description %></div>
-                <a href="/product/show?id=<%= x.id %>">Go to Product Page</a>
-              </div>
-            </td>
-          </tr>
-          <br/>
-        <% end %>
-      </table>
-    <% end %>
-</td>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+  </td>
 </tr>
 
 </table>

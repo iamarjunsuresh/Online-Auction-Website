@@ -1,36 +1,28 @@
 
 <div class="card">
-<table style="width:80%">
+	<table>
+		<tr>
+			<td><b><u>Image</u></b>	</td>
+			<td><b><u>Name</u></b></td>
+			<td><b><u>Description</u></b></td>
+			<td><b><u>Category</u></b></td>
+			<td><b><u>Minimum Bid</u></b></td>
+			<td><b><u>Actions</u></b></td>
+		</tr>
 
-  <tr>
-	<th>Image</th>
-	<th>Name</th>
-	<th>Description</th>
-	<th>Category</th>
-	<th>minimum Bid</th>
-	<th>Actions</th>
-  </tr>
-  <% @r.each do |x| %>
-  <tr>
-	<td>
-		<div class="img">
-			<img src="<%= x.image %>" ></img>
-		</div>
-	</td>
-	<td><%= x.name %></td>
-	<td><%= x.description %></td>
-	<td><%= x.category%></td>
-	<td>Rs. 
-	  <%= x.min_bid.to_s %>
-	</td>
-	<td><%= link_to "Manage" ,action:"show",id:x.id %>
-	  </br>
-	  <%= link_to "Edit " ,action:"edit",id:x.id %>
-	  </br>
-	  <%= link_to "Delete" ,action:"delete",id:x.id %>	
-	</td>
-  </tr>
- <% end %>
-
-</table>
+		<% @r.each do |x| %>
+			<tr>
+				<td><div class="img"><img src="<%= x.image %>" ></img></div></td>
+				<td><h5><%= x.name %></h5></td>
+				<td><h5><%= x.description %></td>
+				<td><h5><%= x.category%></td>
+				<td><h5>Rs. <%= x.min_bid.to_s %></td>
+				<td><h5>
+					<%= link_to "Manage" ,action:"show",id:x.id %></br>
+					<%= link_to "Edit " ,action:"edit",id:x.id %></br>
+					<%= link_to "Delete" ,action:"delete",id:x.id %>	
+				</h5></td>
+			</tr>
+		<% end %>
+	</table>
 </div>

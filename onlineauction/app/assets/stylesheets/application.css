@@ -26,10 +26,10 @@ form
 	border-color: rgb(66, 149, 244);
 	border-radius: 10px;
 	align-content: center;
-	width: 70%;
+	width: 80%;
 }
 
-table	{	margin: 20px;	}
+table	{	margin: 25px;	}
 tr	{	text-align: center;	}
 td
 {
@@ -85,6 +85,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 }
 
 .tab1	{	text-align: right;	}
+.tab2	{	text-align: left;	}
 
 .header
 {
@@ -182,7 +183,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 	text-align: center;
 	min-width: 175px;
 	max-width: 225px;
-	height: 20px;
+	height: 25px;
 	background-color: white;
 	border-radius: 25px;
 	border-style: solid;
@@ -191,7 +192,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 	overflow: hidden;
 }
 
-.dmenu:hover	{	height:120px;	}
+.dmenu:hover	{	height:95px;	}
 
 .dmenu>a
 {

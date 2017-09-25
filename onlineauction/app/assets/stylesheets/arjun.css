@@ -1,108 +1,107 @@
-
-.bidsubmit{
-
-width:170px;
-height: 25px;
-background-color: red;
+.bidsubmit
+{
+	width:170px;
+	height: 25px;
+	background-color: red;
 }
-.countdown{
 
+.countdown
+{
 	color:green;
 }
-.timer{
 
-font-size: 30px;
-
-font-style: bold;
-
-color:green;
+.timer
+{
+	font-size: 30px;
+	font-style: bold;
+	color:green;
 }
 
-
-
-.searchregion{
-margin-left: 0px;
-
+.searchregion
+{
+	margin-left: 0px;
 }
-.auctionimg>img{
 
-max-height: 100%;
-max-width: 100%;
-margin-left: 40px;
-height:500px;
-
+.auctionimg>img
+{
+	max-height: 100%;
+	max-width: 100%;
+	margin-left: 40px;
+	height:500px;
 }
-.auctionheading{
 
-font-size:35px;
-width: 100%;
-text-align: center;
-
+.auctionheading
+{
+	font-size:35px;
+	width: 100%;
+	text-align: center;
 }
-.search-product-details{
 
-width:100%;
-
+.search-product-details
+{
+	width:100%;
 }
-.auctionbox{
 
+.auctionbox
+{
 	width: 100%;
 	height:500px;
 }
 
-
-.auctionfloat{
+.auctionfloat
+{
 	padding: 40px;
-
-float:left;
-
-}
-.search1{
-
-height: 130px;
-
-
-}
-.search-product-image{
- width:20%;
 	float:left;
 }
- .search-product-details{
-width: 60%;
 
- 	float:left;
- }
-.search-product-image>img{
-
-max-height: 100%;
-max-width: 100%;
-
-width: 200px;
-	
+.search1
+{
+	height: 130px;
 }
-.search-product-detail-item{
+
+.search-product-image
+{
+	width:20%;
+	float:left;
+}
+
+.search-product-details
+{
+	width: 60%;
+	float:left;
+}
+
+.search-product-image>img
+{
+	max-height: 100%;
+	max-width: 100%;
+	width: 200px;
+}
+
+.search-product-detail-item
+{
 	font-size:18px;
 	width:70%;
 	padding: 0px;
 }
-.search-item1{
+
+.search-item1
+{
 width:80%;
-
-
 }
-.sp-property{
-	
+
+.sp-property
+{
 	color:black;
-
 }
-.sp-key{
+
+.sp-key
+{
 	color:green;
 }
 
-
-.auctionpageimg{
-
+.auctionpageimg
+{
 	max-width: 100%;
 	max-height: 100%;
-
 }

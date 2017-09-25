@@ -5,13 +5,8 @@
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "jquery.js" %>
-<%= javascript_include_tag "datepicker.js" %>
-
-
-<%= stylesheet_link_tag "datepicker.css" %>
-
-
-
+    <%= javascript_include_tag "datepicker.js" %>
+    <%= stylesheet_link_tag "datepicker.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -23,7 +18,7 @@
     <form class="frm" action="/search" method="GET">
 
       <%@category=Category.all %>
-      <select name="category">
+      <select name="category" style="margin: auto;">
         <option value="Category">Category</option>
         <% @category.each do |cat| %>
           <option value="<%= cat.name %>"><%= cat.name %></option>
@@ -58,24 +53,24 @@
   <div class="content"><%= yield %></div> 
 
 <!--Footer Starts-->
-<footer>
-  <div class="footer">
+  <footer>
+    <div class="footer">
 
-    <div style="background-color: rgb(66, 149, 244)">
-      <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
-      <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
-      <hr style="border-top: 5px double black; margin-top: -10px;"/>
+      <div style="background-color: rgb(66, 149, 244)">
+        <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
+        <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
+        <hr style="border-top: 5px double black; margin-top: -10px;"/>
+      </div>
+
+      <div class="footer_"><h3><a href="/">Home</a></h3></div>
+      <div class="footer_"><h3><a href="#news">News</a></h3></div>
+      <div class="footer_"><h3><a href="#features">Features</a></h3></div>
+      <div class="footer_"><h3><a href="#privacy">Privacy and Terms</a></h3></div>
+      <div class="footer_"><h3><a href="#about">About</a></h3></div>
+      <div class="footer_"><h3><a href="#faq">FAQ</a></h3></div>
+      <div class="footer_"><h3><a href="#contact">Contact Us</a></h3></div>
     </div>
-
-    <div class="footer_"><h3><a href="/">Home</a></h3></div>
-    <div class="footer_"><h3><a href="#news">News</a></h3></div>
-    <div class="footer_"><h3><a href="#features">Features</a></h3></div>
-    <div class="footer_"><h3><a href="#privacy">Privacy and Terms</a></h3></div>
-    <div class="footer_"><h3><a href="#about">About</a></h3></div>
-    <div class="footer_"><h3><a href="#faq">FAQ</a></h3></div>
-    <div class="footer_"><h3><a href="#contact">Contact Us</a></h3></div>
-  </div>
-</footer>
+  </footer>
 <!--Footer Ends-->
   </body>
 </html>

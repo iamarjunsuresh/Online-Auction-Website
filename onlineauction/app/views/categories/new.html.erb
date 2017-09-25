@@ -2,18 +2,21 @@
 	<%= form_with scope: :category, local: true do |form| %>
 	<center>
 		<table>
-			<tr>
-				<td colspan="2"><u><b><%= link_to 'View All categories', categories_path %></u></b></td>
-			</tr>
-
 			<tr><td colspan="2">Add New Category</td></tr>
 
 			<tr>
-				<td class="tab1"><%= form.label :Category, "New Category : " %><br></td>
+				<td class="tab1"><%= form.label :Category, "New Category Name : " %><br></td>
 				<td class="tab2"><%= form.text_field :name %></td>
 			</tr>
 
 			<tr><td colspan="2"><%= form.submit %></td></tr>
+		</table>
+
+		<table>
+			<tr>
+				<td><b><u>Category Name</u></b></td>
+				<td><b><u>Action</u></b></td>
+			</tr>
 
 			<% @cat.each do |category| %>
 				<tr>
@@ -21,8 +24,6 @@
 					<td><%= link_to 'Destroy', action:"delete", id:category.id %></td>
 				</tr>
 			<% end %>
-
-			<tr><td colspan="2"></td></tr>
 		</table>
 	</center>
    <% end %>
