@@ -185,6 +185,13 @@ def auctiondetails
 
     @resp=Bidding_table.where(:auction_id=>session[:aid]).order("biding_price DESC")
  @res=[]
+      a=Auction.find(session[:aid])
+      if(a.status!="AUCTION_LIVE")
+
+        ended=1;
+      else
+        ended=0;
+      end
     @resp.each do |i|
      
       @p=User.find(i.bidder_id)
@@ -194,7 +201,7 @@ def auctiondetails
         same1=0
           
       end
-      @res.push({bidder_id:i.bidder_id,same:same1,bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
+      @res.push({end:ended,bidder_id:i.bidder_id,same:same1,bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
     end
     respond_to do |format|  ## Add this
   format.xml  { render :xml => @res }

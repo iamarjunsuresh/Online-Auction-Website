@@ -114,7 +114,7 @@ else{
 
 }
 
-if(bidder_id==result[i].bidder_id)
+if(result[0].end==0&&bidder_id==result[i].bidder_id)
 {
  html+= "<td><div onclick=\"deletebid("+result[i].bidid+")\">Delete Bid</div></td>";
 }
@@ -202,7 +202,7 @@ No Bids Placed.
 </span>	
     <% else %>
        <% if @auc.status=="WINNER_DECLARED" %>
-           <span class="maxbidval"> <%= @winner %> Won the Auction</h4>
+       \ <span class="spangreen"> <%= @winner %></span><span style="font-style: bold;font-size:19px"> Won the Auction</span> <br>on Bid</span><span class="spangreen">Rs. <%= @bidwinval %> </span>
         
 
         <% end %>
@@ -218,7 +218,15 @@ No Bids Placed.
 </center>
 
 <center>
+ <% if @auc.status=="WINNER_DECLARED" %>
+      <center>
+        
+        <h4>
+        Bid Summary
+        </h4>
+      </center>
 
+        <% end %>
 <table  id="bidtable"  class="bidtable">
 
 <tr><th>Bidder's Name</th><th>Bid Value</th><th>Time of Bid</th></tr>
