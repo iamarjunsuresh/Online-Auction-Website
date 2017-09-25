@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_action :require_admin,:require_login,:require_verify
   def index
 
 @users=User.where(:verified_by=>-1)

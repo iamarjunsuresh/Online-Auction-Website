@@ -52,10 +52,11 @@ def cancelbid
 
     @auc=Auction.find(session[:aid])
     if @bid.bidder_id=session[:bid]
-    #percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
-    percen=0.0
+    dur=@auc.end_time-@auc.start_time
+    rem=@auc.end_time-ActiveSupport::TimeZone["Asia/Kolkata"].now()
+    percen=rem/dur;
     puts(percen)
-    if(percen>0.5)
+    if(percen<0.5)
 
 
 @resp={message:"Bid Can't Be Cancelled after 50 percentage of time has passed"}

@@ -1,5 +1,6 @@
 class ProductController < ApplicationController
 
+  before_action :require_login,except:[:show]
   
   def index
     check("/product/")

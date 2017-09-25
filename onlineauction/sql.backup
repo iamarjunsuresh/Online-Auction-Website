@@ -1,0 +1,790 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: admins; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE admins (
+    id bigint NOT NULL,
+    email character varying,
+    name character varying,
+    pass character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE admins OWNER TO arjun;
+
+--
+-- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE admins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admins_id_seq OWNER TO arjun;
+
+--
+-- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
+
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE ar_internal_metadata OWNER TO arjun;
+
+--
+-- Name: auction_items; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE auction_items (
+    id bigint NOT NULL,
+    auction_id integer,
+    prod_id integer,
+    winner_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    bid_val character varying
+);
+
+
+ALTER TABLE auction_items OWNER TO arjun;
+
+--
+-- Name: auction_items_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE auction_items_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auction_items_id_seq OWNER TO arjun;
+
+--
+-- Name: auction_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE auction_items_id_seq OWNED BY auction_items.id;
+
+
+--
+-- Name: auctions; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE auctions (
+    id bigint NOT NULL,
+    admin_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    status character varying,
+    pid integer,
+    start_time timestamp without time zone,
+    end_time timestamp without time zone
+);
+
+
+ALTER TABLE auctions OWNER TO arjun;
+
+--
+-- Name: auctions_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE auctions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auctions_id_seq OWNER TO arjun;
+
+--
+-- Name: auctions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE auctions_id_seq OWNED BY auctions.id;
+
+
+--
+-- Name: bidding_tables; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE bidding_tables (
+    id bigint NOT NULL,
+    auction_id integer,
+    prod_id integer,
+    "time" character varying,
+    biding_price double precision,
+    bidder_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE bidding_tables OWNER TO arjun;
+
+--
+-- Name: bidding_tables_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE bidding_tables_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE bidding_tables_id_seq OWNER TO arjun;
+
+--
+-- Name: bidding_tables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE bidding_tables_id_seq OWNED BY bidding_tables.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE categories (
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE categories OWNER TO arjun;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE categories_id_seq OWNER TO arjun;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: notifications; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE notifications (
+    id bigint NOT NULL,
+    sender_id integer,
+    recieve_id integer,
+    message character varying,
+    "time" character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE notifications OWNER TO arjun;
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE notifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE notifications_id_seq OWNER TO arjun;
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
+
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE products (
+    id bigint NOT NULL,
+    category character varying,
+    description character varying,
+    name character varying,
+    image character varying,
+    min_bid double precision,
+    seller_id integer,
+    auction_status character varying,
+    verified_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    auction_id integer,
+    start_time timestamp without time zone,
+    end_time timestamp without time zone
+);
+
+
+ALTER TABLE products OWNER TO arjun;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE products_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE products_id_seq OWNER TO arjun;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE products_id_seq OWNED BY products.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO arjun;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE users (
+    id bigint NOT NULL,
+    name character varying,
+    addr character varying,
+    gender character varying,
+    usertype character varying,
+    email character varying,
+    phno character varying,
+    verified_by integer,
+    pwd character varying,
+    salt character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE users OWNER TO arjun;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO arjun;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: verifies; Type: TABLE; Schema: public; Owner: arjun
+--
+
+CREATE TABLE verifies (
+    id bigint NOT NULL,
+    userid integer,
+    code character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    date timestamp without time zone,
+    expired integer
+);
+
+
+ALTER TABLE verifies OWNER TO arjun;
+
+--
+-- Name: verifies_id_seq; Type: SEQUENCE; Schema: public; Owner: arjun
+--
+
+CREATE SEQUENCE verifies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE verifies_id_seq OWNER TO arjun;
+
+--
+-- Name: verifies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arjun
+--
+
+ALTER SEQUENCE verifies_id_seq OWNED BY verifies.id;
+
+
+--
+-- Name: admins id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY admins ALTER COLUMN id SET DEFAULT nextval('admins_id_seq'::regclass);
+
+
+--
+-- Name: auction_items id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY auction_items ALTER COLUMN id SET DEFAULT nextval('auction_items_id_seq'::regclass);
+
+
+--
+-- Name: auctions id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY auctions ALTER COLUMN id SET DEFAULT nextval('auctions_id_seq'::regclass);
+
+
+--
+-- Name: bidding_tables id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY bidding_tables ALTER COLUMN id SET DEFAULT nextval('bidding_tables_id_seq'::regclass);
+
+
+--
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: notifications id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notifications_id_seq'::regclass);
+
+
+--
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: verifies id; Type: DEFAULT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY verifies ALTER COLUMN id SET DEFAULT nextval('verifies_id_seq'::regclass);
+
+
+--
+-- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY admins (id, email, name, pass, created_at, updated_at) FROM stdin;
+1	123arjunsuresh@gmail.com	Arjun Suresh	trilon258	2017-09-23 17:36:00	2017-09-23 17:36:00
+\.
+
+
+--
+-- Name: admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('admins_id_seq', 1, true);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2017-09-17 11:39:09.557094	2017-09-17 11:39:09.557094
+\.
+
+
+--
+-- Data for Name: auction_items; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY auction_items (id, auction_id, prod_id, winner_id, created_at, updated_at, bid_val) FROM stdin;
+1	12	7	30	2017-09-23 15:49:35.25019	2017-09-23 15:49:35.25019	26200.0
+2	12	7	30	2017-09-23 15:49:48.395297	2017-09-23 15:49:48.395297	26200.0
+3	12	7	30	2017-09-23 15:50:50.015123	2017-09-23 15:50:50.015123	26200.0
+4	15	13	33	2017-09-24 13:02:19.912009	2017-09-24 13:02:19.912009	50001.0
+\.
+
+
+--
+-- Name: auction_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('auction_items_id_seq', 4, true);
+
+
+--
+-- Data for Name: auctions; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY auctions (id, admin_id, created_at, updated_at, status, pid, start_time, end_time) FROM stdin;
+20	30	2017-09-25 08:30:39.714219	2017-09-25 08:32:09.809235	AUCTION_LIVE	8	2017-09-25 07:30:00	2017-09-25 15:30:00
+19	30	2017-09-24 23:57:56.267616	2017-09-25 08:32:09.855585	AUCTION_END	11	2017-09-24 23:30:00	2017-09-25 08:30:00
+21	-1	2017-09-25 08:40:42.458117	2017-09-25 08:40:42.458117	TO_BE_VERIFIED	15	2017-09-25 07:30:00	2017-09-26 08:40:00
+\.
+
+
+--
+-- Name: auctions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('auctions_id_seq', 21, true);
+
+
+--
+-- Data for Name: bidding_tables; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY bidding_tables (id, auction_id, prod_id, "time", biding_price, bidder_id, created_at, updated_at) FROM stdin;
+71	19	11	2017-09-25 05:29:24 +0530	6900000	30	2017-09-24 23:59:24.549156	2017-09-24 23:59:24.549156
+72	19	11	2017-09-25 05:30:09 +0530	6900001	33	2017-09-25 00:00:09.299263	2017-09-25 00:00:09.299263
+73	20	8	2017-09-25 14:03:30 +0530	35660	30	2017-09-25 08:33:30.012771	2017-09-25 08:33:30.012771
+\.
+
+
+--
+-- Name: bidding_tables_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('bidding_tables_id_seq', 73, true);
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY categories (id, name, created_at, updated_at) FROM stdin;
+3	Toys	2017-09-24 07:33:34.027071	2017-09-24 07:33:34.027071
+4	Woods	2017-09-24 18:41:20.57408	2017-09-24 18:41:20.57408
+5	Electronics	2017-09-24 18:41:35.95512	2017-09-24 18:41:35.95512
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 5, true);
+
+
+--
+-- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY notifications (id, sender_id, recieve_id, message, "time", created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('notifications_id_seq', 1, false);
+
+
+--
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY products (id, category, description, name, image, min_bid, seller_id, auction_status, verified_by, created_at, updated_at, auction_id, start_time, end_time) FROM stdin;
+14	\N	tryerpokpodfgk	tyre	/uploads/3572187600thought.png	500	33	None	-1	2017-09-24 13:11:22.460165	2017-09-24 13:22:53.075305	16	2017-09-24 19:53:00	2017-09-24 19:54:00
+7	\N	sgdfdfgdfgdfg	asdsafsdf	/uploads/1587484157xiaomi-mix-.jpg	25600	30	None	1	2017-09-21 16:24:02.201533	2017-09-24 17:30:46.314551	17	2017-09-24 14:30:00	2017-09-24 17:30:00
+11	\N	Car is for rich  person. 	Lamborgini Galardo	/uploads/7619746102012-Lamborghini-Gallardo-Trofeo-Stradale-Front-Quarter.jpg	6600000	30	AUCTION_END	-1	2017-09-21 16:24:02.306489	2017-09-25 08:32:09.830946	19	2017-09-24 23:30:00	2017-09-25 08:30:00
+10	Electronics	Good Condition ,HP Pavellion 15	Laptop	/uploads/130413444c05494889.png	20000	30	None	-1	2017-09-21 16:24:02.288018	2017-09-25 08:37:36.294454	14	2017-09-24 17:30:00	2017-09-24 17:45:00
+13	Electronics	Good TV .HD 3D 	SONY BRAVIA TV LED Curved	/uploads/958211048asi-rmt-CurvedMonitorBeachInsetTabBeachInset-708-TVHTPFS-071116 - Copy.jpeg	45000	30	None	-1	2017-09-22 11:16:00	2017-09-25 08:37:41.869647	15	2017-09-24 17:48:00	2017-09-24 18:00:00
+12	Toys	askdhahfahjdhiuh	nkojnm	/uploads/83242234116712011_1233862760025071_5503894258318613670_n.jpg	256220	30	None	-1	2017-09-21 16:24:00	2017-09-25 08:37:46.676858	\N	2017-09-30 18:24:00	2017-10-11 18:24:00
+8	Woods	SSFDGDSGSFDGetfdghfj	Furniture Chair	/uploads/3279593777furniture.jpeg	35600	30	AUCTION_LIVE	1	2017-09-21 16:24:02.253364	2017-09-25 08:37:53.059823	20	2017-09-25 07:30:00	2017-09-25 15:30:00
+15	Toys	akjshksdhfhsdfl	jii	/uploads/20738221Screenshot from 2017-09-15 21-42-54.png	256	30	TO_BE_VERIFIED	-1	2017-09-24 14:55:03.606261	2017-09-25 08:40:42.576415	21	2017-09-25 07:30:00	2017-09-26 08:40:00
+\.
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('products_id_seq', 15, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY schema_migrations (version) FROM stdin;
+20170913134252
+20170913134706
+20170913134852
+20170913135000
+20170913135145
+20170913135316
+20170913182043
+20170917151406
+20170917165143
+20170917165220
+20170920154704
+20170920194727
+20170921183355
+20170921184036
+20170921184744
+20170921200802
+20170923051357
+20170923165540
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY users (id, name, addr, gender, usertype, email, phno, verified_by, pwd, salt, created_at, updated_at) FROM stdin;
+32	reshasdhaiufh	sadgfsdfgfdsxzg	Female	User	123sadfsgsfd@gmail.com	1234567890	1	7da48f5def93ea7b66d8a03299789909c2eca2eb	43504	2017-09-22 12:08:05.676779	2017-09-22 12:08:05.676779
+33	ShivaniKarnewar	asdlhsdkjlfhsdkhfusdhfuilhsdfluisdhf	\N	user	shinukarnewar@gmail.com	1234567890	30	61784dcc8d5f4611da7351c5baee579d6d95a139	43202	2017-09-24 07:54:57.464625	2017-09-24 11:58:04.289315
+30	ArjunSuresh	muthiraparambildsdsfgfdgfdgdfg	Male	admin	123arjunsuresh@gmail.com	9495889419	30	7da48f5def93ea7b66d8a03299789909c2eca2eb	43504	2017-09-22 06:25:29.859945	2017-09-24 11:58:05.685626
+34	HarshitJoshi	NITC	\N	user	darksider252525@gmail.com	1234567890	-2	69fcb86eab7180333c166ab6793d4947915ba993	23219	2017-09-24 16:50:38.8672	2017-09-24 16:50:38.8672
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('users_id_seq', 34, true);
+
+
+--
+-- Data for Name: verifies; Type: TABLE DATA; Schema: public; Owner: arjun
+--
+
+COPY verifies (id, userid, code, created_at, updated_at, date, expired) FROM stdin;
+1	6	9222ed849d2ff93007001f3f4dee999e4e435aa8	2017-09-20 19:55:40.39228	2017-09-20 19:55:40.39228	2017-09-21 19:55:40.391385	0
+2	7	6d591da7a5f01b755c76df9b54e118f14386879b	2017-09-20 20:02:03.067264	2017-09-20 20:02:03.067264	2017-09-21 20:02:03.06689	0
+3	8	ff307d24fdbb3d3db2d91bedb331d2761cf275d8	2017-09-20 20:03:30.482745	2017-09-20 20:03:30.482745	2017-09-21 20:03:30.482125	0
+4	9	1b65da45a619d463afb87da2fc0ad56f461cc3d4	2017-09-20 20:13:13.238003	2017-09-20 20:13:13.238003	2017-09-21 20:13:13.237514	0
+5	10	859e676ed0190211bd422a276a034e769cbbf37c	2017-09-20 20:29:41.424243	2017-09-20 20:29:41.424243	2017-09-21 20:29:41.42355	0
+6	11	46c11ea0b779b005db1a58ac14202a644e6639d8	2017-09-20 20:33:23.781749	2017-09-20 20:33:23.781749	2017-09-21 20:33:23.781323	0
+7	12	144475a61e8f4d554971cc11bc4a2b312ff969b4	2017-09-20 20:43:09.962903	2017-09-20 20:43:09.962903	2017-09-21 20:43:09.961818	0
+8	13	747ff342594942f4c9a5b48f3cd9f7d13b1e0d29	2017-09-20 21:06:12.199054	2017-09-20 21:09:35.137646	2017-09-21 21:06:12.197515	1
+9	14	9aa37cb92a5f14fefad761255a0fe04765b9f614	2017-09-21 08:49:02.568687	2017-09-21 08:52:35.48605	2017-09-22 08:49:02.568009	1
+10	15	9e21a883a48b3c1529f16b64fbf697fcc47ab6ca	2017-09-21 10:25:56.135876	2017-09-21 10:25:56.135876	2017-09-22 10:25:56.134706	0
+11	16	86b47d3dc000e26d95106355f98989c2869344e6	2017-09-21 10:28:49.739215	2017-09-21 10:28:49.739215	2017-09-22 10:28:49.738179	0
+12	17	1a6ac8142c38a1f258668cf3a689c71a601b780b	2017-09-21 10:31:08.445752	2017-09-21 10:31:08.445752	2017-09-22 10:31:08.438428	0
+13	18	8325a2609f7f20bbf0fac06e5b55a2a3f484f489	2017-09-21 10:33:47.931157	2017-09-21 10:33:47.931157	2017-09-22 10:33:47.929865	0
+14	19	02c49dc96ca5016f85c3e2369b0ed4b719866989	2017-09-21 11:07:56.854213	2017-09-21 11:07:56.854213	2017-09-22 11:07:56.853535	0
+15	20	4472057e6c0b74a9026eec87501fa6a819f117d1	2017-09-21 11:08:54.83565	2017-09-21 11:08:54.83565	2017-09-22 11:08:54.834576	0
+16	21	10af641ebaf8b842d1ddd1093ebcf86fe9e3dda8	2017-09-21 11:17:55.139623	2017-09-21 11:17:55.139623	2017-09-22 11:17:55.139083	0
+17	22	4fa7af21898c837bf77f487a8d7e8c9599cccc81	2017-09-21 11:20:44.853869	2017-09-21 11:20:44.853869	2017-09-22 11:20:44.852829	0
+18	23	c2387d1fa2cf4d9de1c8e388108e5f6816dc8827	2017-09-21 11:38:26.150954	2017-09-21 11:38:26.150954	2017-09-22 11:38:26.144008	0
+19	24	054ccce06c814d06b604960954726735fd629ec1	2017-09-21 11:41:21.421624	2017-09-21 11:41:21.421624	2017-09-22 11:41:21.421262	0
+20	25	4dd6d288a6f4887f494ceb30fed271fe72beb057	2017-09-21 11:46:16.100728	2017-09-21 11:46:16.100728	2017-09-22 11:46:16.099786	0
+21	26	c5fc1dc196af5f3e8385b20c68329f091c68f2fe	2017-09-21 15:17:24.995551	2017-09-21 15:17:24.995551	2017-09-22 15:17:24.994508	0
+22	27	371497fc96d2ba4defb140eb416388f5af798c29	2017-09-21 16:15:31.461257	2017-09-21 16:15:31.461257	2017-09-22 16:15:31.460578	0
+23	28	90c0a93b35187d3ef000b635cd9d4d8ee1e0ecef	2017-09-21 16:17:16.915182	2017-09-21 16:17:43.76916	2017-09-22 16:17:16.914291	1
+24	30	cb5a1e8246cc8230dc6ab7822d5bbe455e89c0dd	2017-09-22 06:25:30.017847	2017-09-22 06:25:48.074094	2017-09-23 06:25:30.017015	1
+25	33	6ec9f9b2242450f2d575a09601d1bc02433beef0	2017-09-24 07:54:57.569555	2017-09-24 08:01:37.021429	2017-09-25 07:54:57.568654	1
+26	34	89542e9fada33ab38e7e15c0bd6126a838230a30	2017-09-24 16:50:39.41972	2017-09-24 16:50:39.41972	2017-09-25 16:50:39.418802	0
+\.
+
+
+--
+-- Name: verifies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arjun
+--
+
+SELECT pg_catalog.setval('verifies_id_seq', 26, true);
+
+
+--
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY admins
+    ADD CONSTRAINT admins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: auction_items auction_items_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY auction_items
+    ADD CONSTRAINT auction_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auctions auctions_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY auctions
+    ADD CONSTRAINT auctions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bidding_tables bidding_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY bidding_tables
+    ADD CONSTRAINT bidding_tables_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifications notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: verifies verifies_pkey; Type: CONSTRAINT; Schema: public; Owner: arjun
+--
+
+ALTER TABLE ONLY verifies
+    ADD CONSTRAINT verifies_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
