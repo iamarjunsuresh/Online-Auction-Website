@@ -1,5 +1,5 @@
 
-
+<h4> Auction History</h4>
 <table>
 <tr>
 
@@ -13,22 +13,22 @@
 <th>Details link</th>
 </tr>
 
-<% @b.each do |x|%>
+<% @b.each do |xx|%>
 <tr>
-<td><%= b.id%></td>
+	<td><%= xx[:id]%></td>
 
-<td><%= b.name%></td>
+	<td><%= xx[:name]%></td>
 
-<td><%= b.value%></td>
+	<td><%= xx[:value]%></td>
 
-<td><%= b.status%></td>
-<td><%= b.result %></td>
-<td><%= b.url %></td>
-
-
-
+	<td><%= xx[:status]%></td>
+	<td><%= xx[:result] %></td>
+	<td>
+	<a href="/product/show?id=\""<%=xx[:url]%> ">Goto Page</a></td>
 
 </tr>
 
 <% end %>
+
+
 </table>

@@ -42,8 +42,11 @@
     <% else %>
       <div class="dmenu">
         <%= session[:userdata]["name"] %><br/>
-        <a class="text-primary" href="/profile/">Your Profile</a>
-        <a class="text-primary" href="/product/">Your Products</a>
+
+        <% if session[:userdata]["verified_by"]>0 %>
+          <a class="text-primary" href="/profile/">Your Profile</a>
+          <a class="text-primary" href="/product/">Your Products</a>
+        <% end %>
         <a class="text-primary" href="/logout">Log Out</a>
       </div>
     <% end %>

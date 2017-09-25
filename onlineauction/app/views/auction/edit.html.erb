@@ -16,7 +16,7 @@ jQuery('#endtime').datetimepicker({minDate:0,value:{value:'<%= @endt %>',
 <form action="/auction/edit" method="post">
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-<%= hidden_field_tag :id,@vals[3] %>
+<%= hidden_field_tag :id,params[:id]  %>
 
 <label for="starttime">Start Time </label>
 

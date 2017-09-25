@@ -73,7 +73,7 @@ button:hover, a:hover {
   <p>Verified By : <%= user.verified_by %></p>
   <p>Type : <%= user.usertype %></p>
   <p>Products Sold : <%= @co%></p>
-<%= if session[:isadmin] %>
+<%   if session[:isadmin] %>
  <p><button>Ban User<%= link_to 'ban',controller:"admin",action:"banuser",id:user.id %></button></p>
 
  <% end %>
@@ -85,14 +85,14 @@ button:hover, a:hover {
 <h2 style="text-align:center">Details of Products</h2>
 
 <div class="card1">
-	<table style="width:90%">
+  <table style="width:90%">
 		<tr>
 			<th><h2>Name</h1></th>
 			<th><h2>Image</h1></th>
 			<th><h2>Category</h1></th>
 			<th><h2>Verified_By</h1></th>
 		</tr>
-		<% @pro.each do |pp| %>
+    <% @pro.each do |pp| %>
 			<tr>
 				<td><%= pp.name%></td>
 				<td><div class="img"><img src="<%= pp.image %>" ></img></div></td>

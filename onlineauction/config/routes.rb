@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 get '/verifywarning'=>'main#userverify'
 get 'admin/index'
-
+post 'auction/edit'=>'auction#edit'
 get 'admin/vproduct'
 
 get 'admin/vuser'

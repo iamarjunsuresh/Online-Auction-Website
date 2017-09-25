@@ -1,12 +1,22 @@
 
+	<script type="text/javascript">
+		
+function catchange(){
+  var myselect = document.getElementById("categorysearch");
+  window.location.href="http://localhost:3000/search?category="+myselect.options[myselect.selectedIndex].value+"&searchterm=<%=  params[:searchterm]  %>";
+}
+
+
+</script>
+
 	<h1>Products Available</h1>
 	<label>Sort By:</label>	
-	<select> 
+	<select onchange="catchange();" id="categorysearch"> 
 		<option value="Category"> Select Category</option>
 		<% @category.each do |cat| %>
 			 <option value="<%= cat.name %>"><%= cat.name %></option>
-		<% end -%>
-		 <option value=""></option>
+		<% end %>
+ 
 
 	</select>
 <div class="searchregion">

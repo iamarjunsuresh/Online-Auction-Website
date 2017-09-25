@@ -147,10 +147,13 @@ et=params[:endtime]
 pid=params[:id]
 
   @pp=Product.find(pid)
-ActiveSupport::TimeZone["India Time Zone"].parse()
-  @pp.start_time=getdatefrompicker(st)
+a=ActiveSupport::TimeZone["Asia/Kolkata"].parse(st)
+b=ActiveSupport::TimeZone["Asia/Kolkata"].parse(et)
+  
 
-  @pp.end_time=getdatefrompicker(et)
+  @pp.start_time=a
+
+  @pp.end_time=b
 
   @pp.auction_status="TO_BE_VERIFIED"
 
@@ -163,7 +166,7 @@ ActiveSupport::TimeZone["India Time Zone"].parse()
   @auc.pid=pid
   @auc.save
   @pp.auction_id=@auc.id
-    @pp.save
+  @pp.save
 redirect_to action:"show",id:pid
 
 end
