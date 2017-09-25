@@ -1,8 +1,8 @@
 class AdminController < ApplicationController
-  before_action :require_admin,:require_logins=
+  before_action :require_admin,:require_login
   def index
 
-@livea=Auction.where(:status=>"AUCTION_LIVE")
+@livea=Product.where(:auction_status=>"AUCTION_LIVE")
 @users=User.where(:verified_by=>-1)
 @products=Product.where(:verified_by=>-1)
  @userp=[]
