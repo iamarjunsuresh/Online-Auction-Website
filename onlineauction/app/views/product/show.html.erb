@@ -1,45 +1,68 @@
 <% user=@us %>
 
 <script>
-$(document).ready(function() { /* code here */jQuery('#starttime').datetimepicker({minDate:0});
-jQuery('#endtime').datetimepicker({minDate:0}); 
+$(document).ready(function() { /* code here */
+	jQuery('#starttime').datetimepicker({minDate:0});
+	jQuery('#endtime').datetimepicker({minDate:0}); 
 });
 </script>
 
-<h2 style="text-align:center"><%= @pname %></h2>
-<div class="img"><center><img src="<%= user.image %>"></center></img></div>
-<br/><br/><br/>
-<div class="card1">
-<table>
-<% @labels.size.times do |x| %>
-	<tr>
-		<td><%= @labels[x] %></td>
-		<td><%= @vals[x] %></td>
-	</tr>
-	<tr>
-<% end %>
-		<td>Auction Status:</td>
-		<td><%= @arrmap[@p.auction_status] %></td>
-	</tr>
-</table>
-<% if @p.auction_status.eql?("AUCTION_LIVE") %>
-	<a href="/auction/show?id=<%= @p.id %>"> Go to Auction Page</a>
-<% end %>
-</div>
-<br/>
-<% if not session["userdata"].nil? and @p.seller_id==session["userdata"]["id"] %>
-	<% if  @p.auction_status.eql?("None") %>
-		<form action="/product/schedule" method="post">
-			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-			<%= hidden_field_tag :id,@vals[3] %>
-			<label for="starttime">Start Time </label>
-			<input id="starttime" type="text" name="starttime" />
-			<label for="endtime">End Time </label>
-			<input id="endtime" type="text"  name="endtime" />
-			<input type="submit" value="Schedule Auction"/>
-		</form>
-	<% else %>
-	<a  href="cancel?id=<%= @vals[3] %>">Cancel Auction </a>
-	<% end %>
-<% end  %>
+<center>
+	<h2><%= @pname %></h2>
+	<div class="img">
+		<center><img src="<%= user.image %>" style="max-height: 80%; max-width: 80%;"></center></img>
+	</div>
+	<br/><br/><br/>
+	<div class="card1" style="width: 80%;">
+		<table>
+			<% @labels.size.times do |x| %>
+			<tr>
+				<td class="tab1"><%= @labels[x] %> : </td>
+				<td class="tab2"><%= @vals[x] %></td>
+			</tr>
+		<% end %>
+			<tr>
+				<td>Auction Status : </td>
+				<td><%= @arrmap[@p.auction_status] %></td>
+			</tr>
+		</table>
 
+		<% if @p.auction_status.eql?("AUCTION_LIVE") %>
+			<form>
+				<center><h2><a href="/auction/show?id=<%= @p.id %>">Go to Auction Page</a></h2></center>
+			</form>
+		<% end %>
+	</div>
+
+	<br/><br/><br/>
+
+	<% if not session["userdata"].nil? and @p.seller_id==session["userdata"]["id"] %>
+		<% if  @p.auction_status.eql?("None") %>
+			<form action="/product/schedule" method="post">
+				<center>
+					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+					<%= hidden_field_tag :id,@vals[3] %>
+					<table>
+						<tr>
+							<td><label for="starttime">Start Time </label></td>
+							<td><input id="starttime" type="text" name="starttime"/></td>
+						</tr>
+
+						<tr>
+							<td><label for="endtime">End Time </label></td>
+							<td><input id="endtime" type="text"  name="endtime"/></td>
+						</tr>
+
+						<tr>
+							<td colspan="2"><input type="submit" value="Schedule Auction"/></td>
+						</tr>
+					</table>
+				</center>
+			</form>
+		<% else %>
+			<form>
+				<center><h2><a  href="cancel?id=<%= @vals[3] %>">Cancel Auction </a></h2></center>
+			</form>
+		<% end %>
+	<% end  %>
+</center>
