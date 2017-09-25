@@ -17,6 +17,8 @@ a:visited	{	color: black;	}
 a:link  { color: black; text-decoration: none;}
 a:hover { color: #315389; }
 
+label	{	font-size: 18px;	}
+
 form
 {
 	border-width: 5px;
@@ -27,13 +29,13 @@ form
 	width: 70%;
 }
 
-table	{		}
+table	{	margin: 20px;	}
 tr	{	text-align: center;	}
 td
 {
 	text-align: center;
 	font-size: 24px;
-	padding: 10px;
+	padding: 5px;
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea
@@ -50,7 +52,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea
 	padding-right: 10px;
 }
 
-textarea	{		}
+textarea	{	height: 5em;	}
 
 select
 {
@@ -104,6 +106,14 @@ input[type="button"], input[type="submit"]
 .frm
 {
 	width: 100%;
+}
+
+.title
+{
+	margin-left: 200px;
+	color: black;
+	font-size: 40px;
+	font-style: bold;
 }
 
 .title_
@@ -189,19 +199,6 @@ input[type="button"], input[type="submit"]
 }
 
 .dmenu>a:hover	{	color: red;	}
-
-.search-box
-{
-	margin-top:0px;
-}
-
-.title
-{
-	margin-left: 200px;
-	color: black;
-	font-size: 40px;
-	font-style: bold;
-}
 
 /*
 .active { background-color: lightgreen;  }
