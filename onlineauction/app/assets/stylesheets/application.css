@@ -19,15 +19,10 @@ a:hover { color: blue; }
 
 form
 {
-	/*border-width: 3px;
-	border-style:solid;
 	border-width: 5px;
-	border-top-color: rgb(0,120,255);
-	border-left-color: rgb(0,120,255);
-	border-bottom-color: rgb(0,120,255);
-	border-right-color: rgb(0,120,255);
-	border-radius: 20px;*/
-	padding: 10px;
+	border-style:solid;
+	border-color: rgb(0,120,255);
+	border-radius: 10px;
 }
 
 table{}
@@ -67,6 +62,7 @@ select
 	min-width: 200px;
 	padding-left: 10px;
 	padding-right: 10px;
+	background-color: white;
 }
 
 
@@ -89,7 +85,18 @@ label	{	font-size: 24px;	}
 	background-color: rgb(66, 149, 244);
 	border-style: solid;
 	border-color: black;
-	border-width: 2px;
+}
+
+.head_link
+{
+	background-color: white;
+	border-style: solid;
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-top: -3px;
 }
 
 .header img
@@ -114,14 +121,12 @@ label	{	font-size: 24px;	}
 {
 	display: inline-block;
 	font-size: 25px;
-	/*
-	border-style: solid;
-	border-color: blue;
-	*/
 	min-height: 35px;
 	padding: 3px;
 	margin-right: 5px;
 	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 3px;
 }
 
 .s_box	{	width: 450px;	}
@@ -146,6 +151,15 @@ label	{	font-size: 24px;	}
 	width:25%;
 }
 
+.footer
+{
+	background-color: white;
+	text-align: center;
+	height: 40px;
+	padding: 5px;
+	margin-bottom: 1em;
+}
+
 .footer_
 {
 	margin-top: -1em;
@@ -157,60 +171,29 @@ label	{	font-size: 24px;	}
 .content
 {
 	margin-top:50px;
-
 	margin-bottom: 50px;
 	min-height: 22.5em;
-
 }
 
-
+.searchb{}
 
 .dmenu
 {
-	width: 200px;
-	border-radius: 15px;
-	border-style: solid;
+	width: 400px;
+	border-radius: 25px;
+	background: rgb(255,176,176);
 	border-width: 2px;
-	border-color: black;
-	background: white;
 	text-align: center;
+	padding: 12px;
 	overflow: hidden;
-	height: 20px;
-	font-size:18px;
+	height: 50px;
+	font-size:22px;
 }
 
-
-
-
-label
-{
-	font-size: 24px;
-}
-
-input[type="text"], input[type="email"], input[type="password"]
-{
-	font-size:14px;
-	border-radius:2px;
-	border-style: solid;
-	border-width: 2.5px;
-	border-color: black;
-}
-.menu{
-	margin-left: 120px;
-}
-.img>img{
-width:400px;
-max-width:100%;
-max-width: 100%;
-
-}
-.dmenu:hover
-{
-	height:100px;
-  }
+.dmenu:hover	{	height:150px;	}
 
 .dmenu>a
-{    margin-left: 50px;
+{
 	display: block;
 	width:100%;
 	color:black;
@@ -232,3 +215,28 @@ max-width: 100%;
 	font-size:40px;
 	font-style:bold;
 }
+
+/*
+.active { background-color: lightgreen;  }
+
+.b
+{
+	background-image: url(background.jpg);
+	background-size: cover;
+	height: 2000px;
+	border-radius: 10px;
+	padding: 6px;
+	width: 1250px;
+	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.foot_support
+{
+	margin: 15px;
+	width: 75%;
+	border-style: double solid;
+	border-color: blue;
+	border-radius: 2em;
+	background-color: lightgrey;
+}
+*/

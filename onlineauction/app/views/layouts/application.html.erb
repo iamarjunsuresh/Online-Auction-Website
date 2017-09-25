@@ -2,20 +2,15 @@
 <html lang="en">
   <head>
     <meta name="google-signin-client_id" content="365363926796-03cv8tv3aq3dt8f6ob5rlcqj9ln53crr.apps.googleusercontent.com">
-    <%= javascript_include_tag "jquery.js" %>
     <title>Online Auction</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-     <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
 <!--Header Starts-->
-
 <header class="header" >
-
   <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
-  <div class="title_">Online Auction</div>
+  <div class="title_"><b><u>Online Auction</u></b></div>
   <div class="title_" style="margin-left: 0.5em;">
     <select>
       <option>Category</option>
@@ -26,51 +21,35 @@
         <option><!--Variable Placing Category Name--></option>
       <!--end_-->
     </select>
-    <form action="/search" action="POST">
     <input type="text" class="s_box" placeholder="Search"/>
     <input type="submit" class="find" value="Search"/>
-    </form>
   </div>
 
   <div class="login_">
     <% if session[:userdata].nil? %>
-      <a href="/login">Login&nbsp;&nbsp;&nbsp;</a>
-      <a href="/register">Register</a>
+      <div class="head_link"><a href="/login">Login</a></div>
+      <div class="head_link"><a href="/register">Register</a></div>
     <% else %>
       <div class="dmenu">
         <%= session[:userdata]["name"] %><br/>
         <a class="text-primary" href="/auction/create">Add Product</a>
+        <a class="text-primary" href="/profile/">Your Profile</a>
         <a class="text-primary" href="/product/">Your Products</a>
-        <a class="text-primary" href="/profile/<%= session[:userdata]["id"] %>">Your Profile</a>
         <a class="text-primary" href="/logout">Log Out</a>
       </div>
     <% end %>
   </div>
 </header>
-    <!--Header Ends-->
+<!--Header Ends-->
 
-  <body>
-    <div class="b3">
-      <div class="container-fluid">
-        
+<body>
+  <div class="content"><%= yield %></div> 
 
+<!--Footer Starts-->
+<footer>
+  <div class="footer">
 
-
-
-        <br/><br/><br/>
-
-        <div class="content"><%= yield %></div>
-        <br/>
-
-
-      </div>
-    </div>
-
-    <div class="footer">
-      <div style="background-color: lightgrey;">
-
-
-    <div style="background-color: rgb(66, 149, 244);">
+    <div style="background-color: rgb(66, 149, 244)">
       <hr style="border-top: 5px double black; margin-bottom: -10px;"/>
       <center><div><h3>A Reliable Auction Platform : Bid Freely...!</h3></div></center>
       <hr style="border-top: 5px double black; margin-top: -10px;"/>
@@ -87,6 +66,4 @@
 </footer>
 <!--Footer Ends-->
   </body>
-
 </html>
-
