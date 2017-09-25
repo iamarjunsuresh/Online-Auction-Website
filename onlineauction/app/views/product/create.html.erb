@@ -1,20 +1,21 @@
- 
-<div class="row">
- <div class="box">
-	<li>
-	  <% if(not @msg.nil?)  %>
-	  	<% @msg.each do |x| %>
-	  		<ul class="msg-txt" > <%= x %> </ul>
-	  		<% end %>
-	  <% end %>
-	</li>
-  </div>
-</div>
-
 <center>
 	<form action="/product/create" method="POST" enctype="multipart/form-data">
 		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<center>
+			<div class="box">
+				<div>
+					<% @counter = 1 %>
+					<% if(not @msg.nil?)  %>
+						<% @msg.each do |x| %>
+							<%= @counter %>
+							<%= x %>
+							<% @counter = @counter + 1 %>
+							<br/>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+
 			<table>
 				<tr><th colspan="2">Add New Product</th></tr>
 				<% @labels.size.times do |x| %>

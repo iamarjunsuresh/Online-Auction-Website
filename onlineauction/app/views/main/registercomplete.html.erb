@@ -3,9 +3,13 @@
 		<center>
 			<div class="box">
 				<div>
+					<% @counter = 1 %>
 					<% if @msgarr.count >= 0 %>
 						<% @msgarr.each do |x| %>
+							<%= @counter %>
 							<%= x %>
+							<% @counter = @counter + 1 %>
+							<br/>
 						<% end %>
 					<% end %>
 				</div>
