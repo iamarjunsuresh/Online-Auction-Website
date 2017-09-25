@@ -1,25 +1,31 @@
-<div class="card">
-	<h1> Registered Users </h1>
-	<table>
-		<tr>
-		<th >Name</th>
-		<th>Gender</th>
-		<th>Type of User</th>
-		<th>Email ID</th>
-		<th>Phone No</th>
-		</tr>
-       
-		<% @users.each do |user| %>
-		<tr>
-			<td>
-				<%= user.name %>
-			</td>
-			<td><%= user.gender %></td>
-			<td><%= user.usertype %></td>
-			<td><%= user.email %></td>
-			<td><%= user.phno %></td>
-		</tr>	
+<center>
+	<div class="card">
+		<% if @users.size > 0 %>
+			<table style="margin: 0; max-width: 100%;">
+				<tr><td colspan="5"><h2>Registered Users</h2></td></tr>
 
-		<% end %>
-	</table>
- </div>
+				<tr>
+				<td><b><u>Name</u></b></td>
+				<td><b><u>Gender</u></b></td>
+				<td><b><u>User Type</u></b></td>
+				<td><b><u>Email ID</u></b></td>
+				<td><b><u>Phone No</u></b></td>
+				</tr>
+		       
+				<% @users.each do |user| %>
+					<tr>
+						<td><%= user.name %></td>
+						<td><%= user.gender %></td>
+						<td><%= user.usertype %></td>
+						<td><%= user.email %></td>
+						<td><%= user.phno %></td>
+					</tr>	
+				<% end %>
+			</table>
+		<% else %>
+			<form>
+				<center><h2>No Users Registered...!!</h2></center>
+			</form>
+		<% end%>
+	</div>
+</center>

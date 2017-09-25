@@ -15,8 +15,8 @@
   <br/><br/><br/>
 
   <% if @users.size > 0 %>  
-    <form>
-      <table style="max-width: 100%;">
+    <form style="width: 95%;">
+      <table>
         <tr><td colspan="6"><b><u>New User Verification</u></b></td></tr>
 
         <tr>
@@ -48,7 +48,7 @@
 
   <% if @products.size > 0 %>
     <form>
-      <table style="max-width: 100%;">
+      <table>
         <tr><td colspan="6"><b><u>New Products Verification</u></b></td></tr>
         <tr>
           <td><u>Image</u></td>
@@ -80,7 +80,7 @@
 
   <% if @pr.size > 0 %>
     <form>
-      <table style="width: 90%">
+      <table>
         <tr><td colspan="7"><b><u>New Auction Verification</u></b></td></tr>
         <tr>
           <td><u>Image</u></td>
@@ -115,37 +115,31 @@
     </form>
   <% end %>
 
-
-
-   
-
-  <form>
-    <table style="width: 90%">
-      <tr><td colspan="7"><b><u>Ongoing Auction</u></b></td></tr>
-      <tr>
-        <td><u>Image</u></td>
-        <td><u>Name</u></td>
-        <td><u>Uploaded By</u></td>
-        <td><u>Start Time</u></td>
-        <td><u>End Time</u></td>
-        <td><u>Actions</u></td>
-      </tr>
-
-      <% @livea.each do |y| userdata=User.find(y.seller_id)%>
-
+  <% if @livea.size > 0 %>
+    <form>
+      <table>
+        <tr><td colspan="6"><b><u>Ongoing Auction</u></b></td></tr>
         <tr>
-          <td><div class="img"><img src="<%= y.image %>" ></img></div></td>
-          <td><%= y.name %></td>
-          <td><%= userdata.name %></td>
-          <td><%= y.start_time %></td>
-          <td><%= y.end_time %></td>
-          <td>
-        
-            <%= link_to "Cancel Auction " ,controller:"auction" ,action:"cancel",id:y.id %>
-          </td>
+          <td><u>Image</u></td>
+          <td><u>Name</u></td>
+          <td><u>Uploaded By</u></td>
+          <td><u>Start Time</u></td>
+          <td><u>End Time</u></td>
+          <td><u>Actions</u></td>
         </tr>
-      <% end %>
-    </table>
-  </form>
+
+        <% @livea.each do |y| userdata=User.find(y.seller_id)%>
+          <tr>
+            <td><div class="img"><img src="<%= y.image %>" height="150" width="150"></img></div></td>
+            <td><%= y.name %></td>
+            <td><%= userdata.name %></td>
+            <td><%= y.start_time %></td>
+            <td><%= y.end_time %></td>
+            <td><%= link_to "Cancel Auction " ,controller:"auction" ,action:"cancel",id:y.id %></td>
+          </tr>
+        <% end %>
+      </table>
+    </form>
+  <% end %>
 
 </center>
