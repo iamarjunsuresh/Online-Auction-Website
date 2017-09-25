@@ -16,17 +16,15 @@ function catchange()
 <br/><br/>
 
 <center>
-	<table style="margin: 0px; padding: 0px;" border="1">
-		<tr><td colspan="4"><h1>Products Available</h1></td></tr>
-
+	<table style="margin: 0px; padding: 0px;">
 		<% @counter = 0 %>
 		<% @r.each do |p| %>
 			<% if @counter % 2 == 0 %>
 				<tr>
 			<% end %>
 				<td><img src="<%= p.image  %>" height="150" width="150"/></td>
-				<td>
-					<table style="margin: 0px; padding: 0px;">
+				<td style="width: 40%;">
+					<table style="margin: 0px; padding: 0px; width: 100%;" border="1">
 						<tr>
 							<td class="tab1">Product Name : </td>
 							<td class="tab2"><%= link_to "" + p.name + "", controller:"product", action:"show", id:p.id %></td>
