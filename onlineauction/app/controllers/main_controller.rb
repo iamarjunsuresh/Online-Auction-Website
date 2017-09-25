@@ -1,8 +1,7 @@
 require 'digest/sha1'
-			require 'net/http'
-
-
+require 'net/http'
 require "erb"
+
 include ERB::Util
 
 
@@ -21,7 +20,13 @@ def setmessage
 end
 def index
 setmessage()
+setmessage
 
+@r=Product.all
+@au="AUCTION_LIVE"
+@st=Product.where(:auction_status=>@au)
+@ns="SCHEDULED"
+@nst=Product.where(:auction_status=>@ns)
 
 end
 
@@ -37,16 +42,22 @@ end
  def profile
  	id=params[:id]
 @us=User.find(id)
-
 @pro=Product.where(:seller_id=>@us.id)
-
+@co=@pro.size
  end
+
+ 
 def login
 	if (request.method=="GET" )
 		#print form
 		setmessage()
 
 	elsif (request.method=="POST")
+if(Admin.where(:email=>params[:email]).where(:pass=>params[:password]).size>0)
+
+session[:isadmin]=1
+redirect_to controller:"admin",action:"index"
+else
 		@err=[]
 
 		#user authenticate
@@ -71,7 +82,9 @@ def login
 			if( @us.size>0)
 					@us=@us[0]
 			if(@us.pwd==get_hash(params[:password],@us.salt.to_s))
+				
 				session[:userdata]=@us
+
 				redirect_to action:"loginsucess"	
 				#redirect_to session[:prevurl]	
 			else
@@ -91,7 +104,7 @@ def login
 
 			end
 		end
-
+end
 	end
 
 
@@ -102,8 +115,15 @@ def register
 
 
 end
-def logout
+def search_pro
 
+	 @search_value = params[:searchterm]
+	 @r=Product.where("name like ? or description like ?","%#{@search_value}%","%#{@search_value}%");
+	 @category = Category.all
+end
+	
+def logout
+	session[:isadmin]=nil
 	session[:userdata]=nil
 	redirect_to action:"index"
 
@@ -174,7 +194,7 @@ def registercomplete
 			@user.pwd=get_hash(params[:pwd],slt)
 			@user.gender=params[:sex]
 			@user.verified_by=-2
-			@user.usertype="admin"
+			@user.usertype="user"
 			@user.save
 
 body ="<h2>Online Auction System</h2></h4>Verify Email</h4> <p>Please click link <a href=\""

@@ -42,9 +42,9 @@
   <% @products.size.times do |y| 
   x=@products[y] %>
    <tr>
-	 <td><img src="<%= x.image %>" ></img></td>
+	 <td><div class="img"><img src="<%= x.image %>" ></img></div></td>
 	 <td><%= x.name %></td>
-	 <td><%= x.desc %></td>
+	 <td><%= x.description %></td>
 	 <td>Rs. 
 	   <%= x.min_bid.to_s %>
 	 </td>
@@ -55,6 +55,7 @@
 	  	<%= link_to "Rejected " ,action:"vproduct",id:x.id,verified:"0" %>
 	 </td>
    </tr>
+
 <% end %>
 
 </table>
@@ -76,7 +77,9 @@ Image
 <th>
 Name
 </th>
-
+<th>
+Description
+</th>
 <th>
 minimum Bid
 </th>
@@ -93,48 +96,49 @@ End Time
 	Actions
 </th>
 </tr>
-<% @auctions.size.times do |y| 
-x=Product.find(@auctions[y].pid)
-z=@auctions[y]
-userdata=User.find(x.seller_id)
+<% @pr.each do |y| 
+
+userdata=User.find(y.seller_id)
 	%>
 <tr>
 <td>
-<img src="<%= x.image %>" ></img>
+<div class="img">
+<img src="<%= y.image %>" ></img>
+</div>
 
 </td>
 <td>
-<%= x.name %>
+<%= y.name %>
 </td>
 
 <td>
-<%= x.desc %>
-</td>
-
-
-<td>Rs. 
-<%= x.min_bid.to_s %>
+<%= y.description %>
 </td>
 
 <td>
 <%= userdata.name %>
 </td>
+
+<td>Rs. 
+<%= y.min_bid.to_s %>
+</td>
+
 <td>
-<%= x.start_time %>
+<%= y.start_time %>
 </td>
 <td>
-<%= x.end_time %>
+<%= y.end_time %>
 </td>
 
 <td>
 	
-<%= link_to "Approve Auction" ,controller:"auction" ,action:"verify",id:x.id%>
+<%= link_to "Approve Auction" ,controller:"admin" ,action:"verifyauction",id:y.id%>
 </br>
 
-<%= link_to "Edit Auction" ,controller:"auction" ,action:"edit",id:x.id %>
+<%= link_to "Edit Auction" ,controller:"auction" ,action:"edit",id:y.id %>
 </br>
 
-<%= link_to "Reject Auction" ,controller:"auction" ,action:"cancel",id:x.id %>
+<%= link_to "Reject Auction" ,controller:"auction" ,action:"cancel",id:y.id %>
 </td>
 </tr>
 <% end %>

@@ -7,6 +7,8 @@ assets:environment
 assets:precompile
 cache_digests:dependencies
 cache_digests:nested_dependencies
+crontask:setliveauction
+crontask:setwinner
 db:create
 db:drop
 db:environment:set

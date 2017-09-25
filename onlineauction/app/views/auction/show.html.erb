@@ -1,0 +1,176 @@
+<script type="text/javascript">
+
+function pbid()
+
+{
+
+var ss=$('#bidval').val();
+var bmax=$('#bidmax').val();
+var bidmin=$('#bidmin').val();
+/*alert(bidmin);
+alert(bmax);
+alert(ss);*/
+if(ss<=bidmin)
+{
+alert('Bid value is less than Minimum Bid of Auction. ');
+
+}
+else if(ss<=bmax)
+{
+	alert('Bid value is less than Currently Winning Bid. ');
+}
+else{
+
+
+    $.ajax({url: "/ajax/addbid.json?val="+ss, success: function(result){
+        $("#message").html(result.message);
+    }});
+
+refreshbidlist();
+}
+}
+function deletebid(x)
+
+{
+    $.ajax({url: "/ajax/cancelbid/"+x+".json", success: function(result){
+        $("#message").html(result.message);
+    }});
+
+
+}
+function refreshbidlist()
+
+
+{
+
+
+    $.ajax({url: "/ajax/bidlist.json", success: function(result){
+
+
+$("#bidtable tr").remove();
+$('#bi')
+
+ var markup = "<tr><th>Bid Value</th><th>Bidder</th><th>Time</th><th>Action</th></tr>";
+
+            $("#bidtable").append(markup);
+for(i=0;i<result.length;i++)
+{
+    var html="<tr><td>"+result[i].biding_price+"</td><td>"+result[i].name+"</td><td>"+result[i].time+"</td><td><div onclick=\"deletebid("+result[i].bidid+")\">Delete Bid</div></td></tr>";
+     $("#bidtable").append(html);
+} 
+if(result.length!=0)
+{$('.maxbidval').html(result[0].biding_price)
+}
+else
+{
+$('.maxbidval').html("No Bids Yet");
+
+}
+    }});
+    }
+
+function startTimer(duration, display) {
+    duration=parseInt(duration,10);
+    var timer = duration, minutes, seconds;
+
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        hours=parseInt(timer/(60*60),10);
+        days=parseInt(timer/(60*60*24),10)
+        minutes=minutes%60;
+        hours=hours%24;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        hours=hours < 10? "0"+hours:hours;
+        days=days< 10? "0"+days:days;
+        
+        display.textContent =days+" days "+hours+ "hours " + minutes + " minutes " + seconds+ "seconds ";
+
+        if (--timer < 0) {
+
+            window.location.href ="http://localhost:3000/";
+        }
+    }, 1000);
+}
+
+window.onload= function()
+{
+
+var cd=document.querySelector('#countdown');
+startTimer(<%= @duration %>,cd);
+ setInterval(refreshbidlist, 2000);
+    }
+
+
+
+</script>
+
+
+
+<h3><%= @p.name %></h3>
+
+<div class="img">	<img src="<%= @p.image %>" /></div>
+<p><%= @p.description %></p>
+<p>Minimum Bid<%= @p.min_bid %>
+<p>Auction End in <span id="countdown"></span></p>
+
+<h4 >Currently Winning Bid :<span class="maxbidval"><% if @bidwinval!=0 %>
+Rs. <%= @bidwinval %>
+<% else %>
+
+No Bids Placed.
+<%end %>
+</span>
+	
+</h4>
+
+<span id="message"></span>
+<div class="">
+
+
+<div class="halves">
+
+<table class="bidtable" id="bidtable">
+
+<tr><th>Bidder's Name</th><th>Bid Value</th><th>Time of Bid</th></tr>
+
+<% @bids.each do |x|  %>
+<tr>
+	<td>
+<%= User.find(x.bidder_id).name %>
+	</td>
+<td>
+<%= x.biding_price.to_s %>
+</td>
+
+<td>
+<%= x.time %>
+</td>
+
+
+</tr>
+
+<% end %>
+</table>
+
+
+</div class="halves">
+
+
+<input type="text" id="bidval"></input>
+<input type="hidden"  id="bidmax" value="<%= @bidwinval %>"></input>
+
+<input type="hidden"  id="bidmin" value="<%= @p.min_bid %>"></input>
+
+<div class="bidsubmit" onclick="pbid();">Place Bid</div>
+
+
+<div>
+
+
+
+</div>
+
+
+</div>

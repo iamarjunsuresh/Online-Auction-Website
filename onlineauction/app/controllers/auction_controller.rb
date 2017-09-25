@@ -1,4 +1,118 @@
 class AuctionController < ApplicationController
+
+
+  def show
+    id=params[:id]
+
+    @p=Product.find(id)
+    @auc=Auction.find(@p.auction_id)
+    session[:aid]=@auc.id
+    session[:pid]=@p.id
+    session[:bid]=session[:userdata]["id"]
+        @bids=Bidding_table.where(:auction_id=>@p.auction_id).order("biding_price DESC")
+        @duration=((@auc.end_time-Time.now)*60*60*24).to_i;
+@arr=@bids
+if(@arr.size!=0)
+  @bidwinval=@arr[0].biding_price
+else
+  @bidwinval=0
+end
+  end
+
+def diffnow(st)
+@r=DateTime.now()-DateTimestrptime(st,"%Y-%m-%d %H:%M:%S UTC")
+@y=(@r*24*60*60)
+  @y.to_i
+
+end
+
+  def diffdate(x,y)
+@r=DateTime.strptime(x,"%Y-%m-%d %H:%M:%S UTC")-DateTime.strptime(y,"%Y-%m-%d %H:%M:%S UTC")
+@y=(@r*24*60*60)
+  @y.to_i
+  end
+def cancelbid
+    id=params[:id]
+    @bid=Bidding_table.find(id)
+    @auc=Auction.find(session[:aid])
+    percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
+    puts(percen)
+    if(percen>0.5)
+
+
+@resp={message:"Bid Can't Be Cancelled after 50 percentage of time has passed"}
+
+    elsif @bid.bidder_id=session[:bid]
+
+      @bid.destroy
+
+@resp={message:"Bid is Cancelled"}
+      end
+respond_to do |format|  ## Add this
+  format.xml  { render :xml => @resp }
+  format.json { render :json => @resp}  
+end
+end
+  def placebid
+
+    val=params[:val]
+    @p=Product.find(session[:pid])
+    @auc=Bidding_table.where(:auction_id=>@p.auction_id).order("biding_price DESC")
+    if @p.auction_status.eql?("AUCTION_END")
+      @resp={message:"Auction Ended"}
+     elsif @auc.size!=0
+         if val.to_f<=@auc[0].biding_price
+          #return error less bid val
+
+      @resp={message:"Bid Placed is Lower than Curently Bidding Price"}
+         else 
+          @bd=Bidding_table.new
+            @bd.auction_id=session[:aid]
+            @bd.prod_id=session[:pid]
+            @bd.biding_price=val.to_f
+            @bd.time=Time.now
+            
+            @bd.bidder_id=session[:bid]
+            @bd.save
+
+@resp={message:"Bid Placed Successfully1"}
+        end
+    else
+            @bd=Bidding_table.new
+            @bd.auction_id=session[:aid]
+            @bd.prod_id=session[:pid]
+            @bd.biding_price=val
+            @bd.time=Time.now
+            @bd.bidder_id=session[:bid]
+            @bd.save
+
+@resp={message:"Bid Placed Successfully"}
+     end
+  respond_to do |format|  ## Add this
+  format.xml  { render :xml => @resp }
+  format.json { render :json => @resp}  
+end
+  end
+
+  
+
+  def bidlist
+
+
+
+    @resp=Bidding_table.where(:auction_id=>session[:aid]).order("biding_price DESC")
+ @res=[]
+    @resp.each do |i|
+     
+      @p=User.find(i.bidder_id)
+      @res.push({bidid:i.id,name:@p.name,time:i.time,biding_price:i.biding_price})
+    end
+    respond_to do |format|  ## Add this
+  format.xml  { render :xml => @res }
+  format.json { render :json => @res}  
+end
+
+  end
 	def show_error
 
 		if session[:em].nil?
@@ -43,7 +157,7 @@ else
 	session[:p]=nil
 @prod=Product.new
 @prod.name=params[:name]
-@prod.desc=params[:desc]
+@prod.description=params[:desc]
 @prod.min_bid=params[:minbid].to_f
 
 uploaded_io = params[:pimage]
@@ -74,18 +188,6 @@ def edit
 
 end
 
-
-def verify
-  ds=params[:id]
-  @p=Product.find(ds)
-  @a=Auction.new
-@a.pid=ds
-@a.start_time=@p.start_time
-@a.end_time=@p.end_time
-@a.save
-
-
-  end
 
   def cancel
 ds=params[:id]

@@ -1,0 +1,54 @@
+<div style="width:100%;">
+
+<div style="float:left; display:inline-block;" class="div1">
+  <h2>Live Auction</h2>
+    <% if @st %>
+      <table>
+        <% @st.each do |x| %>
+          <tr>
+            <td>
+              <div id="lll">
+                <div>
+                  <div class="img">
+                    <img src="<%= x.image %>" ></img>
+                  </div>
+                </div>
+                <div><%= x.name %></div>
+                <div>Rs.<%= x.min_bid.to_s %></div>
+                <div><%= x.description %></div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+</div>
+
+<div style="float:right; display:inline-block;" class="div2">
+  <h2>Upcomming Products</h2>
+    <% if @nst %>
+      <table>
+        <% @nst.each do |x| %>
+          <tr>
+            <td>
+              <div id="lll">
+                <div>
+                  <div class="img">
+                    <img src="<%= x.image %>" ></img>
+                  </div>
+                </div>
+                <div><%= x.name %></div>
+                <div>Rs.<%= x.min_bid.to_s %></div>
+                <div><%= x.description %></div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+</div> 
+        
+</div> ​
+
+
+  
