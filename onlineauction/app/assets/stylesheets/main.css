@@ -1,6 +1,10 @@
-#lll
-{
-  float:left;
-  max-width:350px;
-  border:1px solid;
+
+.card {
+ 
+  width: 60%;
+  height: 400px;
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px #888888; 
+  text-align: center;
+  font-family: arial;
 }

@@ -1,19 +1,20 @@
 
 
 <table>
+
 <tr>
-<th><h2>Live Auction</h2></th>
-<th><h2>Upcomming Products</h2></th>
+<th><div class="header"><h2>Live Auction</h2></div></th>
+<th><div class="header"><h2>Upcomming Products</h2></div></th>
 </tr>
-<tr>
+
+<tr >
 <td width=50%>
-  
     <% if @st %>
-      <table>
+      <table >
         <% @st.each do |x| %>
-          <tr>
-            <td>
-              <div id="lll">
+          <tr >
+            <td >
+              <div class="card" >
                 <div>
                   <div class="img">
                     <img src="<%= x.image %>" ></img>
@@ -23,23 +24,22 @@
                 <div>Rs.<%= x.min_bid.to_s %></div>
                 <div><%= x.description %></div>
                 <a href="/product/show?id=<%= x.id %>">Go to Product Page</a>
-
               </div>
             </td>
           </tr>
+          <br/>
         <% end %>
       </table>
     <% end %>
 </td>
 
 <td width=50%>
-  
     <% if @nst %>
-      <table>
+      <table >
         <% @nst.each do |x| %>
           <tr>
             <td>
-              <div id="lll">
+              <div class="card">
                 <div>
                   <div class="img">
                     <img src="<%= x.image %>" ></img>
@@ -52,9 +52,11 @@
               </div>
             </td>
           </tr>
+          <br/>
         <% end %>
       </table>
     <% end %>
 </td>
 </tr>
+
 </table>
