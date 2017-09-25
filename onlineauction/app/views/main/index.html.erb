@@ -1,11 +1,11 @@
 <table>
 <tr>
-<th><div class="header"><h2>Live Auction Products</h2></div></th>
-<th><div class="header"><h2>Upcomming Auction Products</h2></div></th>
+  <th><div class="header"><h2>Live Auction Products</h2></div></th>
+  <th><div class="header"><h2>Upcomming Auction Products</h2></div></th>
 </tr>
 
 <tr>
-  <td width=50%>
+  <td style="vertical-align:top;" width=50%>
       <% if @st %>
         <table>
           <% @st.each do |x| %>
@@ -25,7 +25,7 @@
       <% end %>
   </td>
 
-  <td width=50%>
+  <td style="vertical-align:top;" width=50%>
       <% if @nst %>
         <table >
           <% @nst.each do |x| %>

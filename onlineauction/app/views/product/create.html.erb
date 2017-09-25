@@ -2,22 +2,8 @@
 	<form action="/product/create" method="POST" enctype="multipart/form-data">
 		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<center>
-			<div class="box">
-				<div>
-					<% @counter = 1 %>
-					<% if(not @msg.nil?)  %>
-						<% @msg.each do |x| %>
-							<%= @counter %>
-							<%= x %>
-							<% @counter = @counter + 1 %>
-							<br/>
-						<% end %>
-					<% end %>
-				</div>
-			</div>
-
 			<table>
-				<tr><th colspan="2">Add New Product</th></tr>
+				<tr><td colspan="2">Add New Product</td></tr>
 				<% @labels.size.times do |x| %>
 					<tr>
 						<td class="tab1"><%= label_tag @labels[x]+" : " %></td>
@@ -58,6 +44,14 @@
 
 					<tr><td colspan="2"><%= submit_tag "Add Product" %></td></tr>
 			</table>
+
+			<div>
+				<% if(not @msg.nil?)  %>
+					<% @msg.each do |x| %>
+						<%= x %><br/>
+					<% end %>
+				<% end %>
+			</div>
 		</center>
 	</form>
 </center>
