@@ -1,3 +1,86 @@
+
+<script>
+$(document).ready(function() { /* code here */
+  jQuery('#starttime').datetimepicker({minDate:0});
+  jQuery('#endtime').datetimepicker({minDate:0}); 
+});
+
+
+
+
+'use strict';
+
+var countDownClock = function countDownClock() {
+  var number = arguments.length <= 0 || arguments[0] === undefined ? 100 : arguments[0];
+  var format = arguments.length <= 1 || arguments[1] === undefined ? 'seconds' : arguments[1];
+  var ind=arguments[2]
+
+  var d = document;
+  var daysElement = d.querySelector('.days'+ind);
+  var hoursElement = d.querySelector('.hours'+ind);
+  var minutesElement = d.querySelector('.minutes'+ind);
+  var secondsElement = d.querySelector('.seconds'+ind);
+  var countdown = undefined;
+  convertFormat(format);
+
+  function convertFormat(format) {
+    switch (format) {
+      case 'seconds':
+        return timer(number);
+      case 'minutes':
+        return timer(number * 60);
+      case 'hours':
+        return timer(number * 60 * 60);
+      case 'days':
+        return timer(number * 60 * 60 * 24);;
+    }
+  }
+
+  function timer(seconds) {
+    var now = Date.now();
+    var then = now + seconds * 1000;
+
+    countdown = setInterval(function () {
+      var secondsLeft = Math.round((then - Date.now()) / 1000);
+
+      if (secondsLeft <= 0) {
+        clearInterval(countdown);
+        location.href
+        return;
+      };
+
+      displayTimeLeft(secondsLeft);
+    }, 1000);
+  }
+
+  function displayTimeLeft(seconds) {
+    daysElement.textContent = Math.floor(seconds / 86400);
+    hoursElement.textContent = Math.floor(seconds % 86400 / 3600);
+    minutesElement.textContent = Math.floor(seconds % 86400 % 3600 / 60);
+    secondsElement.textContent = seconds % 60 < 10 ? '0' + seconds % 60 : seconds % 60;
+  }
+};
+
+
+
+window.onload= function()
+{
+
+var cd=document.querySelector('#countdown');
+//startTimer(<%= @duration %>,cd);
+
+<% @du.size.times do |t| %>
+
+countDownClock(<%= @du[t] %>, 'seconds',<%= t%>);
+<% end  %>
+    }
+
+
+
+
+
+</script>
+
 <table>
 <tr>
   <th><div class="header"><h2>Live Auction Products</h2></div></th>
@@ -8,7 +91,11 @@
   <td style="vertical-align:top;" width=50%>
       <% if @st %>
         <table>
-          <% @st.each do |x| %>
+          <%
+          t=0
+           @st.each do |x|
+
+           %>
             <tr>
               <td>
                 <div class="card">                  
@@ -16,13 +103,25 @@
                   <div><%= x.name %></div>
                   <div>Rs.<%= x.min_bid.to_s %></div>
                   <div><%= x.description %></div>
+
+             <div class=""> Ends in    
+<span class=" timer days<%= t%>"></span> Days 
+<span class="timer hours<%= t%>"></span> Hours
+
+
+<span class="timer minutes<%= t%>" ></span>  Minutes
+
+<span class="timer seconds<%= t%>" ></span> Seconds
+<span></span></div>
                   <a href="/product/show?id=<%= x.id %>">View Product</a>
                 </div>
               </td>
             </tr>
           <% end %>
         </table>
-      <% end %>
+      <% 
+      t=t+1
+      end %>
   </td>
 
   <td style="vertical-align:top;" width=50%>

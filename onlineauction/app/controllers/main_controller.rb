@@ -28,6 +28,12 @@ setmessage()
 @r=Product.all
 @au="AUCTION_LIVE"
 @st=Product.where(:auction_status=>@au)
+@du=[]
+@st.each do |c|
+@du.push (c.end_time-ActiveSupport::TimeZone["Asia/Kolkata"].now)
+
+end
+
 @ns="SCHEDULED"
 @nst=Product.where(:auction_status=>@ns)
 

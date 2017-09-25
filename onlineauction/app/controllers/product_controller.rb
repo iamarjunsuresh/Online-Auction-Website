@@ -82,6 +82,17 @@ return
 
   id=params[:id]
 @us=Product.find(id)
+
+if(@us.auction_status=="SCHEDULED")
+
+@duration=@us.start_time-ActiveSupport::TimeZone["Asia/Kolkata"].now
+
+elsif(@us.auction_status=="AUCTION_LIVE")
+
+@duration=@us.end_time-ActiveSupport::TimeZone["Asia/Kolkata"].now
+
+end
+
 if(@us.verified_by==-1)
 
   redirect_to action:"index"
@@ -207,7 +218,7 @@ end
 a=Product.find(params[:id])
 b=Auction.find(a.auction_id)
 
-if((ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
+if(a.auction_status=="SCHEDULED" and (ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
 
 redirect_to action:"show",id:params[:id]
 
