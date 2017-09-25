@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 
 	def new
 		@category=Category.new
+    @cat=Category.all
 	end
 
 	def create
@@ -17,6 +18,7 @@ end
 def index
 	@category=Category.all
 end
+
 def delete
     @category = Category.find(params[:id])
     @category.destroy
