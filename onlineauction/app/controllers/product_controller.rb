@@ -82,6 +82,17 @@ return
 
   id=params[:id]
 @us=Product.find(id)
+
+if(@us.auction_status=="SCHEDULED")
+
+@duration=@us.start_time-ActiveSupport::TimeZone["Asia/Kolkata"].now
+
+elsif(@us.auction_status=="AUCTION_LIVE")
+
+@duration=@us.end_time-ActiveSupport::TimeZone["Asia/Kolkata"].now
+
+end
+
 if(@us.verified_by==-1)
 
   redirect_to action:"index"

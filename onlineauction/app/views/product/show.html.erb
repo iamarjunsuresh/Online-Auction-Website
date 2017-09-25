@@ -5,7 +5,81 @@ $(document).ready(function() { /* code here */
 	jQuery('#starttime').datetimepicker({minDate:0});
 	jQuery('#endtime').datetimepicker({minDate:0}); 
 });
+
+
+
+
+'use strict';
+
+var countDownClock = function countDownClock() {
+  var number = arguments.length <= 0 || arguments[0] === undefined ? 100 : arguments[0];
+  var format = arguments.length <= 1 || arguments[1] === undefined ? 'seconds' : arguments[1];
+
+  var d = document;
+  var daysElement = d.querySelector('.days');
+  var hoursElement = d.querySelector('.hours');
+  var minutesElement = d.querySelector('.minutes');
+  var secondsElement = d.querySelector('.seconds');
+  var countdown = undefined;
+  convertFormat(format);
+
+  function convertFormat(format) {
+    switch (format) {
+      case 'seconds':
+        return timer(number);
+      case 'minutes':
+        return timer(number * 60);
+      case 'hours':
+        return timer(number * 60 * 60);
+      case 'days':
+        return timer(number * 60 * 60 * 24);;
+    }
+  }
+
+  function timer(seconds) {
+    var now = Date.now();
+    var then = now + seconds * 1000;
+
+    countdown = setInterval(function () {
+      var secondsLeft = Math.round((then - Date.now()) / 1000);
+
+      if (secondsLeft <= 0) {
+        clearInterval(countdown);
+        location.href
+        return;
+      };
+
+      displayTimeLeft(secondsLeft);
+    }, 1000);
+  }
+
+  function displayTimeLeft(seconds) {
+    daysElement.textContent = Math.floor(seconds / 86400);
+    hoursElement.textContent = Math.floor(seconds % 86400 / 3600);
+    minutesElement.textContent = Math.floor(seconds % 86400 % 3600 / 60);
+    secondsElement.textContent = seconds % 60 < 10 ? '0' + seconds % 60 : seconds % 60;
+  }
+};
+
+
+
+window.onload= function()
+{
+
+var cd=document.querySelector('#countdown');
+//startTimer(<%= @duration %>,cd);
+
+
+countDownClock(<%= @duration %>, 'seconds');
+
+    }
+
+
+
+
+
 </script>
+
 
 
 <center>
@@ -25,6 +99,27 @@ $(document).ready(function() { /* code here */
 			<tr>
 				<td>Auction Status : </td>
 				<td><%= @arrmap[@p.auction_status] %></td>
+			</tr>
+			<tr>
+			<td>
+
+		<% if @p.auction_status.eql?("AUCTION_LIVE") %>
+			Ends in:
+		<%else%>
+			Starts in:
+		<%end %>
+			</td>
+			<td>
+
+<span class="g days"></span> Days 
+<span class="g hours"></span> Hours
+
+
+<span class="g minutes" ></span>  Minutes
+
+<span class="g seconds" ></span> Seconds
+<span></span>
+			</td>
 			</tr>
 		</table>
 
