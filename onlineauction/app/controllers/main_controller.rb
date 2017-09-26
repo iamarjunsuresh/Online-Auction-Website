@@ -7,7 +7,7 @@ include ERB::Util
  
 
 class MainController < ApplicationController
- before_action :require_login, only: [:profile,:userverify]
+ before_action :require_login, only: [:profile]
 
 def setmessage
 	if(session[:em].nil?)
@@ -114,9 +114,12 @@ def login
 									if(Admin.where(:email=>params[:email]).size>0)
 
 											session[:isadmin]=1
+											session[:userdata]=@us
 											redirect_to controller:"admin",action:"index"
 											return
 									end
+									session[:isadmin]=0
+									session[:userdata]=@us
 									if(not session[:prevurl].nil?)
 
 									redirect_to session[:prevurl]
@@ -261,7 +264,7 @@ ipaddr=ip.ip_address
 else
 ipaddr="localhost"
 end 
-url1="http://"+ipaddr+":3000/verify/"+hassh1
+url1="http://"+ipaddr+":3000/verify/"+hash1
 message=body+url1+baki
 host='http://www.advancedbytes.in'
 furl=host+'/sendmail?semail=123arjunsuresh@gmail.com&remail='+em+"&body="+message+"&sub=Verify Email"
