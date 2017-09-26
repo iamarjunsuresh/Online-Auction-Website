@@ -1,103 +1,116 @@
 <center>
   <h1>Admin Panel</h1>
 
-  <form>
-    <div style="width: 30%;"></div>
+  <form style="width: 25%; display: inline-block;">
+      <h2><a class="text-primary" href="/admin/vuser?id=<%= session[:userdata]['id'] %>">View All Users</a></h2>
+  </form>
+
+  <form style="width: 25%; display: inline-block; margin-left: 5%;">
     <h2><a class="text-primary" href="/categories/new">Manage Category</a></h2>
   </form>
-  <br/><br/>
 
-  <form>
-    <table>
-      <tr><td colspan="6"><b><u>New User Verification</u></b></td></tr>
-
-      <tr>
-        <td><u>Name</u></td>
-        <td><u>Gender</u></td>
-        <td><u>Address</u></td>
-        <td><u>email ID</u></td>
-        <td><u>Mobile No</u></td>
-        <td><u>Actions</u></td>
-      </tr>
-
-      <% @users.each do |x| %>
-        <tr>
-          <td><%= x.name %></td>
-          <td><%= x.addr %></td>
-          <td><%= x.gender %></td>
-          <td><%= x.email %></td>
-          <td><%= x.phno %></td>
-          <td>
-          <%= link_to "Accept" ,action:"vuser",id:x.id,verified:"1" %>
-          </br><%= link_to "Reject " ,action:"vuser",id:x.id,verified:"0" %>
-          </td>
-        </tr>
-      <% end %>
-  </table> 
+  <form style="width: 25%; display: inline-block; margin-left: 5%;">
+    <h2><a class="text-primary" href="/admin/vproduct?id=<%= session[:userdata]['id'] %>">View All Products</a></h2>
   </form>
-  <br/><br/>
+  <br/><br/><br/>
 
-  <form>
-    <table>
-      <tr><td colspan="6"><b><u>New Products Verification</u></b></td></tr>
-      <tr>
-        <td><u>Image</u></td>
-        <td><u>Name</u></td>
-        <td><u>Description</u></td>
-        <td><u>Minimum Bid</u></td>
-        <td><u>Uploaded By</u></td>
-        <td><u>Actions</u></td>
-      </tr>
-
-      <% @products.size.times do |y| 
-      x=@products[y] %>
-      <tr>
-      <td><div class="img"><img src="<%= x.image %>" ></img></div></td>
-      <td><%= x.name %></td>
-      <td><%= x.description %></td>
-      <td>Rs. <%= x.min_bid.to_s %></td>
-      <td><%= @userp[y][:name] %></td>
-      <td>
-        <%= link_to "Accept" ,action:"vproduct",id:x.id,verified:"1" %></br>
-        <%= link_to "Reject " ,action:"vproduct",id:x.id,verified:"0" %>
-      </td>
-      </tr>
-      <% end %>
-    </table>
-  </form>
-  <br/><br/>
-
-  <form>
-    <table style="width: 90%">
-      <tr><td colspan="7"><b><u>New Auction Verification</u></b></td></tr>
-      <tr>
-        <td><u>Image</u></td>
-        <td><u>Name</u></td>
-        <td><u>Description</u></td>
-        <td><u>Minimum Bid</u></td>
-        <td><u>Uploaded By</u></td>
-        <td><u>Start Time</u></td>
-        <td><u>End Time</u></td>
-        <td><u>Actions</u></td>
-      </tr>
-
-      <% @pr.each do |y| userdata=User.find(y.seller_id)%>
+  <% if @users.size > 0 %>  
+    <form>
+      <table>
+        <tr><td colspan="6"><b><u>New User Verification</u></b></td></tr>
 
         <tr>
-          <td><div class="img"><img src="<%= y.image %>" ></img></div></td>
-          <td><%= y.name %></td>
-          <td><%= y.description %></td>
-          <td><%= userdata.name %></td>
-          <td>Rs. <%= y.min_bid.to_s %></td>
-          <td><%= y.start_time %></td>
-          <td><%= y.end_time %></td>
-          <td>
-            <%= link_to "Approve Auction" ,controller:"admin" ,action:"verifyauction",id:y.id%></br>
-            <%= link_to "Edit Auction" ,controller:"auction" ,action:"edit",id:y.id %></br>
-            <%= link_to "Reject Auction" ,controller:"auction" ,action:"cancel",id:y.id %>
-          </td>
+          <td><u>Name</u></td>
+          <td><u>Gender</u></td>
+          <td><u>Address</u></td>
+          <td><u>email ID</u></td>
+          <td><u>Mobile No</u></td>
+          <td><u>Actions</u></td>
         </tr>
-      <% end %>
-    </table>
-  </form>
+
+        <% @users.each do |x| %>
+          <tr>
+            <td><%= x.name %></td>
+            <td><%= x.addr %></td>
+            <td><%= x.gender %></td>
+            <td><%= x.email %></td>
+            <td><%= x.phno %></td>
+            <td>
+            <%= link_to "Accept" ,action:"vuser",id:x.id,verified:"1" %>
+            </br><%= link_to "Reject " ,action:"vuser",id:x.id,verified:"0" %>
+            </td>
+          </tr>
+        <% end %>
+    </table> 
+    </form>
+    <br/><br/>
+  <% end %>
+
+  <% if @products.size > 0 %>
+    <form>
+      <table>
+        <tr><td colspan="6"><b><u>New Products Verification</u></b></td></tr>
+        <tr>
+          <td><u>Image</u></td>
+          <td><u>Name</u></td>
+          <td><u>Description</u></td>
+          <td><u>Minimum Bid</u></td>
+          <td><u>Uploaded By</u></td>
+          <td><u>Actions</u></td>
+        </tr>
+
+        <% @products.size.times do |y| 
+        x=@products[y] %>
+        <tr>
+        <td><div class="img"><img src="<%= x.image %>" height="150" width="150"></img></div></td>
+        <td><%= x.name %></td>
+        <td><%= x.description %></td>
+        <td>Rs. <%= x.min_bid.to_s %></td>
+        <td><%= @userp[y][:name] %></td>
+        <td>
+          <%= link_to "Accept" ,action:"vproduct",id:x.id,verified:"1" %></br>
+          <%= link_to "Reject " ,action:"vproduct",id:x.id,verified:"0" %>
+        </td>
+        </tr>
+        <% end %>
+      </table>
+    </form>
+    <br/><br/>
+  <% end %>
+
+  <% if @pr.size > 0 %>
+    <form>
+      <table style="width: 90%">
+        <tr><td colspan="7"><b><u>New Auction Verification</u></b></td></tr>
+        <tr>
+          <td><u>Image</u></td>
+          <td><u>Name</u></td>
+          <td><u>Description</u></td>
+          <td><u>Minimum Bid</u></td>
+          <td><u>Uploaded By</u></td>
+          <td><u>Start Time</u></td>
+          <td><u>End Time</u></td>
+          <td><u>Actions</u></td>
+        </tr>
+
+        <% @pr.each do |y| userdata=User.find(y.seller_id)%>
+
+          <tr>
+            <td><div class="img"><img src="<%= y.image %>" height="150" width="150"></img></div></td>
+            <td><%= y.name %></td>
+            <td><%= y.description %></td>
+            <td><%= userdata.name %></td>
+            <td>Rs. <%= y.min_bid.to_s %></td>
+            <td><%= y.start_time %></td>
+            <td><%= y.end_time %></td>
+            <td>
+              <%= link_to "Approve" ,controller:"admin" ,action:"verifyauction",id:y.id%></br>
+              <%= link_to "Edit" ,controller:"auction" ,action:"edit",id:y.id %></br>
+              <%= link_to "Reject" ,controller:"auction" ,action:"cancel",id:y.id %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </form>
+  <% end %>
 </center>
