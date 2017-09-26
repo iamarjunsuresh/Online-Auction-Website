@@ -243,7 +243,7 @@ def registercomplete
 			slt=rand(99999).to_s
 			@user.salt=slt
 			@user.pwd=get_hash(params[:pwd],slt)
-			@user.gender=params[:sex]
+			@user.gender=params[:gender]
 			@user.verified_by=-2
 			@user.usertype="user"
 			@user.save
