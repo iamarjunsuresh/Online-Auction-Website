@@ -13,20 +13,20 @@
 <!--Header Starts-->
 <header class="header" >
   <!--<div class="img_"><img src="/img/icon.ico"/></div>-->
-  <div class="title_"><b><u><a href="/">Online Auction</a></u></b></div>
+  <div class="title_" ><b><u><a href="/">Online Auction</a></u></b></div>
   <div class="title_" style="margin-left: 0.5em;">
     <form class="frm" action="/search" method="GET">
 
       <%@category=Category.all %>
-      <select name="category" style="margin: auto;">
+      <select name="category" style="vertical-align:top;">
         <option value="Category">Category</option>
         <% @category.each do |cat| %>
           <option value="<%= cat.name %>"><%= cat.name %></option>
         <% end %>
       </select>
 
-      <input type="text" class="s_box" name="searchterm" placeholder="Search"/>
-      <input type="submit" class="find" value="Search"/>
+      <input type="text" class="s_box" name="searchterm" placeholder="Search" style="vertical-align:top;"/>
+      <input type="submit" class="find" value="Search" style="vertical-align:top;"/>
     </form>
   </div>
 

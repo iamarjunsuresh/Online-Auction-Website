@@ -2,7 +2,7 @@
   <h1>Admin Panel</h1>
 
   <form style="width: 25%; display: inline-block;">
-      <h2><a class="text-primary" href="/admin/vuser?id=<%= session[:userdata]['id'] %>">View All Users</a></h2>
+      <h2><a class="text-primary" href="/admin/vwusers">View All Users</a></h2>
   </form>
 
   <form style="width: 25%; display: inline-block; margin-left: 5%;">
@@ -10,13 +10,13 @@
   </form>
 
   <form style="width: 25%; display: inline-block; margin-left: 5%;">
-    <h2><a class="text-primary" href="/admin/vproduct?id=<%= session[:userdata]['id'] %>">View All Products</a></h2>
+    <h2><a class="text-primary" href="/admin/vwproducts">View All Products</a></h2>
   </form>
   <br/><br/><br/>
 
   <% if @users.size > 0 %>  
     <form>
-      <table>
+      <table style="max-width: 100%;">
         <tr><td colspan="6"><b><u>New User Verification</u></b></td></tr>
 
         <tr>
@@ -48,7 +48,7 @@
 
   <% if @products.size > 0 %>
     <form>
-      <table>
+      <table style="max-width: 100%;">
         <tr><td colspan="6"><b><u>New Products Verification</u></b></td></tr>
         <tr>
           <td><u>Image</u></td>
