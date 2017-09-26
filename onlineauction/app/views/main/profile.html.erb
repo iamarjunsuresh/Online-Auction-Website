@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    th
+    {
+    	padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px
+    }
 
-<style>
-th
-{
-	padding-top: 50px;
-    padding-right: 30px;
-    padding-bottom: 50px;
-    padding-left: 80px
-}
+    .card1 
+    {
+      border: 2px;
+      border-radius: 8px;
+      max-width: 70%;
+      margin: auto;
+      background-color: white;
+      box-shadow: 10px 10px 10px 10px #888888; 
+      text-align: center;
+      font-family: arial;
+    }
 
-.card1 {
-  border: 2px;
-  border-radius: 8px;
-  max-width: 70%;
-  margin: auto;
-  background-color: white;
-  box-shadow: 10px 10px 10px 10px #888888; 
-  text-align: center;
-  font-family: arial;
-}
-.card {
-  border: 2px;
-  border-radius: 8px;
-  max-width: 70%;
-  background-color: white;
-  box-shadow: 10px 10px 10px 10px #888888;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
+    .card 
+    {
+      border: 2px;
+      border-radius: 8px;
+      max-width: 70%;
+      background-color: white;
+      box-shadow: 10px 10px 10px 10px #888888;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
 
-.title {
-  color: grey;
-  font-size: 18px;
-}
+    .title 
+    {
+      color: grey;
+      font-size: 18px;
+    }
 
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
+    button 
+    {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
 
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
+    a
+    {
+      text-decoration: none;
+      font-size: 22px;
+      color: black;
+    }
 
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
+    button:hover, a:hover {
+      opacity: 0.7;
+    }
+  </style>
+
 </head>
+
 <body>
 <% user=@us %>
 <h2 style="text-align:center">User Profile Card</h2>
