@@ -61,7 +61,13 @@ function pbid()
 var ss=$('#bidval').val();
 var bmax=$('#bidmax').val();
 var bidmin=$('#bidmin').val();
+ss=parseFloat(ss);
+bmax=parseFloat(bmax);
+bidmin=parseFloat(bidmin);  
 
+console.log(ss);
+console.log(bmax);
+console.log(bidmin);
 if(ss<=bidmin)
 {
     alert('Bid value is less than Minimum Bid of Auction. ');
@@ -253,14 +259,18 @@ No Bids Placed.
 
 
 
-<% if @auc.status=="AUCTION_LIVE" %>
+<% if @auc.status=="AUCTION_LIVE" and session[:isadmin]==0 and session[:userdata]["id"]!=@p.seller_id %>
+
 
 <input type="text" id="bidval"></input>
-<input type="hidden"  id="bidmax" value="<%= @bidwinval %>"></input>
 
-<input type="hidden"  id="bidmin" value="<%= @p.min_bid %>"></input>
 
 <button class="bidsubmit" onclick="pbid();">Place Bid</button>
 
 <% end %>
+
+<input type="hidden"  id="bidmax" value="<%= @bidwinval %>"/>
+
+<input type="hidden"  id="bidmin" value="<%= @p.min_bid %>"/>
+
 </center>

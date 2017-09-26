@@ -106,13 +106,21 @@ if(@us.verified_by==-1)
   else
 @issch=0
   end
-if((ActiveSupport::TimeZone["Asia/Kolkata"].now-@p.start_time)/(@p.end_time-@p.start_time))
+  if not( @p.start_time.nil? or @p.end_time.nil?)
+
+  @xx=@p;
+  first=ActiveSupport::TimeZone["Asia/Kolkata"].now() - (@xx.start_time)
+  sec=(@p.end_time - @p.start_time)
+if((first/sec).to_f<0.5)
 
 @cancancel=1
 
-end
+else
 @cancancel=0
-
+end
+else
+  @cancancel=0
+end
 
 @labels=["Description","Minimum Bid","Sold By"]
 @seller=User.find(@p.seller_id)
@@ -218,7 +226,7 @@ end
 a=Product.find(params[:id])
 b=Auction.find(a.auction_id)
 
-if(a.auction_status=="SCHEDULED" and (ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
+if(a.auction_status=="SCHEDULED" and (ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time)>0.5)
 
 redirect_to action:"show",id:params[:id]
 

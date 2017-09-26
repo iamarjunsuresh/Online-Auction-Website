@@ -1,5 +1,6 @@
 <br/><h2 style="text-align:center">Your Products</h2>
 <div class="card">
+<center>
 	<table>
 		<tr><td colspan="6"><br/><a href="/product/create">Add New Product</a><br/><br/></td></tr>
 
@@ -24,10 +25,14 @@
 					<% if x.verified_by!=-1 %>
 					<%= link_to "Manage" ,action:"show",id:x.id %></br>
 					<% end %>
+					<% if x.auction_status!="AUCTION_LIVE"%>
 					<%= link_to "Edit " ,action:"edit",id:x.id %></br>
-					<%= link_to "Delete" ,action:"delete",id:x.id %>	
+					
+					<%= link_to "Delete" ,action:"delete",id:x.id %>
+					<%  end  %>	
 				</h5></td>
 			</tr>
 		<% end %>
 	</table>
+	</center>
 </div>

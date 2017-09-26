@@ -35,16 +35,6 @@ else
 end
   end
 
-  def makeadmin
-
-        a=Admin.new
-        a.email=session[:userdata]["email"]
-        a.name=session[:userdata]["name"]
-        a.pass=""
-        a.save
-        redirect_to action:"index"
-  end
-
 def diffnow(st)
   
   @r=st-DateTime.now
@@ -133,7 +123,7 @@ end
   end
 
   
-def auctionhistory
+def history
 
 
 
@@ -165,8 +155,8 @@ def auctionhistory
           result='---'
         end
 
-url="/auction/show?id="+@x.pid.to_s  
-@b.push ({id:a.id,name:@p.name,status:@x.status,result:result,value:val,url:url})
+url1="/auction/show?id="+@x.pid.to_s  
+@b.push ({id:a.id,name:@p.name,status:@x.status,result:result,value:val,url:url1})
 
 end
 

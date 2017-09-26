@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20170923165540) do
 
   create_table "auctions", force: :cascade do |t|
     t.integer "admin_id"
-    t.string "start_time"
-    t.string "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
     t.integer "pid"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "bidding_tables", force: :cascade do |t|

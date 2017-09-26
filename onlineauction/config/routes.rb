@@ -24,6 +24,7 @@ get '/admin/makeadmin'=>'admin#makeadmin'
 get 'product/edit'
 post 'product/edit'
 
+get '/auction/history'=>'auction#history'
 get 'product/delete'
 
 get 'product/createauction'
@@ -54,7 +55,6 @@ post 'product/create'=>'product#create'
 
 get 'admin/'=>'admin#index'
 get 'admin/verifyuser'=>'admin#vuser'
-get 'auction/history'=>'auction#auctionhistory'
 get 'admin/verifyproduct'=>'admin#vproduct'
 
 
