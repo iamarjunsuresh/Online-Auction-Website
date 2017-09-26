@@ -2,6 +2,10 @@ class AuctionController < ApplicationController
 
 
   def show
+    if(params[:id].nil? or params[:id]=="")
+      redirect_to controller:"main",action:"index"
+      return
+    end
     id=params[:id]
     @p=Product.find(id)
     @auc=Auction.find(@p.auction_id)
@@ -52,10 +56,11 @@ def cancelbid
 
     @auc=Auction.find(session[:aid])
     if @bid.bidder_id=session[:bid]
-    #percen=diffnow(@auc.start_time)/diffdate(@auc.end_time,@auc.start_time)
-    percen=0.0
+    dur=@auc.end_time-@auc.start_time
+    rem=@auc.end_time-ActiveSupport::TimeZone["Asia/Kolkata"].now()
+    percen=rem/dur;
     puts(percen)
-    if(percen>0.5)
+    if(percen<0.5)
 
 
 @resp={message:"Bid Can't Be Cancelled after 50 percentage of time has passed"}
@@ -249,7 +254,11 @@ end
 end
 
 def edit
+if params[:id].nil? or params[:id]==""
+  redirect_to controller:"main",action:"index"
+  return
 
+end
 
   ds=params[:id]
 
@@ -272,10 +281,20 @@ end
 
 
   def cancel
+    
+    if params[:id].nil? or params[:id]==""
+  redirect_to controller:"main",action:"index"
+
+end
+
 ds=params[:id]
 a=Auction.find(ds)
 a.status="AUCTION_CANCELLED"
 a.save
+p=Product.find(a.pid)
+p.auction_status="None"
+p.save
+
 redirect_to action:"index"
 
   end

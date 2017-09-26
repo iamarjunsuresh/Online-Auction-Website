@@ -1,6 +1,8 @@
 class AdminController < ApplicationController
+  before_action :require_admin,:require_logins=
   def index
 
+@livea=Auction.where(:status=>"AUCTION_LIVE")
 @users=User.where(:verified_by=>-1)
 @products=Product.where(:verified_by=>-1)
  @userp=[]
@@ -14,6 +16,7 @@ end
 
  
   end
+
 def banuser
 
 
@@ -38,7 +41,10 @@ def vwuser
 
 	end
   def vproduct
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
 
+end
 id=params[:id]
 @a=Product.find(id)
 if(params[:verified]=="0")
@@ -53,7 +59,10 @@ redirect_to action:"index"
   end
 
   def vuser
-
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+  return
+end
 id=params[:id]
 @a=User.find(id)
 if(params[:verified]=="0")
@@ -68,6 +77,11 @@ redirect_to action:"index"
 
 
 def verifyauction
+  if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+  return
+
+end
   ds=params[:id]
   @p=Product.find(ds)
   @p.auction_status="SCHEDULED"
@@ -79,7 +93,7 @@ aid=@p.auction_id
 	@a.save
 
 redirect_to controller:"admin",action:"index"
-
+return
   end
 
   def vauction 

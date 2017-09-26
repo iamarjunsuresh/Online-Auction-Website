@@ -21,6 +21,10 @@ end
 
 def delete
     
+    if params[:id].nil? or params[:id]==""
+  redirect_to action:"new"
+return
+end
 
     @category = Category.find(params[:id])
 
@@ -31,6 +35,7 @@ def delete
     redirect_to categories_path
   end
 def show
+
 	@category=Category.find(params[:id])
 end 
 private

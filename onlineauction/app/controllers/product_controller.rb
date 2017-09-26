@@ -1,8 +1,9 @@
 class ProductController < ApplicationController
 
+  before_action :require_login,except:[:show]
   
   def index
-    check("/product/")
+    
     id=session[:userdata]["id"]
     @r=Product.where(:seller_id=>id)
   end
@@ -74,9 +75,18 @@ class ProductController < ApplicationController
 end
 
   def show
+    if params[:id].nil?
+redirect_to action:"index"
+return
+    end
 
   id=params[:id]
 @us=Product.find(id)
+if(@us.verified_by==-1)
+
+  redirect_to action:"index"
+
+  end
 @arrmap=[]
 @arrmap={"AUCTION_LIVE"=>"Auction is Live" ,"AUCTION_END"=>"Auction  Ended" ,"SCHEDULED"=>"Auction  Scheduled","TO_BE_VERIFIED"=>"Auction Verification Pending","None"=>"Not Available for Auction"}
   @p=Product.find(params[:id])
@@ -85,6 +95,14 @@ end
   else
 @issch=0
   end
+if((ActiveSupport::TimeZone["Asia/Kolkata"].now-@p.start_time)/(@p.end_time-@p.start_time))
+
+@cancancel=1
+
+end
+@cancancel=0
+
+
 @labels=["Description","Minimum Bid","Sold By"]
 @seller=User.find(@p.seller_id)
 #@names=["name","desc","minbid"]    
@@ -99,6 +117,10 @@ end
   end
 
   def edit
+    if(params[:id].nil? or params[:id]=="")
+redirect_to action:"index"
+return
+    end
   @category=Category.all
 @p=Product.find(params[:id])
 @labels=["Name of Item","Description","Minimum Bid"]
@@ -134,12 +156,17 @@ end
 
   def delete
 
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+
+end
 @p=Product.find(params[:id])
 @p.destroy
 redirect_to action:"index"
   end
 
 def schedule
+
 
 st=params[:starttime]
 et=params[:endtime]
@@ -169,14 +196,29 @@ b=ActiveSupport::TimeZone["Asia/Kolkata"].parse(et)
 redirect_to action:"show",id:pid
 
 end
+
 def cancel
 
+
+if params[:id].nil? or params[:id]==""
+  redirect_to action:"index"
+
+end
 a=Product.find(params[:id])
 b=Auction.find(a.auction_id)
+
+if((ActiveSupport::TimeZone["Asia/Kolkata"].now-a.start_time)/(a.end_time-a.start_time))
+
+redirect_to action:"show",id:params[:id]
+
+return
+end
+
 b.status="None"
 b.save
 a.auction_status="None";
 a.save
+
 redirect_to action:"show",id:params[:id]
   end
 end

@@ -1,5 +1,30 @@
+<script type="text/javascript">
+	
+
+function onsubmit1()
+{
+pwd=document.getElementsByName('pwd')[0].value
+
+cpwd=document.getElementsByName('cpwd')[0].value
+if(pwd!=cpwd)
+{
+	alert("Confirm Password is not matching");
+	return false;
+
+}
+else
+{
+	return true;
+}
+}
+
+</script>
+
 <center>
-	<%= form_tag action:"registercomplete", method:"post" do %>
+
+		<form action="/register" method="POST" onsubmit="return onsubmit1();">
+		
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<center>
 			<table>
 				<tr><td colspan="2">
@@ -8,22 +33,22 @@
 				
 				<tr>
 					<td class="tab1"><%= label_tag :fname,"First Name : " %></td>
-					<td class="tab2"><%= text_field_tag :fname %></td>
+					<td class="tab2"><%= text_field_tag :fname ,"",:required=>true %></td>
 				</tr>
 
 				<tr>
 					<td class="tab1"><%= label_tag :lname,"Last Name : " %></td>
-					<td class="tab2"><%= text_field_tag :lname %></td>
+					<td class="tab2"><%= text_field_tag :lname,"",:required=>true %></td>
 				</tr>
 
 				<tr>
 					<td class="tab1"><%= label_tag :email,"Email : " %></td>
-					<td class="tab2"><%= email_field_tag :email %></td>
+					<td class="tab2"><%= email_field_tag :email,"",:required=>true %></td>
 				</tr>
 
 				<tr>
 					<td class="tab1"><%= label_tag :mobno,"Mobile No : " %></td>
-					<td class="tab2"><input type="text" pattern="[0-9]{10}" name="mobno"></input></td>
+					<td class="tab2"><input type="text" pattern="[0-9]{10}" required="true" name="mobno"></input></td>
 				</tr>
 
 				<tr>
@@ -36,17 +61,17 @@
 
 				<tr>
 					<td class="tab1"><%= label_tag :addr,"Address : " %></td>
-					<td class="tab2"><%= text_area_tag :addr %></td>
+					<td class="tab2"><%= text_area_tag :addr ,"",:required=>true%></td>
 				</tr>
 
 				<tr>
 					<td class="tab1"><%= label_tag :pwd,"Password : " %></td>
-					<td class="tab2"><%= password_field_tag :pwd %></td>
+					<td class="tab2"><%= password_field_tag :pwd ,"",:required=>true%></td>
 				</tr>
 
 				<tr>
 					<td class="tab1"><%= label_tag :cpwd,"Confirm Password : " %></td>
-					<td class="tab2"><%= password_field_tag :cpwd %></td>
+					<td class="tab2"><%= password_field_tag :cpwd ,"",:required=>true%></td>
 				</tr>
 
 				<tr><td colspan="2"><center><%= submit_tag "Register" %></center></td></tr>
@@ -68,5 +93,5 @@
 			</div>
 			<br/>
 		</center>
-	<% end %>
+	</form>
 </center>
