@@ -6,6 +6,15 @@ function catchange()
 }
 </script>
 
+<label>Sort By : </label>	
+<select onchange="catchange();" id="categorysearch"> 
+	<option value="Category"> Select Category</option>
+	<% @category.each do |cat| %>
+		 <option value="<%= cat.name %>"><%= cat.name %></option>
+	<% end %>
+</select>
+<br/><br/>
+
 <center>
 	<table style="margin: 0px; padding: 0px;" border="1">
 		<tr><td colspan="4"><h1>Products Available</h1></td></tr>
@@ -20,7 +29,7 @@ function catchange()
 					<table style="margin: 0px; padding: 0px;">
 						<tr>
 							<td class="tab1">Product Name : </td>
-							<td class="tab2"><%= link_to "" + p.name + "", controller:"product", action:"show", id:p.id  %><%= p.name %></td>
+							<td class="tab2"><%= link_to "" + p.name + "", controller:"product", action:"show", id:p.id %></td>
 						</tr>
 						<tr>
 							<td class="tab1">Category : </td>
@@ -43,14 +52,6 @@ function catchange()
 		<% end %>
 	</table>
 </center>
-	
-	<label>Sort By:</label>	
-	<select onchange="catchange();" id="categorysearch"> 
-		<option value="Category"> Select Category</option>
-		<% @category.each do |cat| %>
-			 <option value="<%= cat.name %>"><%= cat.name %></option>
-		<% end %>
-	</select>
 
 <!--
 <div class="searchregion">

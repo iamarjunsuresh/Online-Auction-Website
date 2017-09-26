@@ -43,22 +43,20 @@
 
     button 
     {
-      border: none;
-      outline: 0;
+      border-style: solid;
+      border-color: black;
       display: inline-block;
-      padding: 8px;
-      color: white;
-      background-color: #000;
+      background-color: white;
       text-align: center;
-      cursor: pointer;
       width: 100%;
-      font-size: 18px;
+      font-size: 20px;
+      padding: 3px;
     }
 
     a
     {
       text-decoration: none;
-      font-size: 22px;
+      font-size: 20px;
       color: black;
     }
 
@@ -75,7 +73,7 @@
 
 <div class="card">
   <center>
-    <table>
+    <table style="margin-bottom: 3em;">
       <tr><td colspan="2"><h2><%= @us.name %></h2></td></tr>
       <tr>
         <td class="tab1">Email : </td>
@@ -104,36 +102,49 @@
 
       <% if session[:isadmin] %>
         <tr>
-          <td colspan="2" class="tab1">
-            <button>Ban User<%= link_to 'ban', controller:"admin", action:"banuser", id:user.id %></button>
-            </td>
-          <td class="tab2"></td>
+          <td colspan="2">
+            <div style="border-style: solid; border-color: black;">
+            <a href="/admin/index">Admin Panel Home</a>
+          </div></td>
         </tr>
+
+        <tr>
+          <td colspan="2">
+            <button>Ban User<% link_to 'ban', controller:"admin", action:"banuser", id:user.id %></button>
+            </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <div style="border-style: solid; border-color: black;">
+            <a href="/admin/index">Make Admin</a>
+          </div></td>
+        </tr>
+
+        <tr><td><br/></td><td><br/></td></tr>
       <% end %>
 
     </table>
   </center>
 </div>
 
-<h2 style="text-align:center">Your Products</h2>
+<% if @pro.size > 0 %>
+  <br/>
 
-<div class="card1">
-  <table style="width:90%">
-		<tr>
-			<th><h2>Name</h1></th>
-			<th><h2>Image</h1></th>
-			<th><h2>Category</h1></th>
-			<th><h2>Verified_By</h1></th>
-		</tr>
-    <% @pro.each do |pp| %>
-			<tr>
-				<td><%= pp.name%></td>
-				<td><div class="img"><img src="<%= pp.image %>" ></img></div></td>
-				<td><%= pp.category%></td>
-				<td><%= pp.verified_by%></td>
-			</tr>
-		<% end %>
-	</table>
-</div>
+  <div class="card1" style="width: 80%">
+    <center>
+      <h2 style="text-align:center"><a href="/product/">Your Products</a></h2>
+    </center>
+  </div>
+<% else %>
+<center>
+    <form>
+      <center><h3>You Have Not Added Any Product Yet...!</h3></center>
+      <div style="border-style: solid; border-color: black; width: 25%;">
+        <a href="/product/create"> Add New Product</a>
+      </div><br/><br/>
+    </form>
+  </center>
+<% end %>
 </body>
 </html>
