@@ -18,7 +18,7 @@
     <form class="frm" action="/search" method="GET">
 
       <%@category=Category.all %>
-      <select name="category">
+      <select name="category" style="margin: auto;">
         <option value="Category">Category</option>
         <% @category.each do |cat| %>
           <option value="<%= cat.name %>"><%= cat.name %></option>

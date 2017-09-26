@@ -10,28 +10,29 @@
       padding-left: 80px
     }
 
-    .card1 
+    .card
     {
+      text-align: center;
+      font-family: arial;
       border: 2px;
-      border-radius: 8px;
+      border-radius: 10px;
       max-width: 80%;
       margin: auto;
       background-color: white;
       box-shadow: 0px 0px 20px black;
-      text-align: center;
-      font-family: arial;
     }
 
-    .card 
+    .card1
     {
-      border: 2px;
-      border-radius: 8px;
-      max-width: 80%;
-      background-color: white;
-      box-shadow: 0px 0px 20px black;
-      margin: auto;
+      padding: 0.5em;
       text-align: center;
       font-family: arial;
+      border: 2px;
+      border-radius: 10px;
+      max-width: 90%;
+      margin: auto;
+      background-color: white;
+      box-shadow: 0px 0px 20px black;
     }
 
     .title 
@@ -73,23 +74,48 @@
 <h2 style="text-align:center">User Profile Card</h2>
 
 <div class="card">
-  
-  <h1><%= @us.name %></h1>
-  <p><%= user.email %></p>
-  <p>Member Since : <%= user.created_at %></p>
-  <p>Verified By : <%= user.verified_by %></p>
-  <p>Type : <%= user.usertype %></p>
-  <p>Products Sold : <%= @co%></p>
-<%   if session[:isadmin] %>
- <p><button>Ban User<%= link_to 'ban',controller:"admin",action:"banuser",id:user.id %></button></p>
+  <center>
+    <table>
+      <tr><td colspan="2"><h2><%= @us.name %></h2></td></tr>
+      <tr>
+        <td class="tab1">Email : </td>
+        <td class="tab2"><%= user.email %></td>
+      </tr>
 
- <% end %>
+      <tr>
+        <td class="tab1">User Type : </td>
+        <td class="tab2"><%= user.usertype %></td>
+      </tr>
+
+      <tr>
+        <td class="tab1">Products Sold : </td>
+        <td class="tab2"><%= @co%></td>
+      </tr>
+
+      <tr>
+        <td class="tab1">Varified By : </td>
+        <td class="tab2">Admin => <%= user.verified_by %></td>
+      </tr>
+
+      <tr>
+        <td class="tab1">Member Since : </td>
+        <td class="tab2"><%= user.created_at %></td>
+      </tr>
+
+      <% if session[:isadmin] %>
+        <tr>
+          <td colspan="2" class="tab1">
+            <button>Ban User<%= link_to 'ban', controller:"admin", action:"banuser", id:user.id %></button>
+            </td>
+          <td class="tab2"></td>
+        </tr>
+      <% end %>
+
+    </table>
+  </center>
 </div>
 
-
-
-
-<h2 style="text-align:center">Details of Products</h2>
+<h2 style="text-align:center">Your Products</h2>
 
 <div class="card1">
   <table style="width:90%">

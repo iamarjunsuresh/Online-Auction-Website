@@ -85,6 +85,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 }
 
 .tab1	{	text-align: right;	}
+.tab2	{	text-align: left;	}
 
 .header
 {

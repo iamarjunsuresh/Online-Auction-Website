@@ -1,56 +1,80 @@
-
-	<script type="text/javascript">
-		
-function catchange(){
+<script type="text/javascript">		
+function catchange()
+{
   var myselect = document.getElementById("categorysearch");
   window.location.href="http://localhost:3000/search?category="+myselect.options[myselect.selectedIndex].value+"&searchterm=<%=  params[:searchterm]  %>";
 }
-
-
 </script>
 
-	<h1>Products Available</h1>
+<center>
+	<table style="margin: 0px; padding: 0px;" border="1">
+		<tr><td colspan="4"><h1>Products Available</h1></td></tr>
+
+		<% @counter = 0 %>
+		<% @r.each do |p| %>
+			<% if @counter % 2 == 0 %>
+				<tr>
+			<% end %>
+				<td><img src="<%= p.image  %>" height="150" width="150"/></td>
+				<td>
+					<table style="margin: 0px; padding: 0px;">
+						<tr>
+							<td class="tab1">Product Name : </td>
+							<td class="tab2"><%= link_to "" + p.name + "", controller:"product", action:"show", id:p.id  %><%= p.name %></td>
+						</tr>
+						<tr>
+							<td class="tab1">Category : </td>
+							<td class="tab2"><%= p.category %></td>
+						</tr>
+						<tr>
+							<td class="tab1">Minimum Bid : </td>
+							<td class="tab2"><%= p.min_bid %></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<%= link_to "Product Page", controller:"product", action:"show", id:p.id  %></td>
+						</tr>
+					</table>
+				</td>
+			<% @counter = @counter + 1 %>
+			<% if @counter % 2 == 0 %>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+</center>
+	
 	<label>Sort By:</label>	
 	<select onchange="catchange();" id="categorysearch"> 
 		<option value="Category"> Select Category</option>
 		<% @category.each do |cat| %>
 			 <option value="<%= cat.name %>"><%= cat.name %></option>
 		<% end %>
- 
-
 	</select>
+
+<!--
 <div class="searchregion">
-
-		<% @r.each do |p| %>
+	<% @r.each do |p| %>
 		<div class="search1">
-		<div class="search-product-image colsearch">
-		<img src="<%= p.image  %>"/>
+			<div class="search-product-image colsearch"><img src="<%= p.image  %>"/></div>
+			<div class="search-product-details colsearch">
+				<div class="search-product-detail-item">
+					<span class="sp-property">Description:</span>
+					<span class="sp-key"><%= p.description %></span>
+				</div>
+				<div class="search-product-detail-item">
+					<span class="sp-property">Category:</span>
+					<span class="sp-key"><%= p.category %></span>
+				</div>
+				<div class="search-product-detail-item">
+					<span class="sp-property">Minimum Bid Val(Rs):</span>
+					<span class="sp-key"><%= p.min_bid %></span>
+				</div>
+				<div class="search-product-detail-item">
+					<span><%= link_to "Go to Product page",controller:"product" ,action:"show",id:p.id  %></span>
+				</div>
+			</div>
 		</div>
-
-
-		<div class="search-product-details colsearch">
-
-
-				<div class="search-product-detail-item">
-							<span class="sp-property">Description:</span><span class="sp-key"><%= p.description %></span>
-				</div>
-				<div class="search-product-detail-item">
-								<span class="sp-property">Category:</span><span class="sp-key"><%= p.category %></span>
-				</div>
-				<div class="search-product-detail-item">
-								<span class="sp-property">Minimum Bid Val(Rs):</span><span class="sp-key"><%= p.min_bid %></span>
-				</div>
-				<div class="search-product-detail-item">
-								<%= link_to "Go to Product page",controller:"product" ,action:"show",id:p.id  %></span>
-				</div>
-
-
-		</div>
-
-			
+	<% end %>
 </div>
-		<% end %>
-	</div>	
-
-
-
+-->

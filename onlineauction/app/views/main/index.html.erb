@@ -7,24 +7,19 @@
 <tr>
   <td width=50%>
       <% if @st %>
-        <table >
+        <table>
           <% @st.each do |x| %>
             <tr>
               <td>
-                <div class="card">
-                  <div>
-                    <div class="img">
-                      <img src="<%= x.image %>" ></img>
-                    </div>
-                  </div>
+                <div class="card">                  
+                  <div class="img"><img src="<%= x.image %>"/></img></div>
                   <div><%= x.name %></div>
                   <div>Rs.<%= x.min_bid.to_s %></div>
                   <div><%= x.description %></div>
-                  <a href="/product/show?id=<%= x.id %>">Go to Product Page</a>
+                  <a href="/product/show?id=<%= x.id %>">View Product</a>
                 </div>
               </td>
             </tr>
-            <br/>
           <% end %>
         </table>
       <% end %>
@@ -36,20 +31,15 @@
           <% @nst.each do |x| %>
             <tr>
               <td>
-                <div class="card">
-                  <div>
-                    <div class="img">
-                      <img src="<%= x.image %>" ></img>
-                    </div>
-                  </div>
+                <div class="card">                 
+                  <div class="img"><img src="<%= x.image %>"/></img></div>
                   <div><%= x.name %></div>
                   <div>Rs.<%= x.min_bid.to_s %></div>
                   <div><%= x.description %></div>
-                  <a href="/product/show?id=<%= x.id %>">Go to Product Page</a>
+                  <a href="/product/show?id=<%= x.id %>">View Product</a>
                 </div>
               </td>
             </tr>
-            <br/>
           <% end %>
         </table>
       <% end %>
