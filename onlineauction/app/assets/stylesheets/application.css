@@ -182,7 +182,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 	text-align: center;
 	min-width: 175px;
 	max-width: 225px;
-	height: 20px;
+	height: 25px;
 	background-color: white;
 	border-radius: 25px;
 	border-style: solid;
@@ -191,7 +191,7 @@ input[type="button"], input[type="submit"], input[type="file"]>input[type="butto
 	overflow: hidden;
 }
 
-.dmenu:hover	{	height:120px;	}
+.dmenu:hover	{	height:95px;	}
 
 .dmenu>a
 {
